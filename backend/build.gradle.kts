@@ -1,7 +1,14 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("java")
     id("org.springframework.boot") version "3.2.5"
     id("io.spring.dependency-management") version "1.1.0"
+    kotlin("jvm") version "2.0.0"
+    kotlin("kapt") version "2.0.0"
+    kotlin("plugin.spring") version "2.0.0"
+    kotlin("plugin.jpa") version "2.0.0"
+    kotlin("plugin.lombok") version "2.0.0"
 }
 
 group = "com"
@@ -19,6 +26,13 @@ springBoot {
     buildInfo()
 }
 
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xjsr305=strict")
+        jvmTarget = JvmTarget.JVM_17
+    }
+}
+
 configurations.all {
     exclude(group = "commons-logging", module = "commons-logging")
 }
@@ -30,6 +44,10 @@ val logbackSlackAppenderVersion = "1.4.0"
 val cucumberVersion = "7.13.0"
 val firebaseVersion = "8.1.0"
 val awsS3Version = "2.25.40"
+val mockkVersion = "1.13.12"
+val springMockkVersion = "4.0.2"
+val kotestVersion = "5.9.1"
+val kotestExtensionSpringVersion = "1.3.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -64,9 +82,6 @@ dependencies {
 
     // Querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
-    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
 
     // Flyway
     implementation("org.flywaydb:flyway-core")
@@ -86,16 +101,39 @@ dependencies {
 
     // AWS S3
     implementation("software.amazon.awssdk:s3:${awsS3Version}")
+
+    // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // Querydsl for kotlin
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    kapt("jakarta.annotation:jakarta.annotation-api")
+    kapt("jakarta.persistence:jakarta.persistence-api")
+
+    // Mockk
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("io.mockk:mockk-jvm:$mockkVersion")
+
+    // Spring Mockk
+    testImplementation("com.ninja-squad:springmockk:$springMockkVersion")
+
+    // Kotest
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionSpringVersion")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
-// Querydsl 폴더 지정
-val querydslDir = file("build/generated/querydsl")
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.MappedSuperclass")
+}
 
-// querydsl QClass 파일 생성 위치를 지정
-tasks.compileJava {
-    options.generatedSourceOutputDirectory.set(querydslDir)
+kapt {
+    keepJavacAnnotationProcessors = true
 }
