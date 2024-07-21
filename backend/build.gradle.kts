@@ -48,6 +48,7 @@ val mockkVersion = "1.13.12"
 val springMockkVersion = "4.0.2"
 val kotestVersion = "5.9.1"
 val kotestExtensionSpringVersion = "1.3.0"
+val kotlinLoggingVersion = "7.0.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -122,6 +123,9 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionSpringVersion")
+
+    // Kotlin logging
+    implementation("io.github.oshai:kotlin-logging-jvm:$kotlinLoggingVersion")
 }
 
 tasks.test {

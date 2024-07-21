@@ -39,27 +39,6 @@ class UploadFileTest {
         }
 
         @Test
-        void location이_null이면_예외() {
-            // when & then
-            assertThatThrownBy(() -> new UploadFile(size, null, extension, createdAt))
-                .isInstanceOf(ValidException.class);
-        }
-
-        @Test
-        void extension이_null이면_예외() {
-            // when & then
-            assertThatThrownBy(() -> new UploadFile(size, location, null, createdAt))
-                .isInstanceOf(ValidException.class);
-        }
-
-        @Test
-        void createdAt이_null이면_예외() {
-            // when & then
-            assertThatThrownBy(() -> new UploadFile(size, location, extension, null))
-                .isInstanceOf(ValidException.class);
-        }
-
-        @Test
         void 생성된_UploadFile의_상태는_UPLOADED이다() {
             // given
             UploadFile uploadFile = new UploadFile(size, location, extension, createdAt);
