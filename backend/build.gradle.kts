@@ -41,7 +41,6 @@ val swaggerVersion = "2.0.2"
 val restAssuredVersion = "5.3.0"
 val jjwtVersion = "0.12.5"
 val logbackSlackAppenderVersion = "1.4.0"
-val cucumberVersion = "7.13.0"
 val firebaseVersion = "8.1.0"
 val awsS3Version = "2.25.40"
 val mockkVersion = "1.13.12"
@@ -74,12 +73,6 @@ dependencies {
 
     // Logback Slack Alarm
     implementation("com.github.maricn:logback-slack-appender:${logbackSlackAppenderVersion}")
-
-    // Cucumber
-    testImplementation("io.cucumber:cucumber-java:${cucumberVersion}")
-    testImplementation("io.cucumber:cucumber-spring:${cucumberVersion}")
-    testImplementation("io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}")
-    testImplementation("org.junit.platform:junit-platform-suite")
 
     // Querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
