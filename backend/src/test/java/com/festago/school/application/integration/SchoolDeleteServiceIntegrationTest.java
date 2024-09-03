@@ -7,18 +7,12 @@ import com.festago.common.exception.BadRequestException;
 import com.festago.common.exception.ErrorCode;
 import com.festago.festival.domain.Festival;
 import com.festago.festival.repository.FestivalRepository;
-import com.festago.member.domain.Member;
-import com.festago.member.repository.MemberRepository;
 import com.festago.school.application.SchoolDeleteService;
 import com.festago.school.domain.School;
 import com.festago.school.repository.SchoolRepository;
-import com.festago.student.domain.Student;
-import com.festago.student.repository.StudentRepository;
 import com.festago.support.ApplicationIntegrationTest;
 import com.festago.support.fixture.FestivalFixture;
-import com.festago.support.fixture.MemberFixture;
 import com.festago.support.fixture.SchoolFixture;
-import com.festago.support.fixture.StudentFixture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -38,12 +32,6 @@ class SchoolDeleteServiceIntegrationTest extends ApplicationIntegrationTest {
 
     @Autowired
     FestivalRepository festivalRepository;
-
-    @Autowired
-    StudentRepository studentRepository;
-
-    @Autowired
-    MemberRepository memberRepository;
 
     @Nested
     class deleteSchool {
@@ -66,20 +54,6 @@ class SchoolDeleteServiceIntegrationTest extends ApplicationIntegrationTest {
             assertThatThrownBy(() -> schoolDeleteService.deleteSchool(schoolId))
                 .isInstanceOf(BadRequestException.class)
                 .hasMessage(ErrorCode.SCHOOL_DELETE_CONSTRAINT_EXISTS_FESTIVAL.getMessage());
-        }
-
-        @Test
-        void 학교에_등록된_학생이_있으면_삭제에_실패한다() {
-            // given
-            Long schoolId = school.getId();
-            Member member = memberRepository.save(MemberFixture.builder().build());
-            Student student = StudentFixture.builder().member(member).school(school).build();
-            studentRepository.save(student);
-
-            // when & then
-            assertThatThrownBy(() -> schoolDeleteService.deleteSchool(schoolId))
-                .isInstanceOf(BadRequestException.class)
-                .hasMessage(ErrorCode.SCHOOL_DELETE_CONSTRAINT_EXISTS_STUDENT.getMessage());
         }
 
         @Test

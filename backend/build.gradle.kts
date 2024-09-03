@@ -81,9 +81,6 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
 
-    // Firebase
-    implementation("com.google.firebase:firebase-admin:${firebaseVersion}")
-
     // Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
