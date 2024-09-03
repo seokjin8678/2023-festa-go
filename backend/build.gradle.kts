@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com"
-version = "0.0.1-SNAPSHOT"
+version = "2.1.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -80,9 +80,6 @@ dependencies {
     // Flyway
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
-
-    // Firebase
-    implementation("com.google.firebase:firebase-admin:${firebaseVersion}")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")

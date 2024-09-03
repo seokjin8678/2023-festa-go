@@ -38,7 +38,7 @@ public class FestivalBookmarkV1Controller {
     @Operation(description = "축제 식별자 목록으로 회원의 북마크 된 축제의 목록을 조회한다.", summary = "축제 식별자 목록으로 북마크 된 축제의 목록 조회")
     public ResponseEntity<List<FestivalBookmarkV1Response>> findBookmarkedFestivals(
         @Member Long memberId,
-        @RequestParam List<Long> festivalIds,
+        @RequestParam(required = false, defaultValue = "") List<Long> festivalIds,
         @RequestParam FestivalBookmarkOrder festivalBookmarkOrder
     ) {
         return ResponseEntity.ok()
