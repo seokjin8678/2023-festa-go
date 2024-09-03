@@ -103,7 +103,7 @@ class PopularFestivalV1QueryServiceIntegrationTest extends ApplicationIntegratio
     }
 
     @Test
-    void 인기_축제는_공연이등록된_축제중_7개까지_반환되고_식별자의_내림차순으로_정렬되어_조회된다() {
+    void 인기_축제는_공연이_등록된_축제중_7개까지_반환되고_식별자의_내림차순으로_정렬되어_조회된다() {
         // when
         var expect = popularQueryService.findPopularFestivals().content();
 
@@ -111,26 +111,13 @@ class PopularFestivalV1QueryServiceIntegrationTest extends ApplicationIntegratio
         assertThat(expect)
             .map(FestivalV1Response::id)
             .containsExactly(
+                열한번쨰로_저장된_기간이_지난_축제.getId(),
                 여덟번째로_저장된_축제.getId(),
                 일곱번째로_저장된_축제.getId(),
                 여섯번째로_저장된_축제.getId(),
                 다섯번째로_저장된_축제.getId(),
                 네번째로_저장된_축제.getId(),
-                세번째로_저장된_축제.getId(),
-                두번째로_저장된_축제.getId()
-            );
-    }
-
-    @Test
-    void 축제_기간이_끝난_축제는_반환되지_않는다() {
-        // when
-        var expect = popularQueryService.findPopularFestivals().content();
-
-        // then
-        assertThat(expect)
-            .map(FestivalV1Response::id)
-            .doesNotContain(
-                열한번쨰로_저장된_기간이_지난_축제.getId()
+                세번째로_저장된_축제.getId()
             );
     }
 }
