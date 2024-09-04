@@ -56,7 +56,8 @@ class UploadFile(
         protected set
 
     @LastModifiedDate
-    val updatedAt: LocalDateTime? = null
+    var updatedAt: LocalDateTime? = null
+        protected set
 
     /**
      * UploadFile을 생성한다. <br></br> UploadFile이 생성됐을 때, 파일은 어딘가에 업로드된 상태로 간주한다. <br></br> 따라서 기본 상태는 UPLOADED 이다. <br></br> 파일의 주인의
