@@ -112,6 +112,7 @@ dependencies {
     // Kotest
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest:kotest-extensions-jvm:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionSpringVersion")
 
     // Kotlin logging
@@ -120,6 +121,7 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs("--add-opens", "java.base/java.time=ALL-UNNAMED")
 }
 
 allOpen {

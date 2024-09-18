@@ -6,6 +6,7 @@ import com.festago.common.exception.NotFoundException;
 import com.festago.common.util.Validator;
 import com.festago.festival.domain.Festival;
 import com.festago.festival.repository.FestivalRepository;
+import com.festago.festival.repository.FestivalRepositoryKt;
 import com.festago.stage.domain.Stage;
 import com.festago.stage.dto.command.StageCreateCommand;
 import com.festago.stage.dto.event.StageCreatedEvent;
@@ -30,7 +31,7 @@ public class StageCreateService {
 
     public Long createStage(StageCreateCommand command) {
         validate(command);
-        Festival festival = festivalRepository.getOrThrow(command.festivalId());
+        Festival festival = FestivalRepositoryKt.getOrThrow(festivalRepository, command.festivalId());
         Stage stage = stageRepository.save(new Stage(
             command.startTime(),
             command.ticketOpenTime(),

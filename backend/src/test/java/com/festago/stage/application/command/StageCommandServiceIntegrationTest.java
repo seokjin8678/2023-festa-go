@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.festago.artist.domain.Artist;
 import com.festago.artist.repository.ArtistRepository;
 import com.festago.festival.domain.FestivalQueryInfo;
-import com.festago.festival.repository.FestivalInfoRepository;
+import com.festago.festival.repository.FestivalQueryInfoRepository;
 import com.festago.festival.repository.FestivalRepository;
 import com.festago.school.domain.School;
 import com.festago.school.domain.SchoolRegion;
@@ -51,7 +51,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
     FestivalRepository festivalRepository;
 
     @Autowired
-    FestivalInfoRepository festivalInfoRepository;
+    FestivalQueryInfoRepository festivalQueryInfoRepository;
 
     @Autowired
     SchoolRepository schoolRepository;
@@ -92,7 +92,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
             .endDate(festivalEndDate)
             .school(테코대학교)
             .build()).getId();
-        festivalInfoRepository.save(FestivalQueryInfoFixture.builder().festivalId(테코대학교_축제_식별자).build());
+        festivalQueryInfoRepository.save(FestivalQueryInfoFixture.builder().festivalId(테코대학교_축제_식별자).build());
 
         에픽하이_식별자 = artistRepository.save(ArtistFixture.builder().name("에픽하이").build()).getId();
         소녀시대_식별자 = artistRepository.save(ArtistFixture.builder().name("소녀시대").build()).getId();
@@ -130,11 +130,11 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
                 .build();
 
             // when
-            FestivalQueryInfo previosFestivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo previosFestivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             Long stageId = stageCreateService.createStage(command);
 
             // then
-            FestivalQueryInfo festivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo festivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             StageQueryInfo stageQueryInfo = stageQueryInfoRepository.findByStageId(stageId).get();
 
             assertThat(festivalQueryInfo.getArtistInfo()).isNotEqualTo(previosFestivalQueryInfo.getArtistInfo());
@@ -162,7 +162,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
             stageCreateService.createStage(secondCommand);
 
             // then
-            FestivalQueryInfo festivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo festivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             List<Artist> actual = Arrays.asList(
                 objectMapper.readValue(festivalQueryInfo.getArtistInfo(), Artist[].class)
             );
@@ -192,7 +192,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
             stageCreateService.createStage(secondCommand);
 
             // then
-            FestivalQueryInfo festivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo festivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             List<Artist> actual = Arrays.asList(
                 objectMapper.readValue(festivalQueryInfo.getArtistInfo(), Artist[].class)
             );
@@ -251,7 +251,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
             // when
             stageUpdateService.updateStage(테코대학교_축제_공연_식별자, command);
 
-            FestivalQueryInfo festivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo festivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             List<Artist> actual = Arrays.asList(
                 objectMapper.readValue(festivalQueryInfo.getArtistInfo(), Artist[].class)
             );
@@ -291,7 +291,7 @@ public class StageCommandServiceIntegrationTest extends ApplicationIntegrationTe
             stageDeleteService.deleteStage(테코대학교_축제_공연_식별자);
 
             // then
-            FestivalQueryInfo festivalQueryInfo = festivalInfoRepository.findByFestivalId(테코대학교_축제_식별자).get();
+            FestivalQueryInfo festivalQueryInfo = festivalQueryInfoRepository.findByFestivalId(테코대학교_축제_식별자);
             assertThat(festivalQueryInfo.getArtistInfo()).isEqualTo("[]");
         }
     }

@@ -1,7 +1,6 @@
 package com.festago.festival.domain
 
 import com.festago.common.domain.BaseTimeEntity
-import com.festago.common.util.ImageUrlHelper
 import com.festago.common.util.Validator
 import com.festago.school.domain.School
 import jakarta.persistence.Column
@@ -87,7 +86,7 @@ class Festival(
 
     fun changePosterImageUrl(posterImageUrl: String) {
         validatePosterImageUrl(posterImageUrl)
-        this.posterImageUrl = ImageUrlHelper.getBlankStringIfBlank(posterImageUrl)
+        this.posterImageUrl = posterImageUrl.ifBlank { "" }
     }
 
     fun changeFestivalDuration(festivalDuration: FestivalDuration) {
