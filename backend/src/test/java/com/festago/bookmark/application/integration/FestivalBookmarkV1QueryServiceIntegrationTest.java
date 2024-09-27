@@ -138,7 +138,7 @@ class FestivalBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegrati
 
             // then
             assertThat(회원A_북마크_축제_정보_목록)
-                .map(FestivalBookmarkV1Response::festival)
+                .map(FestivalBookmarkV1Response::getFestival)
                 .map(FestivalV1Response::getId)
                 .containsExactly(우테대학교_가을_축제_식별자, 테코대학교_봄_축제_식별자, 우테대학교_여름_축제_식별자);
         }
@@ -159,7 +159,7 @@ class FestivalBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegrati
 
             // then
             assertThat(회원A_북마크_축제_정보_목록)
-                .map(FestivalBookmarkV1Response::festival)
+                .map(FestivalBookmarkV1Response::getFestival)
                 .map(FestivalV1Response::getId)
                 .containsExactly(테코대학교_봄_축제_식별자, 우테대학교_여름_축제_식별자, 우테대학교_가을_축제_식별자);
         }
