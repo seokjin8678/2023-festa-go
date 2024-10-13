@@ -14,7 +14,6 @@ enum class FileExtension(
     ;
 
     companion object {
-        @JvmStatic
         fun from(mimeType: String?): FileExtension {
             if (mimeType.isNullOrBlank()) {
                 return NONE

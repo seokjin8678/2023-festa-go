@@ -1,9 +1,9 @@
 package com.festago.support.spec
 
-import com.festago.auth.AuthenticateContext
 import com.festago.auth.domain.Role
 import com.festago.auth.domain.authentication.AdminAuthentication
 import com.festago.auth.domain.authentication.AnonymousAuthentication
+import com.festago.auth.domain.authentication.AuthenticateContext
 import com.festago.auth.domain.authentication.MemberAuthentication
 import com.festago.common.aop.ValidPageableAspect
 import com.festago.support.TestAuthConfig
@@ -48,7 +48,7 @@ abstract class ControllerDescribeSpec(body: DescribeSpec.() -> Unit = {}) : Desc
         extension.apply {
             val authenticateContext = applicationContext.getBean(AuthenticateContext::class.java)
             val authentication = when (role) {
-                Role.ANONYMOUS -> AnonymousAuthentication.getInstance()
+                Role.ANONYMOUS -> AnonymousAuthentication
                 Role.MEMBER -> MemberAuthentication(id)
                 Role.ADMIN -> AdminAuthentication(id)
             }
@@ -59,7 +59,7 @@ abstract class ControllerDescribeSpec(body: DescribeSpec.() -> Unit = {}) : Desc
     override suspend fun afterEach(testCase: TestCase, result: TestResult) {
         clearAllMocks()
         val authenticateContext = applicationContext.getBean(AuthenticateContext::class.java)
-        authenticateContext.authentication = AnonymousAuthentication.getInstance()
+        authenticateContext.authentication = AnonymousAuthentication
     }
 }
 
@@ -68,7 +68,7 @@ class MockkServiceBeanFactoryPostProcessor : BeanFactoryPostProcessor {
     override fun postProcessBeanFactory(beanFactory: ConfigurableListableBeanFactory) {
         val classFilter = ClassFilter.of { it.isAnnotationPresent(Service::class.java) }
         ReflectionUtils.findAllClassesInPackage("com.festago", classFilter).forEach {
-            beanFactory.registerSingleton(it.simpleName, mockkClass(it.kotlin))
+            beanFactory.registerSingleton(it.simpleName, mockkClass(it.kotlin, relaxed = true))
         }
     }
 }
