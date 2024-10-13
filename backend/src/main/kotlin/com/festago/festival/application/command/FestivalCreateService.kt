@@ -34,7 +34,7 @@ class FestivalCreateService(
         validate(festival)
         festivalRepository.save(festival)
         eventPublisher.publishEvent(FestivalCreatedEvent(festival))
-        return festival.id!!
+        return festival.identifier
     }
 
     private fun validate(festival: Festival) {

@@ -16,7 +16,7 @@ class UserInfoMemberMapper(
             userInfo.socialId,
             userInfo.socialType,
             if (nickname.isNullOrBlank()) defaultNicknamePolicy.generate() else nickname,
-            userInfo.profileImage
+            userInfo.profileImage ?: ""
         )
     }
 }

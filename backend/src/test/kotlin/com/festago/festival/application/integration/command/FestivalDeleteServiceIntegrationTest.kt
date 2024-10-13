@@ -25,7 +25,7 @@ class FestivalDeleteServiceIntegrationTest(
 
     val school = schoolRepository.save(SchoolFixture.builder().build())
     val festival = festivalRepository.save(FestivalFixture.builder().school(school).build())
-    val festivalId = festival.id!!
+    val festivalId = festival.identifier
 
     describe("축제 삭제") {
 

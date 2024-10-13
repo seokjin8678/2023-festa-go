@@ -20,7 +20,7 @@ class FestivalQueryInfoEventListener(
     @EventListener
     @Transactional(propagation = Propagation.MANDATORY)
     fun createFestivalInfo(event: FestivalCreatedEvent) {
-        val festivalQueryInfo = create(event.festival.id!!)
+        val festivalQueryInfo = create(event.festival.identifier)
         festivalQueryInfoRepository.save(festivalQueryInfo)
     }
 

@@ -23,7 +23,7 @@ class FestivalUpdateServiceIntegrationTest(
 
     val school = schoolRepository.save(SchoolFixture.builder().build())
     val festival = festivalRepository.save(FestivalFixture.builder().school(school).build())
-    val festivalId = festival.id!!
+    val festivalId = festival.identifier
     val now = LocalDate.parse("2023-01-31")
 
     every { clock.instant() } returns TimeInstantProvider.from(now)

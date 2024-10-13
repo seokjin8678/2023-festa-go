@@ -14,11 +14,10 @@ import com.festago.member.repository.MemoryMemberRepository
 import com.festago.support.fixture.MemberFixture
 import com.festago.support.fixture.RefreshTokenFixture
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.matchers.optional.shouldBeEmpty
-import io.kotest.matchers.optional.shouldBePresent
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.throwable.shouldHaveMessage
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import java.time.Clock
@@ -43,7 +42,9 @@ class MemberAuthCommandServiceTest {
         clock = spyk(Clock.systemDefaultZone())
         memberRepository = MemoryMemberRepository()
         refreshTokenRepository = MemoryRefreshTokenRepository()
-        val defaultNicknamePolicy = DefaultNicknamePolicy { "nickname" }
+        val defaultNicknamePolicy = mockk<DefaultNicknamePolicy>().apply {
+            every { generate() } returns "nickname"
+        }
         memberAuthCommandService = MemberAuthCommandService(
             memberRepository = memberRepository,
             refreshTokenRepository = refreshTokenRepository,
@@ -61,7 +62,7 @@ class MemberAuthCommandServiceTest {
             val actual = memberAuthCommandService.login(getUserInfo("1"))
 
             // then
-            memberRepository.findById(actual.memberId).shouldBePresent()
+            memberRepository.findById(actual.memberId) shouldNotBe null
             refreshTokenRepository.findById(actual.refreshToken) shouldNotBe null
         }
 
@@ -74,7 +75,7 @@ class MemberAuthCommandServiceTest {
             )
 
             // when
-            val actual = memberAuthCommandService.login(getUserInfo(member.socialId))
+            val actual = memberAuthCommandService.login(getUserInfo(member.socialId!!))
 
             // then
             refreshTokenRepository.findById(originToken.id) shouldNotBe null
@@ -93,7 +94,7 @@ class MemberAuthCommandServiceTest {
             )
 
             // when
-            memberAuthCommandService.logout(member.id, originToken.id)
+            memberAuthCommandService.logout(member.identifier, originToken.id)
 
             // then
             refreshTokenRepository.findById(originToken.id) shouldBe null
@@ -109,7 +110,7 @@ class MemberAuthCommandServiceTest {
             )
 
             // when
-            memberAuthCommandService.logout(회원B.id, 회원A_리프래쉬_토큰.id)
+            memberAuthCommandService.logout(회원B.identifier, 회원A_리프래쉬_토큰.id)
 
             // then
             refreshTokenRepository.findById(회원A_리프래쉬_토큰.id) shouldNotBe null
@@ -184,10 +185,10 @@ class MemberAuthCommandServiceTest {
             val member = memberRepository.save(MemberFixture.builder().build())
 
             // when
-            memberAuthCommandService.deleteAccount(member.id)
+            memberAuthCommandService.deleteAccount(member.identifier)
 
             // then
-            memberRepository.findById(member.id).shouldBeEmpty()
+            memberRepository.findById(member.identifier) shouldBe null
         }
     }
 

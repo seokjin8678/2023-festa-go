@@ -145,7 +145,7 @@ class FestivalDetailV1QueryServiceIntegrationTest(
 
     describe("축제 상세 조회") {
         context("테코대학교 축제 조회") {
-            val actual = festivalDetailV1QueryService.findFestivalDetail(테코대학교_축제.id!!)
+            val actual = festivalDetailV1QueryService.findFestivalDetail(테코대학교_축제.identifier)
 
             it("해당 축제의 정보가 반환된다") {
                 actual.id shouldBe 테코대학교_축제.id
@@ -169,7 +169,7 @@ class FestivalDetailV1QueryServiceIntegrationTest(
         }
 
         context("테코대학교 공연 없는 축제 조회") {
-            val actual = festivalDetailV1QueryService.findFestivalDetail(테코대학교_공연_없는_축제.id!!)
+            val actual = festivalDetailV1QueryService.findFestivalDetail(테코대학교_공연_없는_축제.identifier)
 
             it("축제에 공연이 없으면 비어있는 공연이 반환된다") {
                 actual.id shouldBe 테코대학교_공연_없는_축제.id
@@ -178,7 +178,7 @@ class FestivalDetailV1QueryServiceIntegrationTest(
         }
 
         context("우테대학교 축제 조회") {
-            val actual = festivalDetailV1QueryService.findFestivalDetail(우테대학교_축제.id!!)
+            val actual = festivalDetailV1QueryService.findFestivalDetail(우테대학교_축제.identifier)
 
             it("축제를 개최하는 학교에 소셜미디어가 없으면 비어있는 소셜미디어가 반환된다") {
                 actual.id shouldBe 우테대학교_축제.id

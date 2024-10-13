@@ -65,7 +65,7 @@ class SchoolBookmarkCommandServiceTest : UnitDescribeSpec({
                     .build()
             )
 
-            schoolBookmarkCommandService.save(학교.id!!, 회원_식별자)
+            schoolBookmarkCommandService.save(학교.id, 회원_식별자)
 
             it("중복으로 저정되지 않는다") {
                 schoolRepository.count() shouldBe 1
@@ -73,7 +73,7 @@ class SchoolBookmarkCommandServiceTest : UnitDescribeSpec({
         }
 
         context("기존 북마크가 없으면") {
-            schoolBookmarkCommandService.save(학교.id!!, 회원_식별자)
+            schoolBookmarkCommandService.save(학교.id, 회원_식별자)
 
             it("북마크가 저장된다.") {
                 schoolRepository.count() shouldBe 1
@@ -85,7 +85,7 @@ class SchoolBookmarkCommandServiceTest : UnitDescribeSpec({
         context("저장된 북마크가 없어도") {
             it("예외가 발생하지 않는다.") {
                 shouldNotThrowAny {
-                    schoolBookmarkCommandService.delete(학교.id!!, 회원_식별자)
+                    schoolBookmarkCommandService.delete(학교.id, 회원_식별자)
                 }
             }
         }
@@ -98,7 +98,7 @@ class SchoolBookmarkCommandServiceTest : UnitDescribeSpec({
                     .memberId(회원_식별자)
                     .build()
             )
-            schoolBookmarkCommandService.delete(학교.id!!, 회원_식별자)
+            schoolBookmarkCommandService.delete(학교.id, 회원_식별자)
 
             it("북마크가 삭제된다.") {
                 bookmarkRepository.count() shouldBe 0

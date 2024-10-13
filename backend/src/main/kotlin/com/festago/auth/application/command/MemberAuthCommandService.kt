@@ -11,6 +11,7 @@ import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.UnauthorizedException
 import com.festago.member.domain.Member
 import com.festago.member.repository.MemberRepository
+import com.festago.member.repository.getOrThrow
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.time.Clock
 import java.time.LocalDateTime
@@ -33,10 +34,11 @@ class MemberAuthCommandService(
 
     fun login(userInfo: UserInfo): LoginResult {
         val member = memberRepository.findBySocialIdAndSocialType(userInfo.socialId, userInfo.socialType)
-            .orElseGet { signUp(userInfo) }
-        val refreshToken = createSavedRefreshToken(member.id)
+            ?: signUp(userInfo)
+        val memberId = member.identifier
+        val refreshToken = createSavedRefreshToken(memberId)
         return LoginResult(
-            memberId = member.id,
+            memberId = memberId,
             nickname = member.nickname,
             profileImageUrl = member.profileImage,
             refreshToken = refreshToken.id,
@@ -79,7 +81,7 @@ class MemberAuthCommandService(
         )
     }
 
-    fun deleteAccount(memberId: Long?) {
+    fun deleteAccount(memberId: Long) {
         val member = memberRepository.getOrThrow(memberId)
         log.info { "Member Deleted. memberId: ${member.id}, socialType: ${member.socialType}, socialId: ${member.socialId}" }
         memberRepository.delete(member)

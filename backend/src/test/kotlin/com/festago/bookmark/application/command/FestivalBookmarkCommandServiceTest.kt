@@ -50,7 +50,7 @@ class FestivalBookmarkCommandServiceTest : UnitDescribeSpec({
 
             it("예외가 발생한다.") {
                 val ex = shouldThrow<BadRequestException> {
-                    festivalBookmarkCommandService.save(축제.id!!, 회원_식별자)
+                    festivalBookmarkCommandService.save(축제.identifier, 회원_식별자)
                 }
                 ex shouldHaveMessage ErrorCode.BOOKMARK_LIMIT_EXCEEDED.message
             }
@@ -64,7 +64,7 @@ class FestivalBookmarkCommandServiceTest : UnitDescribeSpec({
                     .resourceId(축제.id)
                     .build()
             )
-            festivalBookmarkCommandService.save(축제.id!!, 회원_식별자)
+            festivalBookmarkCommandService.save(축제.identifier, 회원_식별자)
 
             it("중복으로 저장되지 않는다.") {
                 bookmarkRepository.count() shouldBe 1
@@ -72,7 +72,7 @@ class FestivalBookmarkCommandServiceTest : UnitDescribeSpec({
         }
 
         context("기존 북마크가 없으면") {
-            festivalBookmarkCommandService.save(축제.id!!, 회원_식별자)
+            festivalBookmarkCommandService.save(축제.identifier, 회원_식별자)
 
             it("북마크가 저장된다.") {
                 bookmarkRepository.count() shouldBe 1
@@ -84,7 +84,7 @@ class FestivalBookmarkCommandServiceTest : UnitDescribeSpec({
         context("저장된 북마크가 없어도") {
             it("예외가 발생하지 않는다.") {
                 shouldNotThrowAny {
-                    festivalBookmarkCommandService.delete(축제.id!!, 회원_식별자)
+                    festivalBookmarkCommandService.delete(축제.identifier, 회원_식별자)
                 }
             }
         }
@@ -98,7 +98,7 @@ class FestivalBookmarkCommandServiceTest : UnitDescribeSpec({
                     .build()
             )
 
-            festivalBookmarkCommandService.delete(축제.id!!, 회원_식별자)
+            festivalBookmarkCommandService.delete(축제.identifier, 회원_식별자)
 
             it("북마크가 삭제된다.") {
                 bookmarkRepository.count() shouldBe 0

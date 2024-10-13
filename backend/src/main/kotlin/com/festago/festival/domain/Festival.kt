@@ -93,6 +93,9 @@ class Festival(
         this.festivalDuration = festivalDuration
     }
 
+    val identifier: Long
+        get() = id!!
+
     companion object {
 
         private const val MAX_NAME_LENGTH: Int = 50
