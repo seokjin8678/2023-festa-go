@@ -47,7 +47,7 @@ class AdminSocialMediaV1QueryServiceIntegrationTest extends ApplicationIntegrati
             var actual = adminSocialMediaV1QueryService.findById(소셜미디어_식별자);
 
             // then
-            assertThat(actual.name()).isEqualTo("테코대학교 소셜미디어");
+            assertThat(actual.getName()).isEqualTo("테코대학교 소셜미디어");
         }
 
         @Test
@@ -81,7 +81,7 @@ class AdminSocialMediaV1QueryServiceIntegrationTest extends ApplicationIntegrati
 
             // then
             assertThat(actual)
-                .map(AdminSocialMediaV1Response::id)
+                .map(AdminSocialMediaV1Response::getId)
                 .containsExactlyInAnyOrderElementsOf(expect);
         }
     }

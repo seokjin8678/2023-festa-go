@@ -9,11 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.festago.admin.application.AdminSocialMediaV1QueryService;
 import com.festago.admin.dto.socialmedia.AdminSocialMediaV1Response;
-import com.festago.admin.dto.socialmedia.SocialMediaCreateV1Request;
-import com.festago.admin.dto.socialmedia.SocialMediaUpdateV1Request;
 import com.festago.auth.domain.Role;
 import com.festago.socialmedia.application.SocialMediaCommandService;
 import com.festago.socialmedia.domain.OwnerType;
@@ -41,9 +38,6 @@ class AdminSocialMediaV1ControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Autowired
     SocialMediaCommandService socialMediaCommandService;
@@ -171,21 +165,24 @@ class AdminSocialMediaV1ControllerTest {
             void 요청을_보내면_200_응답이_반환된다() throws Exception {
                 // given
                 Long socialMediaId = 1L;
-                var request = SocialMediaCreateV1Request.builder()
-                    .ownerId(1L)
-                    .ownerType(OwnerType.SCHOOL)
-                    .socialMediaType(SocialMediaType.INSTAGRAM)
-                    .url("https://instagram.com/tecodaehak")
-                    .logoUrl("https://image.com/logo.png")
-                    .name("테코대학교 총학생회 인스타그램")
-                    .build();
+                var request = """
+                    {
+                        "ownerId": "1",
+                        "ownerType": "SCHOOL",
+                        "socialMediaType": "INSTAGRAM",
+                        "url": "https://instagram.com/tecodaehak",
+                        "logoUrl": "https://image.com/logo.png",
+                        "name": "테코대학교 총학생회 인스타그램"
+                    }
+                    """;
+
                 given(socialMediaCommandService.createSocialMedia(any(SocialMediaCreateCommand.class)))
                     .willReturn(socialMediaId);
 
                 // when & then
                 mockMvc.perform(post(uri)
                         .cookie(TOKEN_COOKIE)
-                        .content(objectMapper.writeValueAsString(request))
+                        .content(request)
                         .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
             }
@@ -222,16 +219,18 @@ class AdminSocialMediaV1ControllerTest {
             @WithMockAuth(role = Role.ADMIN)
             void 요청을_보내면_200_응답이_반환된다() throws Exception {
                 // given
-                var request = SocialMediaUpdateV1Request.builder()
-                    .url("https://instagram.com/tecodaehak")
-                    .logoUrl("https://image.com/logo.png")
-                    .name("테코대학교 총학생회 인스타그램")
-                    .build();
+                var request = """
+                    {
+                      "name": "테코대학교 총학생회 인스타그램",
+                      "logoUrl": "https://image.com/logo.png",
+                      "url": "https://instagram.com/tecodaehak"
+                    }
+                    """;
 
                 // when & then
                 mockMvc.perform(patch(uri, socialMediaId)
                         .cookie(TOKEN_COOKIE)
-                        .content(objectMapper.writeValueAsString(request))
+                        .content(request)
                         .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
             }
