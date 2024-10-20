@@ -114,7 +114,7 @@ class AdminAuthCommandServiceTest {
 
             // when
             val ex = shouldThrow<BadRequestException> {
-                adminAuthCommandService.signup(rootAdmin.id, command)
+                adminAuthCommandService.signup(rootAdmin.identifier, command)
             }
 
             // then
@@ -134,7 +134,7 @@ class AdminAuthCommandServiceTest {
 
             // when
             val ex = shouldThrow<ForbiddenException> {
-                adminAuthCommandService.signup(admin.id, command)
+                adminAuthCommandService.signup(admin.identifier, command)
             }
 
             // then
@@ -148,7 +148,7 @@ class AdminAuthCommandServiceTest {
             val command = AdminSignupCommand("newAdmin", "password")
 
             // when
-            adminAuthCommandService.signup(rootAdmin.id, command)
+            adminAuthCommandService.signup(rootAdmin.identifier, command)
 
             // then
             adminRepository.existsByUsername(command.username) shouldBe true

@@ -27,7 +27,7 @@ class AdminAuthCommandService(
     @Transactional(readOnly = true)
     fun login(command: AdminLoginCommand): AdminLoginResult {
         val admin = findAdminWithAuthenticate(command)
-        val adminAuthentication = AdminAuthentication(admin.id)
+        val adminAuthentication = AdminAuthentication(admin.identifier)
         val accessToken = adminAuthenticationTokenProvider.provide(adminAuthentication).token
         return AdminLoginResult(
             username = admin.username,
@@ -38,8 +38,8 @@ class AdminAuthCommandService(
 
     private fun findAdminWithAuthenticate(request: AdminLoginCommand): Admin {
         return adminRepository.findByUsername(request.username)
-            .filter { passwordEncoder.matches(request.password, it.password) }
-            .orElseThrow { UnauthorizedException(ErrorCode.INCORRECT_PASSWORD_OR_ACCOUNT) }
+            ?.takeIf { passwordEncoder.matches(request.password, it.password) }
+            ?: throw UnauthorizedException(ErrorCode.INCORRECT_PASSWORD_OR_ACCOUNT)
     }
 
     private fun getAuthType(admin: Admin): AuthType {
@@ -55,9 +55,10 @@ class AdminAuthCommandService(
     }
 
     private fun validateRootAdmin(adminId: Long) {
-        adminRepository.findById(adminId)
-            .filter { it.isRootAdmin }
-            .orElseGet { throw ForbiddenException(ErrorCode.NOT_ENOUGH_PERMISSION) }
+        val findAdmin = adminRepository.findById(adminId)
+        if (findAdmin == null || !findAdmin.isRootAdmin) {
+            throw ForbiddenException(ErrorCode.NOT_ENOUGH_PERMISSION)
+        }
     }
 
     private fun validateExistsUsername(username: String) {
@@ -67,8 +68,9 @@ class AdminAuthCommandService(
     }
 
     fun initializeRootAdmin(password: String) {
-        adminRepository.findByUsername(Admin.ROOT_ADMIN_NAME)
-            .ifPresent { throw BadRequestException(ErrorCode.DUPLICATE_ACCOUNT_USERNAME) }
+        if (adminRepository.existsByUsername(Admin.ROOT_ADMIN_NAME)) {
+            throw BadRequestException(ErrorCode.DUPLICATE_ACCOUNT_USERNAME)
+        }
         adminRepository.save(Admin.createRootAdmin(passwordEncoder.encode(password)))
     }
 }
