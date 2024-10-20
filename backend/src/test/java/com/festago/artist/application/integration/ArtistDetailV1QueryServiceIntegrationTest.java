@@ -195,7 +195,7 @@ class ArtistDetailV1QueryServiceIntegrationTest extends ApplicationIntegrationTe
                 .build()
             );
             for (Artist artist : artists) {
-                stageArtistRepository.save(StageArtistFixture.builder(stage.getId(), artist.getId()).build());
+                stageArtistRepository.save(StageArtistFixture.builder(stage.getIdentifier(), artist.getId()).build());
             }
         }
 

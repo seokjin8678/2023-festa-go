@@ -150,6 +150,6 @@ class ArtistSearchStageCountV1QueryServiceIntegrationTest extends ApplicationInt
     }
 
     private void saveStageArtist(Artist artist, Stage stage) {
-        stageArtistRepository.save(StageArtistFixture.builder(stage.getId(), artist.getId()).build());
+        stageArtistRepository.save(StageArtistFixture.builder(stage.getIdentifier(), artist.getId()).build());
     }
 }

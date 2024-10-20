@@ -14,6 +14,10 @@ data class StageV1UpdateRequest(
     val artistIds: List<Long>,
 ) {
     fun toCommand(): StageUpdateCommand {
-        return StageUpdateCommand(startTime, ticketOpenTime, artistIds)
+        return StageUpdateCommand(
+            startTime = startTime,
+            ticketOpenTime = ticketOpenTime,
+            artistIds = artistIds
+        )
     }
 }

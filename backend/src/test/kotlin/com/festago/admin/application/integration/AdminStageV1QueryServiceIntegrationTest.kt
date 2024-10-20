@@ -124,8 +124,8 @@ internal class AdminStageV1QueryServiceIntegrationTest : ApplicationIntegrationT
                         .school(학교)
                         .build()
                 )
-                _6월_15일_공연_식별자 = createStage(축제, _2077년_6월_15일, java.util.List.of(아티스트A_식별자, 아티스트B_식별자)).id
-                _6월_16일_공연_식별자 = createStage(축제, _2077년_6월_16일, java.util.List.of(아티스트C_식별자)).id
+                _6월_15일_공연_식별자 = createStage(축제, _2077년_6월_15일, java.util.List.of(아티스트A_식별자, 아티스트B_식별자)).identifier
+                _6월_16일_공연_식별자 = createStage(축제, _2077년_6월_16일, java.util.List.of(아티스트C_식별자)).identifier
             }
 
             @Test
@@ -220,7 +220,7 @@ internal class AdminStageV1QueryServiceIntegrationTest : ApplicationIntegrationT
             @Test
             fun 공연의_정보가_정확하게_조회되어야_한다() {
                 // when
-                val actual = adminStageV1QueryService.findById(공연.id)
+                val actual = adminStageV1QueryService.findById(공연.identifier)
 
                 // then
                 actual.id shouldBe 공연.id
@@ -231,7 +231,7 @@ internal class AdminStageV1QueryServiceIntegrationTest : ApplicationIntegrationT
             @Test
             fun 공연의_아티스트_목록이_조회되어야_한다() {
                 // when
-                val actual = adminStageV1QueryService.findById(공연.id)
+                val actual = adminStageV1QueryService.findById(공연.identifier)
 
                 // then
                 actual.artists.map { it.name } shouldContainExactlyInAnyOrder listOf(

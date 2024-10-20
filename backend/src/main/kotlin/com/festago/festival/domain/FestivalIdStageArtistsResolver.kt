@@ -7,5 +7,5 @@ import com.festago.artist.domain.Artist
  */
 fun interface FestivalIdStageArtistsResolver {
 
-    fun resolve(festivalId: Long?): List<Artist>
+    fun resolve(festivalId: Long): List<Artist>
 }

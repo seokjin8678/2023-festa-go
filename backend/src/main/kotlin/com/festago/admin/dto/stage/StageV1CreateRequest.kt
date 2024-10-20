@@ -17,6 +17,11 @@ data class StageV1CreateRequest(
     val artistIds: List<Long>,
 ) {
     fun toCommand(): StageCreateCommand {
-        return StageCreateCommand(festivalId, startTime, ticketOpenTime, artistIds)
+        return StageCreateCommand(
+            festivalId = festivalId,
+            startTime = startTime,
+            ticketOpenTime = ticketOpenTime,
+            artistIds = artistIds
+        )
     }
 }
