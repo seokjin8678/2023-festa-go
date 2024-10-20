@@ -8,6 +8,7 @@ import com.festago.festival.dto.command.FestivalCreateCommand
 import com.festago.festival.dto.event.FestivalCreatedEvent
 import com.festago.festival.repository.FestivalRepository
 import com.festago.school.repository.SchoolRepository
+import com.festago.school.repository.getOrThrow
 import java.time.Clock
 import java.time.LocalDate
 import org.springframework.context.ApplicationEventPublisher
@@ -28,7 +29,7 @@ class FestivalCreateService(
         val festival = Festival(
             name = command.name,
             school = school,
-            posterImageUrl = command.posterImageUrl ?: "",
+            posterImageUrl = command.posterImageUrl,
             festivalDuration = FestivalDuration(command.startDate, command.endDate)
         )
         validate(festival)

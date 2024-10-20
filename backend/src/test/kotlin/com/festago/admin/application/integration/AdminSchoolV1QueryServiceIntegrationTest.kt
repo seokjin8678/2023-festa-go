@@ -176,7 +176,7 @@ internal class AdminSchoolV1QueryServiceIntegrationTest : ApplicationIntegration
         @Test
         fun 식별자로_조회가_되어야_한다() {
             // given
-            val 테코대학교_식별자 = 테코대학교.id
+            val 테코대학교_식별자 = 테코대학교.identifier
 
             // when
             val response = adminSchoolV1QueryService.findById(테코대학교_식별자)

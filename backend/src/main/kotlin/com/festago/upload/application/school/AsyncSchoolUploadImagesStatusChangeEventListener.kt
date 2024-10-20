@@ -19,7 +19,7 @@ class AsyncSchoolUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeAttachedStatusSchoolImagesEventHandler(event: SchoolCreatedEvent) {
         val school = event.school
-        val schoolId = school.id
+        val schoolId = school.identifier
         val imageUris = listOf(school.backgroundUrl, school.logoUrl)
         uploadFileStatusChangeService.changeAttached(schoolId, FileOwnerType.SCHOOL, imageUris)
     }
@@ -27,7 +27,7 @@ class AsyncSchoolUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeRenewalStatusSchoolImagesEventHandler(event: SchoolUpdatedEvent) {
         val school = event.school
-        val schoolId = school.id
+        val schoolId = school.identifier
         val imageUris = listOf(school.backgroundUrl, school.logoUrl)
         uploadFileStatusChangeService.changeRenewal(schoolId, FileOwnerType.SCHOOL, imageUris)
     }

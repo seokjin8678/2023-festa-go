@@ -17,6 +17,12 @@ data class SchoolV1UpdateRequest(
 ) {
 
     fun toCommand(): SchoolUpdateCommand {
-        return SchoolUpdateCommand(name, domain, region, logoUrl, backgroundImageUrl)
+        return SchoolUpdateCommand(
+            name = name,
+            domain = domain,
+            region = region,
+            logoUrl = logoUrl,
+            backgroundImageUrl = backgroundImageUrl
+        )
     }
 }

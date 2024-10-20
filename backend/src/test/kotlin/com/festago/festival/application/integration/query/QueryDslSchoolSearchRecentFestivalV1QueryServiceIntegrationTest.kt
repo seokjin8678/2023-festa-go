@@ -57,7 +57,7 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
             every { clock.instant() } returns TimeInstantProvider.from(_6월_14일)
 
             val actual = schoolUpcomingFestivalStartDateV1QueryService.getSchoolIdToUpcomingFestivalStartDate(
-                listOf(테코대학교.id, 우테대학교.id)
+                listOf(테코대학교.identifier, 우테대학교.identifier)
             )
 
             it("테코대학교는 6월 15일이 조회된다") {
@@ -73,7 +73,7 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
             every { clock.instant() } returns TimeInstantProvider.from(_6월_15일)
 
             val actual = schoolUpcomingFestivalStartDateV1QueryService.getSchoolIdToUpcomingFestivalStartDate(
-                listOf(테코대학교.id, 우테대학교.id)
+                listOf(테코대학교.identifier, 우테대학교.identifier)
             )
 
             it("테코대학교는 6월 15일이 조회된다") {
@@ -89,7 +89,7 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
             every { clock.instant() } returns TimeInstantProvider.from(_6월_16일)
 
             val actual = schoolUpcomingFestivalStartDateV1QueryService.getSchoolIdToUpcomingFestivalStartDate(
-                listOf(테코대학교.id, 우테대학교.id)
+                listOf(테코대학교.identifier, 우테대학교.identifier)
             )
 
             it("테코대학교는 6월 16일이 조회된다") {
@@ -105,7 +105,7 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
             every { clock.instant() } returns TimeInstantProvider.from(_6월_17일)
 
             val actual = schoolUpcomingFestivalStartDateV1QueryService.getSchoolIdToUpcomingFestivalStartDate(
-                listOf(테코대학교.id, 우테대학교.id)
+                listOf(테코대학교.identifier, 우테대학교.identifier)
             )
 
             it("테코대학교는 null이 조회된다") {
@@ -121,7 +121,7 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
             every { clock.instant() } returns TimeInstantProvider.from(_6월_18일)
 
             val actual = schoolUpcomingFestivalStartDateV1QueryService.getSchoolIdToUpcomingFestivalStartDate(
-                listOf(테코대학교.id, 우테대학교.id)
+                listOf(테코대학교.identifier, 우테대학교.identifier)
             )
 
             it("테코대학교는 null이 조회된다") {

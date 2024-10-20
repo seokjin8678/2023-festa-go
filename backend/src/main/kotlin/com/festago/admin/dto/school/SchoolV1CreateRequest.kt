@@ -17,6 +17,12 @@ data class SchoolV1CreateRequest(
 ) {
 
     fun toCommand(): SchoolCreateCommand {
-        return SchoolCreateCommand(name, domain, region, logoUrl, backgroundImageUrl)
+        return SchoolCreateCommand(
+            name = name,
+            domain = domain,
+            region = region,
+            logoUrl = logoUrl,
+            backgroundImageUrl = backgroundImageUrl
+        )
     }
 }

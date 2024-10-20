@@ -26,7 +26,7 @@ class FestivalCreateServiceIntegrationTest(
     val clock: Clock,
 ) : IntegrationDescribeSpec({
 
-    val schoolId = schoolRepository.save(SchoolFixture.builder().build()).id
+    val schoolId = schoolRepository.save(SchoolFixture.builder().build()).identifier
     val festivalName = "테코대학교 축제"
     val now = LocalDate.parse("2077-06-30")
 

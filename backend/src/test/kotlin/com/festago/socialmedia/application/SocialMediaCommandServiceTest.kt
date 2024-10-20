@@ -105,7 +105,7 @@ internal class SocialMediaCommandServiceTest {
 
             // when
             val command = SocialMediaCreateCommand(
-                ownerId = 테코대학교.id,
+                ownerId = 테코대학교.identifier,
                 ownerType = OwnerType.SCHOOL,
                 socialMediaType = SocialMediaType.INSTAGRAM,
                 name = "테코대학교 인스타그램",
