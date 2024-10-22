@@ -1,7 +1,6 @@
 package com.festago.festival.domain
 
 import com.festago.common.domain.BaseTimeEntity
-import com.festago.common.util.ImageUrlHelper
 import com.festago.common.util.Validator
 import com.festago.school.domain.School
 import jakarta.persistence.Column
@@ -21,14 +20,14 @@ class Festival(
     id: Long?,
     name: String,
     festivalDuration: FestivalDuration,
-    posterImageUrl: String,
+    posterImageUrl: String?,
     school: School,
 ) : BaseTimeEntity() {
 
     constructor(
         name: String,
         festivalDuration: FestivalDuration,
-        posterImageUrl: String,
+        posterImageUrl: String?,
         school: School,
     ) : this(null, name, festivalDuration, posterImageUrl, school)
 
@@ -49,7 +48,7 @@ class Festival(
     val endDate get() = festivalDuration.endDate
 
     @Column(nullable = false)
-    var posterImageUrl: String = posterImageUrl
+    var posterImageUrl: String = posterImageUrl ?: ""
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -68,7 +67,7 @@ class Festival(
         Validator.maxLength(name, MAX_NAME_LENGTH, fieldName)
     }
 
-    private fun validatePosterImageUrl(posterImageUrl: String) {
+    private fun validatePosterImageUrl(posterImageUrl: String?) {
         Validator.maxLength(posterImageUrl, MAX_POSTER_IMAGE_URL_LENGTH, "posterImageUrl")
     }
 
@@ -85,14 +84,17 @@ class Festival(
         this.name = name
     }
 
-    fun changePosterImageUrl(posterImageUrl: String) {
+    fun changePosterImageUrl(posterImageUrl: String?) {
         validatePosterImageUrl(posterImageUrl)
-        this.posterImageUrl = ImageUrlHelper.getBlankStringIfBlank(posterImageUrl)
+        this.posterImageUrl = posterImageUrl ?: ""
     }
 
     fun changeFestivalDuration(festivalDuration: FestivalDuration) {
         this.festivalDuration = festivalDuration
     }
+
+    val identifier: Long
+        get() = id!!
 
     companion object {
 

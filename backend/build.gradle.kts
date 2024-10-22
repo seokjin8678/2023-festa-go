@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com"
-version = "2.1.2-SNAPSHOT"
+version = "2.2.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -56,6 +56,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // Spring Security
     implementation("org.springframework.security:spring-security-crypto")
@@ -112,6 +113,7 @@ dependencies {
     // Kotest
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest:kotest-extensions-jvm:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtensionSpringVersion")
 
     // Kotlin logging
@@ -120,6 +122,7 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs("--add-opens", "java.base/java.time=ALL-UNNAMED")
 }
 
 allOpen {
