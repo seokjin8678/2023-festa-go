@@ -1,6 +1,5 @@
-package com.festago.auth.infrastructure.token.http
+package com.festago.auth.domain.token.http
 
-import com.festago.auth.domain.token.http.HttpRequestTokenExtractor
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.mock.web.MockHttpServletRequest

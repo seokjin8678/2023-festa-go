@@ -1,6 +1,5 @@
-package com.festago.auth.infrastructure.token.http
+package com.festago.auth.domain.token.http
 
-import com.festago.auth.domain.token.http.HttpRequestTokenExtractor
 import jakarta.servlet.http.HttpServletRequest
 
 internal class CompositeHttpRequestTokenExtractor(

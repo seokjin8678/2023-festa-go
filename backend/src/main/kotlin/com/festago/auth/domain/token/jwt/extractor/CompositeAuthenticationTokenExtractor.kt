@@ -1,11 +1,11 @@
-package com.festago.auth.infrastructure.token.jwt
+package com.festago.auth.domain.token.jwt.extractor
 
 import com.festago.auth.domain.Role
 import com.festago.auth.domain.authentication.AnonymousAuthentication
 import com.festago.auth.domain.authentication.Authentication
 import com.festago.auth.domain.token.jwt.AuthenticationTokenExtractor
 import com.festago.auth.domain.token.jwt.JwtTokenParser
-import com.festago.auth.domain.token.jwt.claims.AuthenticationClaimsExtractor
+import com.festago.auth.domain.token.jwt.extractor.claims.AuthenticationClaimsExtractor
 import org.springframework.stereotype.Component
 
 @Component

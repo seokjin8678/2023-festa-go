@@ -1,4 +1,4 @@
-package com.festago.auth.infrastructure.token.http
+package com.festago.auth.domain.token.http
 
 import io.kotest.matchers.shouldBe
 import jakarta.servlet.http.Cookie
