@@ -1,10 +1,9 @@
-package com.festago.auth.infrastructure.token.jwt.claims
+package com.festago.auth.domain.token.jwt.extractor.claims
 
 import com.festago.auth.domain.Role
 import com.festago.auth.domain.authentication.AnonymousAuthentication
 import com.festago.auth.domain.authentication.Authentication
 import com.festago.auth.domain.authentication.MemberAuthentication
-import com.festago.auth.domain.token.jwt.claims.AuthenticationClaimsExtractor
 import io.jsonwebtoken.Claims
 import org.springframework.stereotype.Component
 
@@ -15,7 +14,7 @@ internal class MemberAuthenticationClaimsExtractor : AuthenticationClaimsExtract
         if (!claims.audience.contains(Role.MEMBER.name)) {
             return AnonymousAuthentication
         }
-        val memberId = claims[MEMBER_ID_KEY] as Long
+        val memberId = claims[MEMBER_ID_KEY].toString().toLong()
         return MemberAuthentication(memberId)
     }
 
