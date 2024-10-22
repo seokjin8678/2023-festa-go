@@ -1,4 +1,4 @@
-package com.festago.auth.infrastructure.token.jwt.claims
+package com.festago.auth.domain.token.jwt.extractor.claims
 
 import com.festago.auth.domain.Role
 import io.jsonwebtoken.Jwts

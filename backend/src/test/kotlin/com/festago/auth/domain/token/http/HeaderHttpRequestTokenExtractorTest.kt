@@ -1,4 +1,4 @@
-package com.festago.auth.infrastructure.token.http
+package com.festago.auth.domain.token.http
 
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.UnauthorizedException

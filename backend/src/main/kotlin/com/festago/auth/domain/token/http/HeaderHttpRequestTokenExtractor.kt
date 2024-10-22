@@ -1,6 +1,5 @@
-package com.festago.auth.infrastructure.token.http
+package com.festago.auth.domain.token.http
 
-import com.festago.auth.domain.token.http.HttpRequestTokenExtractor
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.UnauthorizedException
 import jakarta.servlet.http.HttpServletRequest
