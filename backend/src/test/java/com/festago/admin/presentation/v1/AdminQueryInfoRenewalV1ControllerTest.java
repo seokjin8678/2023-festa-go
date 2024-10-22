@@ -45,7 +45,7 @@ class AdminQueryInfoRenewalV1ControllerTest {
         @DisplayName("POST " + uri)
         class 올바른_주소로 {
 
-            private long festivalId = 1L;
+            private final long festivalId = 1L;
 
             @Test
             @WithMockAuth(role = Role.ADMIN)

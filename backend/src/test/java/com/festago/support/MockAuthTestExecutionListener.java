@@ -1,10 +1,10 @@
 package com.festago.support;
 
-import com.festago.auth.AuthenticateContext;
 import com.festago.auth.domain.authentication.AdminAuthentication;
 import com.festago.auth.domain.authentication.AnonymousAuthentication;
-import com.festago.auth.domain.authentication.MemberAuthentication;
+import com.festago.auth.domain.authentication.AuthenticateContext;
 import com.festago.auth.domain.authentication.Authentication;
+import com.festago.auth.domain.authentication.MemberAuthentication;
 import java.lang.reflect.Method;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.TestContext;
@@ -21,7 +21,7 @@ public class MockAuthTestExecutionListener implements TestExecutionListener {
             AuthenticateContext authenticateContext = applicationContext.getBean(AuthenticateContext.class);
             long id = withMockAuth.id();
             Authentication authentication = switch (withMockAuth.role()) {
-                case ANONYMOUS -> AnonymousAuthentication.getInstance();
+                case ANONYMOUS -> AnonymousAuthentication.INSTANCE;
                 case MEMBER -> new MemberAuthentication(id);
                 case ADMIN -> new AdminAuthentication(id);
             };
@@ -33,6 +33,6 @@ public class MockAuthTestExecutionListener implements TestExecutionListener {
     public void afterTestMethod(TestContext testContext) throws Exception {
         ApplicationContext applicationContext = testContext.getApplicationContext();
         AuthenticateContext authenticateContext = applicationContext.getBean(AuthenticateContext.class);
-        authenticateContext.setAuthentication(AnonymousAuthentication.getInstance());
+        authenticateContext.setAuthentication(AnonymousAuthentication.INSTANCE);
     }
 }

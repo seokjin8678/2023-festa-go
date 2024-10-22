@@ -1,6 +1,7 @@
 package com.festago.support.fixture;
 
 import com.festago.stage.domain.StageQueryInfo;
+import java.util.Collections;
 
 public class StageQueryInfoFixture extends BaseFixture {
 
@@ -25,6 +26,6 @@ public class StageQueryInfoFixture extends BaseFixture {
     }
 
     public StageQueryInfo build() {
-        return StageQueryInfo.of(stageId, null, ignore -> artistInfo);
+        return StageQueryInfo.of(stageId, Collections.emptyList(), ignore -> artistInfo);
     }
 }

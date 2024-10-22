@@ -57,7 +57,7 @@ class SchoolBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegration
         assertSoftly(softly -> {
             softly.assertThat(actual).hasSize(2);
             softly.assertThat(actual).allSatisfy(it -> assertThat(it).hasNoNullFieldsOrProperties());
-            softly.assertThat(actual).map(SchoolBookmarkV1Response::school)
+            softly.assertThat(actual).map(SchoolBookmarkV1Response::getSchool)
                 .containsExactly(
                     new SchoolBookmarkInfoV1Response(학교A_ID, "A대학교", "https://www.festago.com/A.png"),
                     new SchoolBookmarkInfoV1Response(학교B_ID, "B대학교", "https://www.festago.com/B.png")

@@ -19,7 +19,7 @@ class AsyncFestivalUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeAttachedStatusFestivalImagesEventHandler(event: FestivalCreatedEvent) {
         val festival = event.festival
-        val festivalId = festival.id!!
+        val festivalId = festival.identifier
         val imageUris = listOf(festival.posterImageUrl)
         uploadFileStatusChangeService.changeAttached(festivalId, FileOwnerType.FESTIVAL, imageUris)
     }
@@ -27,7 +27,7 @@ class AsyncFestivalUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeRenewalStatusFestivalImagesEventHandler(event: FestivalUpdatedEvent) {
         val festival = event.festival
-        val festivalId = festival.id!!
+        val festivalId = festival.identifier
         val imageUris = listOf(festival.posterImageUrl)
         uploadFileStatusChangeService.changeRenewal(festivalId, FileOwnerType.FESTIVAL, imageUris)
     }

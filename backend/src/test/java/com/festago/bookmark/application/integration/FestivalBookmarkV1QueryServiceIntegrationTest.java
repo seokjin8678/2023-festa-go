@@ -9,7 +9,7 @@ import com.festago.bookmark.dto.v1.FestivalBookmarkV1Response;
 import com.festago.bookmark.repository.BookmarkRepository;
 import com.festago.bookmark.repository.FestivalBookmarkOrder;
 import com.festago.festival.dto.FestivalV1Response;
-import com.festago.festival.repository.FestivalInfoRepository;
+import com.festago.festival.repository.FestivalQueryInfoRepository;
 import com.festago.festival.repository.FestivalRepository;
 import com.festago.member.repository.MemberRepository;
 import com.festago.school.domain.School;
@@ -46,7 +46,7 @@ class FestivalBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegrati
     FestivalBookmarkV1QueryService festivalBookmarkV1QueryService;
 
     @Autowired
-    FestivalInfoRepository festivalQueryInfoRepository;
+    FestivalQueryInfoRepository festivalQueryInfoRepository;
 
     @Autowired
     MemberRepository memberRepository;
@@ -138,8 +138,8 @@ class FestivalBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegrati
 
             // then
             assertThat(회원A_북마크_축제_정보_목록)
-                .map(FestivalBookmarkV1Response::festival)
-                .map(FestivalV1Response::id)
+                .map(FestivalBookmarkV1Response::getFestival)
+                .map(FestivalV1Response::getId)
                 .containsExactly(우테대학교_가을_축제_식별자, 테코대학교_봄_축제_식별자, 우테대학교_여름_축제_식별자);
         }
 
@@ -159,8 +159,8 @@ class FestivalBookmarkV1QueryServiceIntegrationTest extends ApplicationIntegrati
 
             // then
             assertThat(회원A_북마크_축제_정보_목록)
-                .map(FestivalBookmarkV1Response::festival)
-                .map(FestivalV1Response::id)
+                .map(FestivalBookmarkV1Response::getFestival)
+                .map(FestivalV1Response::getId)
                 .containsExactly(테코대학교_봄_축제_식별자, 우테대학교_여름_축제_식별자, 우테대학교_가을_축제_식별자);
         }
 

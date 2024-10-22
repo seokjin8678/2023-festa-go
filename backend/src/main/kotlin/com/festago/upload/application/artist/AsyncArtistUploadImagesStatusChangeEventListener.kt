@@ -19,7 +19,7 @@ class AsyncArtistUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeAttachedStatusArtistImagesEventHandler(event: ArtistCreatedEvent) {
         val artist = event.artist
-        val artistId = artist.id
+        val artistId = artist.identifier
         val imageUris = listOf(artist.profileImage, artist.backgroundImageUrl)
         uploadFileStatusChangeService.changeAttached(artistId, FileOwnerType.ARTIST, imageUris)
     }
@@ -27,7 +27,7 @@ class AsyncArtistUploadImagesStatusChangeEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun changeRenewalStatusArtistImagesEventHandler(event: ArtistUpdatedEvent) {
         val artist = event.artist
-        val artistId = artist.id
+        val artistId = artist.identifier
         val imageUris = listOf(artist.profileImage, artist.backgroundImageUrl)
         uploadFileStatusChangeService.changeRenewal(artistId, FileOwnerType.ARTIST, imageUris)
     }

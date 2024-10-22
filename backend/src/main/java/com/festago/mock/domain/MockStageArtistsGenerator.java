@@ -53,7 +53,7 @@ public class MockStageArtistsGenerator {
                 return;
             }
             Artist artist = artistQueue.poll();
-            stageArtists.add(new StageArtist(stage.getId(), artist.getId()));
+            stageArtists.add(new StageArtist(stage.getIdentifier(), artist.getId()));
         }
     }
 }

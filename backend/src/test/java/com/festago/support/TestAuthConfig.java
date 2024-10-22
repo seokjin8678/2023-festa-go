@@ -1,6 +1,6 @@
 package com.festago.support;
 
-import com.festago.auth.AuthenticateContext;
+import com.festago.auth.domain.authentication.AuthenticateContext;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 public class TestAuthConfig {
 
     @Bean
-    public AuthenticateContext authenticateContext() {
-        return new AuthenticateContext();
+    public MockAuthenticationTokenExtractor mockAuthenticationTokenExtractor() {
+        return new MockAuthenticationTokenExtractor(authenticateContext());
     }
 
     @Bean
-    public MockAuthenticationTokenExtractor mockAuthenticationTokenExtractor(AuthenticateContext authenticateContext) {
-        return new MockAuthenticationTokenExtractor(authenticateContext);
+    public AuthenticateContext authenticateContext() {
+        return new AuthenticateContext();
     }
 }

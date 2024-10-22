@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.festago.artist.application.ArtistDetailV1QueryService;
 import com.festago.artist.dto.ArtistDetailV1Response;
 import com.festago.artist.dto.ArtistFestivalV1Response;
@@ -36,9 +35,6 @@ class ArtistV1ControllerTest {
     @Autowired
     ArtistDetailV1QueryService artistDetailV1QueryService;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
     @Nested
     class 아티스트_상세_조회 {
 
@@ -62,7 +58,7 @@ class ArtistV1ControllerTest {
                             "https://image.com/youtube.png", "www.knu-instagram.com")
                     )
                 );
-                given(artistDetailV1QueryService.findArtistDetail(expected.id()))
+                given(artistDetailV1QueryService.findArtistDetail(expected.getId()))
                     .willReturn(expected);
 
                 // when & then
