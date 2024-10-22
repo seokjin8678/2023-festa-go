@@ -53,7 +53,7 @@ class ArtistBookmarkCommandServiceTest : UnitDescribeSpec({
 
             it("예외가 발생한다.") {
                 val ex = shouldThrow<BadRequestException> {
-                    artistBookmarkCommandService.save(브라운.id, 회원_식별자)
+                    artistBookmarkCommandService.save(브라운.identifier, 회원_식별자)
                 }
                 ex shouldHaveMessage ErrorCode.BOOKMARK_LIMIT_EXCEEDED.message
             }
@@ -63,12 +63,12 @@ class ArtistBookmarkCommandServiceTest : UnitDescribeSpec({
             bookmarkRepository.save(
                 BookmarkFixture.builder()
                     .bookmarkType(BookmarkType.ARTIST)
-                    .resourceId(브라운.id)
+                    .resourceId(브라운.identifier)
                     .memberId(회원_식별자)
                     .build()
             )
 
-            artistBookmarkCommandService.save(브라운.id, 회원_식별자)
+            artistBookmarkCommandService.save(브라운.identifier, 회원_식별자)
 
             it("중복으로 저장되지 않는다.") {
                 bookmarkRepository.count() shouldBe 1
@@ -76,7 +76,7 @@ class ArtistBookmarkCommandServiceTest : UnitDescribeSpec({
         }
 
         context("기존 북마크가 없으면") {
-            artistBookmarkCommandService.save(브라운.id, 회원_식별자)
+            artistBookmarkCommandService.save(브라운.identifier, 회원_식별자)
 
             it("북마크가 저장된다.") {
                 bookmarkRepository.count() shouldBe 1
@@ -90,7 +90,7 @@ class ArtistBookmarkCommandServiceTest : UnitDescribeSpec({
 
             it("예외가 발생하지 않는다.") {
                 shouldNotThrowAny {
-                    artistBookmarkCommandService.delete(브라운.id, 회원_식별자)
+                    artistBookmarkCommandService.delete(브라운.identifier, 회원_식별자)
                 }
             }
         }
@@ -99,12 +99,12 @@ class ArtistBookmarkCommandServiceTest : UnitDescribeSpec({
             bookmarkRepository.save(
                 BookmarkFixture.builder()
                     .bookmarkType(BookmarkType.ARTIST)
-                    .resourceId(브라운.id)
+                    .resourceId(브라운.identifier)
                     .memberId(회원_식별자)
                     .build()
             )
 
-            artistBookmarkCommandService.delete(브라운.id, 회원_식별자)
+            artistBookmarkCommandService.delete(브라운.identifier, 회원_식별자)
 
             it("북마크가 삭제된다.") {
                 bookmarkRepository.count() shouldBe 0

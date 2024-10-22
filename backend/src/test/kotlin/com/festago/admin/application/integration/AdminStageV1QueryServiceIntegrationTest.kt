@@ -113,9 +113,9 @@ internal class AdminStageV1QueryServiceIntegrationTest : ApplicationIntegrationT
 
             @BeforeEach
             fun setUp() {
-                아티스트A_식별자 = createArtist("아티스트A").id
-                아티스트B_식별자 = createArtist("아티스트B").id
-                아티스트C_식별자 = createArtist("아티스트C").id
+                아티스트A_식별자 = createArtist("아티스트A").identifier
+                아티스트B_식별자 = createArtist("아티스트B").identifier
+                아티스트C_식별자 = createArtist("아티스트C").identifier
                 val 학교 = schoolRepository.save(SchoolFixture.builder().build())
                 축제 = festivalRepository.save(
                     FestivalFixture.builder()
@@ -214,7 +214,7 @@ internal class AdminStageV1QueryServiceIntegrationTest : ApplicationIntegrationT
                 아티스트A = createArtist("아티스트A")
                 아티스트B = createArtist("아티스트B")
                 아티스트C = createArtist("아티스트C")
-                공연 = createStage(축제, _2077년_6월_15일, listOf(아티스트A.id, 아티스트B.id, 아티스트C.id))
+                공연 = createStage(축제, _2077년_6월_15일, listOf(아티스트A.identifier, 아티스트B.identifier, 아티스트C.identifier))
             }
 
             @Test

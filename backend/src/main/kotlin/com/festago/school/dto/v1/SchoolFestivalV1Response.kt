@@ -1,7 +1,7 @@
 package com.festago.school.dto.v1
 
 import com.fasterxml.jackson.annotation.JsonRawValue
-import com.festago.artist.infrastructure.JsonArtistsSerializer.ArtistQueryModel
+import com.festago.artist.domain.ArtistQueryModel
 import com.querydsl.core.annotations.QueryProjection
 import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Schema

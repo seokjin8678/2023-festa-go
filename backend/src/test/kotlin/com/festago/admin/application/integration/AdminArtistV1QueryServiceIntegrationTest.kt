@@ -31,7 +31,7 @@ internal class AdminArtistV1QueryServiceIntegrationTest : ApplicationIntegration
         val expected = artistRepository.save(ArtistFixture.builder().build())
 
         // when
-        val actual = adminArtistV1QueryService.findById(expected.id)
+        val actual = adminArtistV1QueryService.findById(expected.identifier)
 
         // then
         actual.id shouldBe expected.id

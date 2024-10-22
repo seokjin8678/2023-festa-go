@@ -11,6 +11,10 @@ data class ArtistV1UpdateRequest(
 ) {
 
     fun toCommand(): ArtistUpdateCommand {
-        return ArtistUpdateCommand(name, profileImageUrl, backgroundImageUrl)
+        return ArtistUpdateCommand(
+            name = name,
+            profileImageUrl = profileImageUrl,
+            backgroundImageUrl = backgroundImageUrl
+        )
     }
 }

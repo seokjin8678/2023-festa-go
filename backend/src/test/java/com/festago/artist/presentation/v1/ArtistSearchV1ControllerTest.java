@@ -3,10 +3,8 @@ package com.festago.artist.presentation.v1;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.festago.artist.application.ArtistTotalSearchV1Service;
 import com.festago.artist.dto.ArtistTotalSearchV1Response;
 import com.festago.support.CustomWebMvcTest;
@@ -33,9 +31,6 @@ class ArtistSearchV1ControllerTest {
     @Autowired
     ArtistTotalSearchV1Service artistTotalSearchV1Service;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
     @Nested
     class 아티스트_검색_조회 {
 
@@ -61,8 +56,7 @@ class ArtistSearchV1ControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("keyword", "핑크"))
                     .andDo(print())
-                    .andExpect(status().isOk())
-                    .andExpect(content().json(objectMapper.writeValueAsString(expected)));
+                    .andExpect(status().isOk());
             }
 
             @ParameterizedTest

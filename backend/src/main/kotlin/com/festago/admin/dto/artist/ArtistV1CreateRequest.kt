@@ -11,6 +11,10 @@ data class ArtistV1CreateRequest(
 ) {
 
     fun toCommand(): ArtistCreateCommand {
-        return ArtistCreateCommand(name, profileImageUrl, backgroundImageUrl)
+        return ArtistCreateCommand(
+            name = name,
+            profileImageUrl = profileImageUrl,
+            backgroundImageUrl = backgroundImageUrl
+        )
     }
 }

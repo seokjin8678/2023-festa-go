@@ -39,20 +39,20 @@ class ArtistBookmarkV1QueryServiceIntegrationTest(
     describe("북마크한 아티스트 목록을 조회할 때") {
 
         context("회원별로 북마크한 아티스트를 등록하면") {
-            createBookmark(회원A.identifier, 아티스트A.id)
-            createBookmark(회원A.identifier, 아티스트B.id)
-            createBookmark(회원B.identifier, 아티스트A.id)
+            createBookmark(회원A.identifier, 아티스트A.identifier)
+            createBookmark(회원A.identifier, 아티스트B.identifier)
+            createBookmark(회원B.identifier, 아티스트A.identifier)
 
             it("회원A는 아티스트A, B에 대한 목록이 반환된다.") {
                 val actual = artistBookmarkV1QueryService.findArtistBookmarksByMemberId(회원A.identifier)
 
-                actual.map { it.artist.id } shouldContainExactlyInAnyOrder listOf(아티스트A.id, 아티스트B.id)
+                actual.map { it.artist.id } shouldContainExactlyInAnyOrder listOf(아티스트A.identifier, 아티스트B.identifier)
             }
 
             it("회원B는 아티스트A에 대한 목록이 반환된다.") {
                 val actual = artistBookmarkV1QueryService.findArtistBookmarksByMemberId(회원B.identifier)
 
-                actual.map { it.artist.id } shouldContain 아티스트A.id
+                actual.map { it.artist.id } shouldContain 아티스트A.identifier
             }
 
             it("회원C는 빈 목록이 반환된다.") {
