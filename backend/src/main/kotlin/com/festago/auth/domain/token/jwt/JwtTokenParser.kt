@@ -31,6 +31,7 @@ class JwtTokenParser(
         try {
             return jwtParser.parseSignedClaims(token).payload
         } catch (e: ExpiredJwtException) {
+            log.info { "만료된 토큰에 대한 요청이 있습니다. token=$token" }
             throw UnauthorizedException(ErrorCode.EXPIRED_AUTH_TOKEN)
         } catch (e: JwtException) {
             throw UnauthorizedException(ErrorCode.INVALID_AUTH_TOKEN)

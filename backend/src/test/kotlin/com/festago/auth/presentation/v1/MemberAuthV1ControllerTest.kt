@@ -8,7 +8,6 @@ import com.festago.support.spec.ControllerDescribeSpec
 import com.festago.support.withMockAuthExtension
 import java.util.UUID
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.post
 
 class MemberAuthV1ControllerTest(
     val mockMvc: MockMvc,
@@ -75,24 +74,37 @@ class MemberAuthV1ControllerTest(
 
         context("POST $uri") {
 
+            val body = """
+                       {
+                           "refreshToken": "${UUID.randomUUID()}"
+                       }
+                       """
+
             it("200 응답이 반환된다").config(
                 extensions = withMockAuthExtension()
             ) {
                 mockMvc.jsonPost(uri) {
-                    content = """
-                       {
-                            "refreshToken": "${UUID.randomUUID()}"
-                       }
-                    """
+                    this.content = body
                     mockAuthHeader()
                 }.andExpect {
                     status { isOk() }
                 }
             }
 
-            it("토큰 없이 보내면 401 응답이 반환된다") {
-                mockMvc.post(uri).andExpect {
-                    status { isUnauthorized() }
+            it("권한이 없어도 200 응답이 반환된다") {
+                mockMvc.jsonPost(uri) {
+                    this.content = body
+                    mockAuthHeader()
+                }.andExpect {
+                    status { isOk() }
+                }
+            }
+
+            it("토큰 없이 보내도 200 응답이 반환된다") {
+                mockMvc.jsonPost(uri) {
+                    this.content = body
+                }.andExpect {
+                    status { isOk() }
                 }
             }
         }

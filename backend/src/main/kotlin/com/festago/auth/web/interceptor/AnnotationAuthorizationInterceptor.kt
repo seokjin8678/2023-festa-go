@@ -1,6 +1,7 @@
 package com.festago.auth.web.interceptor
 
 import com.festago.auth.annotation.Authorization
+import com.festago.auth.domain.Role
 import com.festago.auth.domain.authentication.AuthenticateContext
 import com.festago.auth.domain.token.http.HttpRequestTokenExtractor
 import com.festago.auth.domain.token.jwt.AuthenticationTokenExtractor
@@ -31,14 +32,27 @@ class AnnotationAuthorizationInterceptor(
         val authorization = handlerMethod.getMethodAnnotation(Authorization::class.java)
             ?: throw UnexpectedException("HandlerMethod에 Authorization 어노테이션이 없습니다.")
         val token: String = httpRequestTokenExtractor.extract(request)
-            ?: throw UnauthorizedException(ErrorCode.NEED_AUTH_TOKEN)
-
-        val authentication = authenticationTokenExtractor.extract(token)
-        if (authentication.role != authorization.role) {
-            throw ForbiddenException(ErrorCode.NOT_ENOUGH_PERMISSION)
+            ?: if (authorization.allowAnonymous()) {
+                return true
+            } else {
+                throw UnauthorizedException(ErrorCode.NEED_AUTH_TOKEN)
+            }
+        runCatching {
+            authenticationTokenExtractor.extract(token)
+        }.onFailure { e ->
+            if (!authorization.allowAnonymous()) {
+                throw e
+            }
+        }.onSuccess { authentication ->
+            if (authentication.role !in authorization.allowRoles) {
+                throw ForbiddenException(ErrorCode.NOT_ENOUGH_PERMISSION)
+            }
+            authenticateContext.authentication = authentication
         }
-
-        authenticateContext.authentication = authentication
         return true
+    }
+
+    private fun Authorization.allowAnonymous(): Boolean {
+        return Role.ANONYMOUS in allowRoles
     }
 }
