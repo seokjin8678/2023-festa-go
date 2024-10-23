@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class RecentSchoolFestivalV1QueryDslRepository(
-    private val queryDslHelper: QueryDslHelper
+    private val queryDslHelper: QueryDslHelper,
 ) {
     fun findRecentSchoolFestivals(
         schoolIds: List<Long>,
-        now: LocalDate
+        now: LocalDate,
     ): List<SchoolUpcomingFestivalStartDateV1Response> {
         return queryDslHelper.select(
             QSchoolUpcomingFestivalStartDateV1Response(

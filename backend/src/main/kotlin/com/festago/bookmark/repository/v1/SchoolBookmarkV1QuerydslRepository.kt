@@ -7,11 +7,9 @@ import com.festago.bookmark.dto.v1.QSchoolBookmarkV1Response
 import com.festago.bookmark.dto.v1.SchoolBookmarkV1Response
 import com.festago.common.querydsl.QueryDslHelper
 import com.festago.school.domain.QSchool.school
-import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Repository
 
 @Repository
-@RequiredArgsConstructor
 class SchoolBookmarkV1QuerydslRepository(
     private val queryDslHelper: QueryDslHelper,
 ) {

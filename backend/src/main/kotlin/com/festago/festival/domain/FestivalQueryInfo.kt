@@ -12,7 +12,7 @@ import jakarta.persistence.Id
 @Entity
 class FestivalQueryInfo private constructor(
     festivalId: Long,
-    artistInfo: String
+    artistInfo: String,
 ) : BaseTimeEntity() {
 
     @Id

@@ -31,7 +31,7 @@ internal class AdminAuthenticationClaimsExtractorTest {
         // given
         val claims = Jwts.claims()
             .audience().add(Role.ADMIN.name).and()
-            .add("adminId", 1L)
+            .subject("1")
             .build()
 
         // when

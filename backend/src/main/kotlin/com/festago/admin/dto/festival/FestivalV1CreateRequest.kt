@@ -19,7 +19,7 @@ data class FestivalV1CreateRequest(
     val posterImageUrl: String?,
 
     @field:NotNull
-    val schoolId: Long
+    val schoolId: Long,
 ) {
     fun toCommand(): FestivalCreateCommand {
         return FestivalCreateCommand(

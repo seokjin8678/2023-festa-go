@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class FestivalArtistNameSearchV1QueryDslRepository(
-    private val queryDslHelper: QueryDslHelper
+    private val queryDslHelper: QueryDslHelper,
 ) {
     fun executeSearch(keyword: String): List<FestivalSearchV1Response> {
         if (keyword.isEmpty()) {

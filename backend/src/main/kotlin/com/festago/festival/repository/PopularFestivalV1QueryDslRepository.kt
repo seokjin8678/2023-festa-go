@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class PopularFestivalV1QueryDslRepository(
-    private val queryDslHelper: QueryDslHelper
+    private val queryDslHelper: QueryDslHelper,
 ) {
     /**
      * 아직 명확한 추천 축제 기준이 없으므로 생성 시간(식별자) 내림차순으로 반환하도록 함

@@ -5,7 +5,7 @@ import org.springframework.util.MimeTypeUtils
 
 enum class FileExtension(
     val value: String,
-    val mimeType: MimeType
+    val mimeType: MimeType,
 ) {
     JPG(".jpg", MimeTypeUtils.IMAGE_JPEG),
     JPEG(".jpeg", MimeTypeUtils.IMAGE_JPEG),

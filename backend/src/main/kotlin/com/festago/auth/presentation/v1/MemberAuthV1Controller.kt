@@ -1,8 +1,11 @@
 package com.festago.auth.presentation.v1
 
+import com.festago.auth.annotation.Authorization
 import com.festago.auth.annotation.MemberAuth
 import com.festago.auth.application.command.MemberAuthFacadeService
+import com.festago.auth.domain.Role
 import com.festago.auth.domain.SocialType
+import com.festago.auth.domain.authentication.Authentication
 import com.festago.auth.domain.authentication.MemberAuthentication
 import com.festago.auth.dto.v1.LoginV1Response
 import com.festago.auth.dto.v1.LogoutV1Request
@@ -62,14 +65,16 @@ class MemberAuthV1Controller(
             .body(memberAuthFacadeService.openIdLogin(request.socialType, request.idToken))
     }
 
-    @MemberAuth
+    @Authorization([Role.MEMBER, Role.ANONYMOUS])
     @PostMapping("/logout")
     @Operation(description = "로그인 된 사용자를 로그아웃 처리한다.", summary = "로그아웃")
     fun logout(
-        memberAuthentication: MemberAuthentication,
+        authentication: Authentication,
         @Valid @RequestBody request: LogoutV1Request,
     ): ResponseEntity<Void> {
-        memberAuthFacadeService.logout(memberAuthentication.id, UUID.fromString(request.refreshToken))
+        if (authentication is MemberAuthentication) {
+            memberAuthFacadeService.logout(authentication.id, UUID.fromString(request.refreshToken))
+        }
         return ResponseEntity.ok().build()
     }
 

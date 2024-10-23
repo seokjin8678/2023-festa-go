@@ -11,5 +11,5 @@ data class FestivalDetailV1Response @QueryProjection constructor(
     val endDate: LocalDate,
     val posterImageUrl: String,
     val socialMedias: Set<SocialMediaV1Response>,
-    val stages: Set<FestivalStageV1Response>
+    val stages: Set<FestivalStageV1Response>,
 )

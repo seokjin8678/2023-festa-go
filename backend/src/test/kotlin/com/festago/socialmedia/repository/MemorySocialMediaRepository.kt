@@ -3,9 +3,9 @@ package com.festago.socialmedia.repository
 import com.festago.socialmedia.domain.OwnerType
 import com.festago.socialmedia.domain.SocialMedia
 import com.festago.socialmedia.domain.SocialMediaType
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemorySocialMediaRepository : AbstractMemoryRepositoryKt<SocialMedia>(), SocialMediaRepository {
+class MemorySocialMediaRepository : AbstractMemoryRepository<SocialMedia>(), SocialMediaRepository {
 
     override fun existsByOwnerIdAndOwnerTypeAndMediaType(
         ownerId: Long,

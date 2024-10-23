@@ -12,11 +12,9 @@ import com.festago.festival.dto.QFestivalV1Response
 import com.festago.festival.dto.QSchoolV1Response
 import com.festago.school.domain.QSchool.school
 import com.querydsl.core.types.OrderSpecifier
-import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Repository
 
 @Repository
-@RequiredArgsConstructor
 class FestivalBookmarkV1QueryDslRepository(
     private val queryDslHelper: QueryDslHelper,
 ) {

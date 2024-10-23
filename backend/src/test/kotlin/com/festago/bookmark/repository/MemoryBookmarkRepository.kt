@@ -2,9 +2,9 @@ package com.festago.bookmark.repository
 
 import com.festago.bookmark.domain.Bookmark
 import com.festago.bookmark.domain.BookmarkType
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryBookmarkRepository : AbstractMemoryRepositoryKt<Bookmark>(), BookmarkRepository {
+class MemoryBookmarkRepository : AbstractMemoryRepository<Bookmark>(), BookmarkRepository {
     override fun existsByBookmarkTypeAndMemberIdAndResourceId(
         bookmarkType: BookmarkType,
         memberId: Long,
