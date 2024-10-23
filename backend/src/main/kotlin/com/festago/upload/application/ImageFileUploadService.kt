@@ -10,17 +10,16 @@ import com.festago.upload.dto.FileUploadResult
 import com.festago.upload.repository.UploadFileRepository
 import com.festago.upload.util.FileNameExtensionParser
 import io.github.oshai.kotlinlogging.KotlinLogging
-import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 
 private val log = KotlinLogging.logger {}
 
 @Service
-@RequiredArgsConstructor // 명시적으로 @Transactional 사용하지 않음
+//@Transactional // 명시적으로 @Transactional 사용하지 않음
 class ImageFileUploadService(
     private val storageClient: StorageClient,
-    private val uploadFileRepository: UploadFileRepository
+    private val uploadFileRepository: UploadFileRepository,
 ) {
 
     fun upload(image: MultipartFile, ownerId: Long?, ownerType: FileOwnerType?): FileUploadResult {

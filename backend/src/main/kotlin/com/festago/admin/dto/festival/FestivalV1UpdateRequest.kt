@@ -20,7 +20,7 @@ data class FestivalV1UpdateRequest(
     val endDate: LocalDate,
 
     @field:Nullable
-    val posterImageUrl: String?
+    val posterImageUrl: String?,
 ) {
     fun toCommand(): FestivalUpdateCommand {
         return FestivalUpdateCommand(name, startDate, endDate, posterImageUrl)

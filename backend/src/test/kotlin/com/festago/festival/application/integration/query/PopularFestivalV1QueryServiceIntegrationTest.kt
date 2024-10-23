@@ -16,7 +16,7 @@ class PopularFestivalV1QueryServiceIntegrationTest(
     val popularFestivalV1QueryService: PopularFestivalV1QueryService,
     val schoolRepository: SchoolRepository,
     val festivalRepository: FestivalRepository,
-    val festivalQueryInfoRepository: FestivalQueryInfoRepository
+    val festivalQueryInfoRepository: FestivalQueryInfoRepository,
 ) : IntegrationDescribeSpec({
 
     val 대학교 = schoolRepository.save(SchoolFixture.builder().build())

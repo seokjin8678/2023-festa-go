@@ -6,5 +6,5 @@ data class FestivalUpdateCommand(
     val name: String,
     val startDate: LocalDate,
     val endDate: LocalDate,
-    val posterImageUrl: String?
+    val posterImageUrl: String?,
 )

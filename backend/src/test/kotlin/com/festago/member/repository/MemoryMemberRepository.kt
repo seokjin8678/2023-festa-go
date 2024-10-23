@@ -2,9 +2,9 @@ package com.festago.member.repository
 
 import com.festago.auth.domain.SocialType
 import com.festago.member.domain.Member
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryMemberRepository : AbstractMemoryRepositoryKt<Member>(), MemberRepository {
+class MemoryMemberRepository : AbstractMemoryRepository<Member>(), MemberRepository {
 
     override fun delete(member: Member) {
         memory.remove(member.id)

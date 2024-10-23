@@ -7,5 +7,5 @@ data class SocialMediaV1Response @QueryProjection constructor(
     val type: SocialMediaType,
     val name: String,
     val logoUrl: String,
-    val url: String
+    val url: String,
 )

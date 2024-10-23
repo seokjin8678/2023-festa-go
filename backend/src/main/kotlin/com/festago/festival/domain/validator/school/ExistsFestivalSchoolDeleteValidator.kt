@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = true)
 class ExistsFestivalSchoolDeleteValidator(
-    private val festivalRepository: FestivalRepository
+    private val festivalRepository: FestivalRepository,
 ) : SchoolDeleteValidator {
 
     override fun validate(schoolId: Long) {

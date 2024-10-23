@@ -10,14 +10,12 @@ import com.festago.school.domain.QSchool.school
 import com.festago.stage.domain.QStage.stage
 import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
-import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Repository
 import org.springframework.util.StringUtils
 
 @Repository
-@RequiredArgsConstructor
 class AdminFestivalV1QueryDslRepository(
     private val queryDslHelper: QueryDslHelper,
 ) {

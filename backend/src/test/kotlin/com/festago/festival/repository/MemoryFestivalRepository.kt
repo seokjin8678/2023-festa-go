@@ -1,9 +1,9 @@
 package com.festago.festival.repository
 
 import com.festago.festival.domain.Festival
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryFestivalRepository : AbstractMemoryRepositoryKt<Festival>(), FestivalRepository {
+class MemoryFestivalRepository : AbstractMemoryRepository<Festival>(), FestivalRepository {
 
     override fun existsBySchoolId(schoolId: Long): Boolean {
         return memory.values.any { it.school.id == schoolId }

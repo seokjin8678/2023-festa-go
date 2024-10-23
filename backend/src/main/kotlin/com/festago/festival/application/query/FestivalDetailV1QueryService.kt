@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional(readOnly = true)
 class FestivalDetailV1QueryService(
-    private val festivalDetailV1QueryDslRepository: FestivalDetailV1QueryDslRepository
+    private val festivalDetailV1QueryDslRepository: FestivalDetailV1QueryDslRepository,
 ) {
 
     fun findFestivalDetail(festivalId: Long): FestivalDetailV1Response {

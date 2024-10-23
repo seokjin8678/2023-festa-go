@@ -35,7 +35,7 @@ class R2StorageClient(
     bucket: String,
     @Value("\${festago.r2.url}")
     uri: String,
-    clock: Clock
+    clock: Clock,
 ) : StorageClient {
 
     private final var s3Client: S3Client

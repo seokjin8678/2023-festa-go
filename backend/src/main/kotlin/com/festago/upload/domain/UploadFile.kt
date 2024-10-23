@@ -22,7 +22,7 @@ class UploadFile(
     size: Long,
     location: URI,
     extension: FileExtension,
-    createdAt: LocalDateTime
+    createdAt: LocalDateTime,
 ) : Persistable<UUID> {
     @Id
     private val id: UUID = UUID.randomUUID()

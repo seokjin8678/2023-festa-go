@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 class UploadFileDeleteService(
     private val storageClient: StorageClient,
     private val uploadFileRepository: UploadFileRepository,
-    private val clock: Clock
+    private val clock: Clock,
 
-) {
+    ) {
 
     fun deleteAbandonedStatusWithPeriod(startTime: LocalDateTime, endTime: LocalDateTime) {
         val uploadFiles =

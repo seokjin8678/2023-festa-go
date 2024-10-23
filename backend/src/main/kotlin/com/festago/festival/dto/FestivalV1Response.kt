@@ -16,5 +16,5 @@ data class FestivalV1Response @QueryProjection constructor(
     val school: SchoolV1Response,
     @field:ArraySchema(schema = Schema(implementation = ArtistQueryModel::class))
     @field:JsonRawValue
-    val artists: String
+    val artists: String,
 )

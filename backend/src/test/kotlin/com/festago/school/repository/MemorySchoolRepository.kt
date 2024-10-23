@@ -1,9 +1,9 @@
 package com.festago.school.repository
 
 import com.festago.school.domain.School
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemorySchoolRepository : AbstractMemoryRepositoryKt<School>(), SchoolRepository {
+class MemorySchoolRepository : AbstractMemoryRepository<School>(), SchoolRepository {
 
     override fun existsByDomain(domain: String): Boolean {
         return memory.values.any { it.domain == domain }

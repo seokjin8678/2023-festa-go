@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/search/festivals")
 @Tag(name = "축제 검색 요청 V1")
 class FestivalSearchV1Controller(
-    private val festivalSearchV1QueryService: FestivalSearchV1QueryService
-){
+    private val festivalSearchV1QueryService: FestivalSearchV1QueryService,
+) {
 
     @GetMapping
     @Operation(description = "키워드로 축제를 검색한다. ~대, ~대학교로 끝날 시 대학교 축제 검색, 그 외의 경우 아티스트가 참여한 축제 검색", summary = "축제 검색")

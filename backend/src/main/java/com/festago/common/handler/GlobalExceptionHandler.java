@@ -14,7 +14,6 @@ import com.festago.common.exception.ValidException;
 import com.festago.common.exception.dto.ErrorResponse;
 import com.festago.common.exception.dto.ValidErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.apache.catalina.connector.ClientAbortException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +29,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-@RequiredArgsConstructor
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger("ErrorLogger");
@@ -63,6 +61,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      */
 
     private final AuthenticateContext authenticateContext;
+
+    public GlobalExceptionHandler(AuthenticateContext authenticateContext) {
+        this.authenticateContext = authenticateContext;
+    }
 
     @ExceptionHandler(ClientAbortException.class)
     public ResponseEntity<ErrorResponse> handle(ClientAbortException e) {

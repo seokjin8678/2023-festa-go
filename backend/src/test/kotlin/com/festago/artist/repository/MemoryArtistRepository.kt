@@ -1,9 +1,9 @@
 package com.festago.artist.repository
 
 import com.festago.artist.domain.Artist
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryArtistRepository : AbstractMemoryRepositoryKt<Artist>(), ArtistRepository {
+class MemoryArtistRepository : AbstractMemoryRepository<Artist>(), ArtistRepository {
 
     override fun countByIdIn(artistIds: List<Long>): Long {
         return memory.values.count { it.id in artistIds }.toLong()

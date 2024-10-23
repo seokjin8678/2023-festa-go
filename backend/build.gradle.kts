@@ -8,7 +8,6 @@ plugins {
     kotlin("kapt") version "2.0.0"
     kotlin("plugin.spring") version "2.0.0"
     kotlin("plugin.jpa") version "2.0.0"
-    kotlin("plugin.lombok") version "2.0.0"
 }
 
 group = "com"
@@ -82,12 +81,6 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
 
-    // Lombok
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-    testCompileOnly("org.projectlombok:lombok")
-    testAnnotationProcessor("org.projectlombok:lombok")
-
     // Micrometer
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
@@ -129,8 +122,4 @@ allOpen {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.Embeddable")
     annotation("jakarta.persistence.MappedSuperclass")
-}
-
-kapt {
-    keepJavacAnnotationProcessors = true
 }

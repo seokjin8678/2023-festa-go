@@ -22,7 +22,7 @@ interface UploadFileRepository : Repository<UploadFile, UUID?> {
 
     fun findByCreatedAtBetweenAndStatus(
         startTime: LocalDateTime, endTime: LocalDateTime,
-        status: UploadStatus
+        status: UploadStatus,
     ): List<UploadFile>
 
     fun findByCreatedAtBeforeAndStatus(createdAt: LocalDateTime, status: UploadStatus): List<UploadFile>
