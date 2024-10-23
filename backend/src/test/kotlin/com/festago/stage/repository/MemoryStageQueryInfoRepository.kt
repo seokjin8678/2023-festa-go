@@ -1,9 +1,9 @@
 package com.festago.stage.repository
 
 import com.festago.stage.domain.StageQueryInfo
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryStageQueryInfoRepository : AbstractMemoryRepositoryKt<StageQueryInfo>(), StageQueryInfoRepository {
+class MemoryStageQueryInfoRepository : AbstractMemoryRepository<StageQueryInfo>(), StageQueryInfoRepository {
 
     override fun findByStageId(stageId: Long): StageQueryInfo? {
         return memory.values.firstOrNull { stageQueryInfo: StageQueryInfo -> stageQueryInfo.stageId == stageId }

@@ -21,7 +21,7 @@ class MemoryUploadFileRepository : UploadFileRepository {
 
     override fun findAllByOwnerIdAndOwnerType(ownerId: Long, ownerType: FileOwnerType): List<UploadFile> {
         return memory.values.stream()
-            .filter { it.ownerId == ownerId && it.ownerType == ownerType}
+            .filter { it.ownerId == ownerId && it.ownerType == ownerType }
             .toList()
     }
 
@@ -31,7 +31,7 @@ class MemoryUploadFileRepository : UploadFileRepository {
 
     override fun findByCreatedAtBetweenAndStatus(
         startTime: LocalDateTime, endTime: LocalDateTime,
-        status: UploadStatus
+        status: UploadStatus,
     ): List<UploadFile> {
         return memory.values.asSequence()
             .filter { it.status == status }

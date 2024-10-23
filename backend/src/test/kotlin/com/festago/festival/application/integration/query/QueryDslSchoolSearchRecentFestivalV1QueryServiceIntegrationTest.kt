@@ -21,8 +21,8 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
     schoolUpcomingFestivalStartDateV1QueryService: QueryDslSchoolUpcomingFestivalStartDateV1QueryService,
     schoolRepository: SchoolRepository,
     festivalRepository: FestivalRepository,
-    clock: Clock
-): IntegrationDescribeSpec({
+    clock: Clock,
+) : IntegrationDescribeSpec({
 
     val _6월_14일 = LocalDate.parse("2077-06-14")
     val _6월_15일 = LocalDate.parse("2077-06-15")
@@ -33,24 +33,30 @@ class QueryDslSchoolSearchRecentFestivalV1QueryServiceIntegrationTest(
     val 테코대학교 = schoolRepository.save(SchoolFixture.builder().name("테코대학교").build())
     val 우테대학교 = schoolRepository.save(SchoolFixture.builder().name("우테대학교").build())
 
-    festivalRepository.save(FestivalFixture.builder()
+    festivalRepository.save(
+        FestivalFixture.builder()
             .name("테코대학교 6월 15일 당일 축제")
             .startDate(_6월_15일)
             .endDate(_6월_15일)
             .school(테코대학교)
-            .build())
-    festivalRepository.save(FestivalFixture.builder()
+            .build()
+    )
+    festivalRepository.save(
+        FestivalFixture.builder()
             .name("테코대학교 6월 16일 당일 축제")
             .startDate(_6월_16일)
             .endDate(_6월_16일)
             .school(테코대학교)
-            .build())
-    festivalRepository.save(FestivalFixture.builder()
+            .build()
+    )
+    festivalRepository.save(
+        FestivalFixture.builder()
             .name("우테대학교 6월 16~17일 축제")
             .startDate(_6월_16일)
             .endDate(_6월_17일)
             .school(우테대학교)
-            .build())
+            .build()
+    )
 
     describe("학교의 식별자로 해당 학교의 축제 중 종료되지 않고 곧 시작할 축제 시작일 조회") {
         context("오늘이 6월 14일이면") {

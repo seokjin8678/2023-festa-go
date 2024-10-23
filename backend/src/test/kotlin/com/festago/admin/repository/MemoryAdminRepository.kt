@@ -1,9 +1,9 @@
 package com.festago.admin.repository
 
 import com.festago.admin.domain.Admin
-import com.festago.support.AbstractMemoryRepositoryKt
+import com.festago.support.AbstractMemoryRepository
 
-class MemoryAdminRepository : AbstractMemoryRepositoryKt<Admin>(), AdminRepository {
+class MemoryAdminRepository : AbstractMemoryRepository<Admin>(), AdminRepository {
     override fun findByUsername(username: String): Admin? {
         return memory.values.firstOrNull { it.username == username }
     }

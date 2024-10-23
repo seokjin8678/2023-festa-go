@@ -44,7 +44,7 @@ class FestivalV1Controller(
         @RequestParam(required = false)
         lastFestivalId: Long?,
         @RequestParam(required = false)
-        lastStartDate: LocalDate?
+        lastStartDate: LocalDate?,
     ): ResponseEntity<Slice<FestivalV1Response>> {
         val request = FestivalV1QueryRequest(region, filter, lastFestivalId, lastStartDate)
         val response = festivalV1QueryService.findFestivals(PageRequest.ofSize(size), request)
@@ -54,7 +54,7 @@ class FestivalV1Controller(
     @GetMapping("/{festivalId}")
     @Operation(description = "축제의 정보를 조회한다.", summary = "축제 정보 조회")
     fun findFestivalDetail(
-        @PathVariable festivalId: Long
+        @PathVariable festivalId: Long,
     ): ResponseEntity<FestivalDetailV1Response> {
         val response = festivalDetailV1QueryService.findFestivalDetail(festivalId)
         return ResponseEntity.ok(response)

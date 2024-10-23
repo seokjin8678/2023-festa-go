@@ -7,5 +7,5 @@ data class FestivalCreateCommand(
     val startDate: LocalDate,
     val endDate: LocalDate,
     val posterImageUrl: String?,
-    val schoolId: Long
+    val schoolId: Long,
 )

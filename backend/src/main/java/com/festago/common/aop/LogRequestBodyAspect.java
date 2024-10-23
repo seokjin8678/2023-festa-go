@@ -8,11 +8,12 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 
-@Slf4j
 @Component
 @Aspect
 public class LogRequestBodyAspect {
 
+    private static final Logger log = LoggerFactory.getLogger(LogRequestBodyAspect.class);
     private static final long MAX_CONTENT_LENGTH = 1024;
     private static final String LOG_FORMAT = "\n[REQUEST BODY]\n{}";
 

@@ -8,7 +8,6 @@ import com.festago.festival.repository.FestivalRepository;
 import com.festago.festival.repository.MemoryFestivalRepository;
 import com.festago.support.fixture.FestivalFixture;
 import com.festago.support.fixture.UploadFileFixture;
-import com.festago.upload.domain.FileOwnerType;
 import com.festago.upload.domain.UploadFile;
 import com.festago.upload.domain.UploadStatus;
 import com.festago.upload.repository.MemoryUploadFileRepository;
@@ -96,7 +95,6 @@ class UploadFileStatusChangeServiceTest {
             UploadFile uploadFile = UploadFileFixture.builder().build();
             uploadFile.changeAssigned(festival.getId(), FESTIVAL);
             uploadFileRepository.save(uploadFile);
-
 
             // when
             Long festivalId = festival.getId();

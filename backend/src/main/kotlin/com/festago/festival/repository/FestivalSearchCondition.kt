@@ -10,5 +10,5 @@ data class FestivalSearchCondition(
     val lastStartDate: LocalDate?,
     val lastFestivalId: Long?,
     val pageable: Pageable,
-    val currentTime: LocalDate
+    val currentTime: LocalDate,
 )

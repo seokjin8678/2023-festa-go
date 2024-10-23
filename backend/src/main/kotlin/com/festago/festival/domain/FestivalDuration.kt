@@ -11,7 +11,7 @@ data class FestivalDuration(
     @Column(nullable = false)
     val startDate: LocalDate,
     @Column(nullable = false)
-    val endDate: LocalDate
+    val endDate: LocalDate,
 ) {
 
     init {

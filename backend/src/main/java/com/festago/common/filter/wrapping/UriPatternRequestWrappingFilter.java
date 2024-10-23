@@ -5,7 +5,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +16,13 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
  */
 @Profile("!test")
 @Component
-@RequiredArgsConstructor
 public class UriPatternRequestWrappingFilter extends OncePerRequestFilter {
 
     private final UriPatternMatcher uriPatternMatcher;
+
+    public UriPatternRequestWrappingFilter(UriPatternMatcher uriPatternMatcher) {
+        this.uriPatternMatcher = uriPatternMatcher;
+    }
 
     @Override
     protected void doFilterInternal(

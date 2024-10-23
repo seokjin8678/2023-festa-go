@@ -3,10 +3,10 @@ package com.festago.support
 import jakarta.persistence.Id
 import java.util.concurrent.atomic.AtomicLong
 
-abstract class AbstractMemoryRepositoryKt<T>(
-    protected val memory: MutableMap<Long, T> = mutableMapOf(),
-    private val autoIncrement: AtomicLong = AtomicLong(),
-) {
+abstract class AbstractMemoryRepository<T> {
+
+    protected val memory: MutableMap<Long, T> = mutableMapOf()
+    private val autoIncrement = AtomicLong()
 
     fun save(entity: T): T {
         val fields = entity!!.javaClass.declaredFields
@@ -19,7 +19,7 @@ abstract class AbstractMemoryRepositoryKt<T>(
                 return entity
             }
         }
-        throw IllegalArgumentException("해당 엔티티에 @Id 어노테이션이 붙은 식별자가 존재하지 않습니다.");
+        throw IllegalArgumentException("해당 엔티티에 @Id 어노테이션이 붙은 식별자가 존재하지 않습니다.")
     }
 
     fun findById(id: Long): T? {

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class FestivalV1QueryDslRepository(
-    private val queryDslHelper: QueryDslHelper
+    private val queryDslHelper: QueryDslHelper,
 ) {
     fun findBy(searchCondition: FestivalSearchCondition): Slice<FestivalV1Response> {
         val (filter, region, lastStartDate, lastFestivalId, pageable, currentTime) = searchCondition
@@ -67,7 +67,7 @@ class FestivalV1QueryDslRepository(
         filter: FestivalFilter,
         currentTime: LocalDate,
         lastFestivalId: Long,
-        lastStartDate: LocalDate
+        lastStartDate: LocalDate,
     ): BooleanExpression {
         return when (filter) {
             FestivalFilter.PLANNED -> festival.festivalDuration.startDate.gt(lastStartDate)
@@ -89,7 +89,7 @@ class FestivalV1QueryDslRepository(
 
     private fun getDefaultBooleanExpression(
         filter: FestivalFilter,
-        currentTime: LocalDate
+        currentTime: LocalDate,
     ): BooleanExpression {
         return when (filter) {
             FestivalFilter.PLANNED -> festival.festivalDuration.startDate.gt(currentTime)

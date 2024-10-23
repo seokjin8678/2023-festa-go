@@ -15,5 +15,5 @@ data class FestivalSearchV1Response @QueryProjection constructor(
     val posterImageUrl: String,
     @field:ArraySchema(schema = Schema(implementation = ArtistQueryModel::class))
     @field:JsonRawValue
-    val artists: String
+    val artists: String,
 )

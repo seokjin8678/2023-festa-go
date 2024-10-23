@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class FestivalQueryInfoEventListener(
-    private val festivalQueryInfoRepository: FestivalQueryInfoRepository
+    private val festivalQueryInfoRepository: FestivalQueryInfoRepository,
 ) {
 
     /**

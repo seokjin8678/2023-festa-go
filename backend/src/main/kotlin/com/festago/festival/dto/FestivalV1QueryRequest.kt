@@ -8,5 +8,5 @@ data class FestivalV1QueryRequest(
     val location: SchoolRegion,
     val filter: FestivalFilter,
     val lastFestivalId: Long? = null,
-    val lastStartDate: LocalDate? = null
+    val lastStartDate: LocalDate? = null,
 )

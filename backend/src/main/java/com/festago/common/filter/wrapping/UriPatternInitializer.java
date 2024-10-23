@@ -2,7 +2,6 @@ package com.festago.common.filter.wrapping;
 
 import com.festago.common.aop.LogRequestBody;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -15,11 +14,16 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * ApplicationReadyEvent를 통해 Lazy하게 UriPatternMatcher의 패턴을 추가하는 클래스 <br/>
  */
 @Component
-@RequiredArgsConstructor
 public class UriPatternInitializer {
 
     private final RequestMappingHandlerMapping requestMappingHandlerMapping;
     private final UriPatternMatcher uriPatternMatcher;
+
+    public UriPatternInitializer(RequestMappingHandlerMapping requestMappingHandlerMapping,
+        UriPatternMatcher uriPatternMatcher) {
+        this.requestMappingHandlerMapping = requestMappingHandlerMapping;
+        this.uriPatternMatcher = uriPatternMatcher;
+    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReady() {

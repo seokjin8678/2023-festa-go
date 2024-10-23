@@ -13,7 +13,7 @@ import org.springframework.transaction.event.TransactionalEventListener
 @Async
 @Component
 class AsyncSchoolUploadImagesStatusChangeEventListener(
-    private val uploadFileStatusChangeService: UploadFileStatusChangeService
+    private val uploadFileStatusChangeService: UploadFileStatusChangeService,
 ) {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)

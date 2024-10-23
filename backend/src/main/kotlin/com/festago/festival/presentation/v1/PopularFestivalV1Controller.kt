@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/popular/festivals")
 @Tag(name = "인기 축제 목록 요청 V1")
 class PopularFestivalV1Controller(
-    private val popularFestivalV1QueryService: PopularFestivalV1QueryService
+    private val popularFestivalV1QueryService: PopularFestivalV1QueryService,
 ) {
 
     @GetMapping
