@@ -1,7 +1,9 @@
 package com.festago.artist.application.integration
 
 import com.festago.artist.application.ArtistSearchV1QueryService
+import com.festago.artist.domain.ArtistAlias
 import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.repository.alias.ArtistAliasRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.support.ApplicationIntegrationTest
@@ -22,12 +24,18 @@ internal class ArtistSearchV1QueryServiceIntegrationTest : ApplicationIntegratio
     @Autowired
     lateinit var artistRepository: ArtistRepository
 
+    @Autowired
+    lateinit var artistAliasRepository: ArtistAliasRepository
+
     @Test
     fun 검색어가_한글자면_동등검색을_한다() {
         // given
         artistRepository.save(ArtistFixture.builder().name("난못").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("못난").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("못").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
 
         // when
         val actual = artistSearchV1QueryService.findAllByKeyword("못")
@@ -41,11 +49,17 @@ internal class ArtistSearchV1QueryServiceIntegrationTest : ApplicationIntegratio
     fun 검색어가_두글자_이상이면_like검색을_한다() {
         // given
         artistRepository.save(ArtistFixture.builder().name("에이핑크").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("블랙핑크").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("핑크").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("핑크 플로이드").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("핑").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         artistRepository.save(ArtistFixture.builder().name("크").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
 
         // when
         val actual = artistSearchV1QueryService.findAllByKeyword("핑크")
@@ -58,9 +72,13 @@ internal class ArtistSearchV1QueryServiceIntegrationTest : ApplicationIntegratio
     fun 아티스트명은_영어_한국어_순으로_오름차순_정렬된다() {
         // given
         val 가_아티스트 = artistRepository.save(ArtistFixture.builder().name("가_아티스트").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         val A_아티스트 = artistRepository.save(ArtistFixture.builder().name("A_아티스트").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         val 나_아티스트 = artistRepository.save(ArtistFixture.builder().name("나_아티스트").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         val C_아티스트 = artistRepository.save(ArtistFixture.builder().name("C_아티스트").build())
+            .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
 
         // when
         val actual = artistSearchV1QueryService.findAllByKeyword("아티스트")
@@ -79,6 +97,7 @@ internal class ArtistSearchV1QueryServiceIntegrationTest : ApplicationIntegratio
         // given
         for (i in 0..9) {
             artistRepository.save(ArtistFixture.builder().name("핑크").build())
+                .also { artistAliasRepository.save(ArtistAlias(artistId = it.identifier, alias = it.name)) }
         }
 
         // when

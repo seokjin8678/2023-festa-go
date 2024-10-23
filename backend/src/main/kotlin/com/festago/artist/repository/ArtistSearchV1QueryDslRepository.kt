@@ -1,6 +1,7 @@
 package com.festago.artist.repository
 
 import com.festago.artist.domain.QArtist.artist
+import com.festago.artist.domain.QArtistAlias.artistAlias
 import com.festago.artist.dto.ArtistSearchV1Response
 import com.festago.artist.dto.QArtistSearchV1Response
 import com.festago.common.querydsl.QueryDslHelper
@@ -25,9 +26,10 @@ class ArtistSearchV1QueryDslRepository(
             )
         )
             .from(artist)
-            .where(artist.name.contains(keyword))
-            .orderBy(artist.name.asc())
+            .innerJoin(artistAlias).on(artistAlias.artistId.eq(artist.id))
+            .where(artistAlias.alias.contains(keyword))
             .fetch()
+            .sortedBy { it.name }
     }
 
     fun findAllByEqual(keyword: String): List<ArtistSearchV1Response> {
@@ -39,9 +41,10 @@ class ArtistSearchV1QueryDslRepository(
             )
         )
             .from(artist)
-            .where(artist.name.eq(keyword))
-            .orderBy(artist.name.asc())
+            .innerJoin(artistAlias).on(artistAlias.artistId.eq(artist.id))
+            .where(artistAlias.alias.eq(keyword))
             .fetch()
+            .sortedBy { it.name }
     }
 
     /**
