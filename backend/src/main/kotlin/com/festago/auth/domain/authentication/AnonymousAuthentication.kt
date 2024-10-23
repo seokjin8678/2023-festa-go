@@ -2,7 +2,7 @@ package com.festago.auth.domain.authentication
 
 import com.festago.auth.domain.Role
 
-object AnonymousAuthentication : Authentication {
+data object AnonymousAuthentication : Authentication {
 
     override val id = null
 
