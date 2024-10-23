@@ -15,12 +15,10 @@ class MemberAuthenticationTokenProvider(
             jwtBuilder
                 .subject(memberAuthentication.id.toString())
                 .audience().add(Role.MEMBER.name).and()
-                .claim(MEMBER_ID_KEY, memberAuthentication.id)
         }
     }
 
     companion object {
-        private const val MEMBER_ID_KEY = "memberId"
         private const val EXPIRATION_MINUTES = 60L * 6L
     }
 }

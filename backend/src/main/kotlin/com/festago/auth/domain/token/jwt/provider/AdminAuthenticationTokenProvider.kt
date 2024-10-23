@@ -15,12 +15,10 @@ class AdminAuthenticationTokenProvider(
             jwtBuilder
                 .subject(adminAuthentication.id.toString())
                 .audience().add(Role.ADMIN.name).and()
-                .claim(ADMIN_ID_KEY, adminAuthentication.id)
         }
     }
 
     companion object {
-        private const val ADMIN_ID_KEY = "adminId"
         private const val EXPIRATION_MINUTES = 60L * 24L
     }
 }

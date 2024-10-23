@@ -31,7 +31,7 @@ internal class MemberAuthenticationClaimsExtractorTest {
         // given
         val claims = Jwts.claims()
             .audience().add(Role.MEMBER.name).and()
-            .add("memberId", 1L)
+            .subject("1")
             .build()
 
         // when

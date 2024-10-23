@@ -14,11 +14,7 @@ internal class AdminAuthenticationClaimsExtractor : AuthenticationClaimsExtracto
         if (!claims.audience.contains(Role.ADMIN.name)) {
             return AnonymousAuthentication
         }
-        val adminId = claims[ADMIN_ID_KEY].toString().toLong()
+        val adminId = claims.subject.toLong()
         return AdminAuthentication(adminId)
-    }
-
-    companion object {
-        private const val ADMIN_ID_KEY = "adminId"
     }
 }
