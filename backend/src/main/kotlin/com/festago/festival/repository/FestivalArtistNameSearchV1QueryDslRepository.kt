@@ -1,6 +1,6 @@
 package com.festago.festival.repository
 
-import com.festago.artist.domain.QArtist.artist
+import com.festago.artist.domain.QArtistAlias.artistAlias
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.querydsl.QueryDslHelper
@@ -32,8 +32,8 @@ class FestivalArtistNameSearchV1QueryDslRepository(
                 festivalQueryInfo.artistInfo
             )
         )
-            .from(artist)
-            .innerJoin(stageArtist).on(stageArtist.artistId.eq(artist.id))
+            .from(artistAlias)
+            .innerJoin(stageArtist).on(stageArtist.artistId.eq(artistAlias.artistId))
             .innerJoin(stage).on(stage.id.eq(stageArtist.stageId))
             .innerJoin(festival).on(festival.id.eq(stage.festival.id))
             .innerJoin(festivalQueryInfo).on(festival.id.eq(festivalQueryInfo.festivalId))
@@ -42,6 +42,6 @@ class FestivalArtistNameSearchV1QueryDslRepository(
     }
 
     private fun eqOrContains(keyword: String): BooleanExpression {
-        return if (keyword.length == 1) artist.name.eq(keyword) else artist.name.contains(keyword)
+        return if (keyword.length == 1) artistAlias.alias.eq(keyword) else artistAlias.alias.contains(keyword)
     }
 }

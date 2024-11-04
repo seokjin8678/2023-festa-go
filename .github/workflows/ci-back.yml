@@ -15,6 +15,7 @@ defaults:
 
 jobs:
   build:
+    if: contains(github.event.pull_request.labels.*.name, 'Release') == false
     runs-on: ubuntu-latest
     steps:
       - name: Repository checkout
