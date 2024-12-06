@@ -1,6 +1,5 @@
 package com.festago.common.filter.wrapping
 
-import com.festago.common.aop.LogRequestBody
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
@@ -18,11 +17,9 @@ class UriPatternInitializer(
     @EventListener(ApplicationReadyEvent::class)
     fun onApplicationReady() {
         for ((requestMappingInfo, handlerMethod) in requestMappingHandlerMapping.handlerMethods) {
-            if (handlerMethod.hasMethodAnnotation(LogRequestBody::class.java)) {
-                val methods = requestMappingInfo.methodsCondition.methods
-                val directPaths = requestMappingInfo.directPaths
-                uriPatternMatcher.addPattern(methods, directPaths)
-            }
+            val methods = requestMappingInfo.methodsCondition.methods
+            val directPaths = requestMappingInfo.directPaths
+            uriPatternMatcher.addPattern(methods, directPaths)
         }
     }
 }
