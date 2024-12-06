@@ -32,7 +32,7 @@ class UriPatternMatcher {
      * @return method에 대한 path가 등록된 패턴에 일치하면 true, 아니면 false
      */
     fun match(method: RequestMethod, path: String): Boolean {
-        val patterns = methodToPatterns.getOrDefault(method, emptySet())
+        val patterns = methodToPatterns[method] ?: return false
         for (pattern in patterns) {
             if (antPathMatcher.match(pattern, path)) {
                 return true
