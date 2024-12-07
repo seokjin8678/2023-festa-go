@@ -90,12 +90,11 @@ class RequestLoggingService(
         )
         lock.lock()
         try {
+            buffer.add(requestLog)
             if (buffer.size >= 10) {
                 val requestLogs = ArrayList(buffer)
                 taskExecutor.execute { requestLoggingDao.saveAll(requestLogs) }
                 buffer.clear()
-            } else {
-                buffer.add(requestLog)
             }
         } finally {
             lock.unlock()
