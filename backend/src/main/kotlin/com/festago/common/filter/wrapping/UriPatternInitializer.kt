@@ -18,8 +18,9 @@ class UriPatternInitializer(
     fun onApplicationReady() {
         for ((requestMappingInfo, handlerMethod) in requestMappingHandlerMapping.handlerMethods) {
             val methods = requestMappingInfo.methodsCondition.methods
-            val directPaths = requestMappingInfo.directPaths
-            uriPatternMatcher.addPattern(methods, directPaths)
+            if (methods.isNotEmpty()) {
+                uriPatternMatcher.addPattern(methods, requestMappingInfo.patternValues)
+            }
         }
     }
 }
