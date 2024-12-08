@@ -21,7 +21,7 @@ class AsyncConfig {
     @Primary
     fun taskExecutor(): TaskExecutor {
         return ThreadPoolTaskExecutor().apply {
-            setThreadNamePrefix("syncExecutor-")
+            setThreadNamePrefix("asyncExecutor-")
             setTaskDecorator(
                 CompositeTaskDecorator(
                     listOf(
