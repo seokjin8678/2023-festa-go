@@ -56,6 +56,15 @@ class Artist(
     val identifier: Long
         get() = id!!
 
+    fun copy(): Artist {
+        return Artist(
+            id = id,
+            name = name,
+            profileImage = profileImage,
+            backgroundImageUrl = backgroundImageUrl
+        )
+    }
+
     final override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null) return false

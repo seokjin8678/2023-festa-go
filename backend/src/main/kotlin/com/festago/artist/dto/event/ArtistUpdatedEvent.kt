@@ -4,4 +4,5 @@ import com.festago.artist.domain.Artist
 
 data class ArtistUpdatedEvent(
     val artist: Artist,
+    val oldArtist: Artist,
 )
