@@ -27,9 +27,15 @@ class ArtistAliasEventListener(
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun updateArtistAlias(event: ArtistUpdatedEvent) {
         val artist = event.artist
+        val oldArtist = event.oldArtist
+        if (artist.name == oldArtist.name) {
+            return
+        }
+
         artistAliasService.updateArtistAlias(
             artistId = artist.identifier,
-            alias = artist.name
+            existAlias = oldArtist.name,
+            newAlias = artist.name
         )
     }
 

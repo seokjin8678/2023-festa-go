@@ -42,12 +42,18 @@ class ArtistCommandService(
 
     fun update(command: ArtistUpdateCommand, artistId: Long) {
         val artist: Artist = artistRepository.getOrThrow(artistId)
+        val oldArtist = artist.copy()
         artist.update(
             name = command.name,
             profileImage = command.profileImageUrl,
             backgroundImageUrl = command.backgroundImageUrl
         )
-        eventPublisher.publishEvent(ArtistUpdatedEvent(artist))
+        eventPublisher.publishEvent(
+            ArtistUpdatedEvent(
+                artist = artist,
+                oldArtist = oldArtist
+            )
+        )
     }
 
     fun delete(artistId: Long) {
