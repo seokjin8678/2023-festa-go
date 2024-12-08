@@ -10,7 +10,7 @@ interface ArtistAliasRepository : Repository<ArtistAlias, Long> {
 
     fun save(artist: ArtistAlias): ArtistAlias
 
-    fun findByAlias(alias: String): ArtistAlias?
+    fun findByArtistIdAndAlias(artistId: Long, alias: String): ArtistAlias?
 
     @Modifying
     @Query("DELETE FROM ArtistAlias aa WHERE aa.artistId = :artistId")

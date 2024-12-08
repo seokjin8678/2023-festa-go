@@ -20,9 +20,9 @@ class ArtistAliasService(
         )
     }
 
-    fun updateArtistAlias(artistId: Long, alias: String) {
-        val artistAlias = artistAliasRepository.findByAlias(alias) ?: return
-        artistAlias.updateAlias(alias)
+    fun updateArtistAlias(artistId: Long, existAlias: String, newAlias: String) {
+        val artistAlias = artistAliasRepository.findByArtistIdAndAlias(artistId, existAlias) ?: return
+        artistAlias.updateAlias(newAlias)
     }
 
     fun deleteArtistAlias(artistId: Long) {
