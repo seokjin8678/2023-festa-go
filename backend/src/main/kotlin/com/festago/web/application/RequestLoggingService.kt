@@ -35,6 +35,9 @@ class RequestLoggingService(
         }
         lock.lock()
         try {
+            if (buffer.isEmpty()) {
+                return
+            }
             requestLoggingDao.saveAll(buffer)
             log.info { "requestLog 저장 완료" }
         } catch (e: Exception) {
@@ -51,6 +54,9 @@ class RequestLoggingService(
         }
         lock.lock()
         try {
+            if (buffer.isEmpty()) {
+                return
+            }
             val requestLogs = ArrayList(buffer)
             taskExecutor.execute { requestLoggingDao.saveAll(requestLogs) }
             buffer.clear()

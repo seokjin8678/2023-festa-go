@@ -16,6 +16,9 @@ class RequestLoggingDao(
 ) {
 
     fun saveAll(requestLogs: List<RequestLog>) {
+        if (requestLogs.isEmpty()) {
+            return
+        }
         jdbcTemplate.batchUpdate(SQL, object : BatchPreparedStatementSetter {
             override fun setValues(ps: PreparedStatement, i: Int) {
                 val requestLog = requestLogs[i]
@@ -23,12 +26,12 @@ class RequestLoggingDao(
                 if (requestLog.userId == null) ps.setNull(2, Types.BIGINT) else ps.setLong(2, requestLog.userId)
                 ps.setString(3, requestLog.role)
                 ps.setString(4, URLDecoder.decode(requestLog.requestUri, StandardCharsets.UTF_8).cut(100))
-                ps.setString(5, requestLog.requestIp)
+                ps.setString(5, requestLog.requestIp?.cut(20))
                 ps.setInt(6, requestLog.requestSize)
-                ps.setString(7, requestLog.requestContentType)
+                ps.setString(7, requestLog.requestContentType?.cut(100))
                 ps.setString(8, requestLog.requestBody)
                 ps.setInt(9, requestLog.responseSize)
-                ps.setString(10, requestLog.responseContentType)
+                ps.setString(10, requestLog.responseContentType?.cut(50))
                 ps.setString(11, requestLog.responseBody)
                 ps.setInt(12, requestLog.processTime.toInt())
                 ps.setTimestamp(13, Timestamp.valueOf(requestLog.createdAt))
