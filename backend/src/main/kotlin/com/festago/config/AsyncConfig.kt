@@ -21,7 +21,7 @@ class AsyncConfig {
     @Primary
     fun taskExecutor(): TaskExecutor {
         return ThreadPoolTaskExecutor().apply {
-            setThreadNamePrefix("syncExecutor-")
+            setThreadNamePrefix("asyncExecutor-")
             setTaskDecorator(
                 CompositeTaskDecorator(
                     listOf(
@@ -51,7 +51,7 @@ private object LogTaskDecorator : TaskDecorator {
 private object RequestContextTaskDecorator : TaskDecorator {
 
     override fun decorate(runnable: Runnable): Runnable {
-        val context = RequestContextHolder.currentRequestAttributes()
+        val context = RequestContextHolder.getRequestAttributes() ?: return runnable
         return Runnable {
             try {
                 RequestContextHolder.setRequestAttributes(context)
