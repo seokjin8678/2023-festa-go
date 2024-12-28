@@ -1,5 +1,6 @@
 package com.festago.upload.domain
 
+import com.festago.common.util.UuidCreator
 import com.festago.common.util.Validator.notNegative
 import jakarta.persistence.Column
 import jakarta.persistence.Convert
@@ -24,8 +25,9 @@ class UploadFile(
     extension: FileExtension,
     createdAt: LocalDateTime,
 ) : Persistable<UUID> {
+
     @Id
-    private val id: UUID = UUID.randomUUID()
+    private val id: UUID = UuidCreator.create()
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar")

@@ -1,6 +1,7 @@
 package com.festago.auth.domain
 
 import com.festago.common.domain.BaseTimeEntity
+import com.festago.common.util.UuidCreator
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import java.time.LocalDateTime
@@ -14,7 +15,7 @@ class RefreshToken(
 ) : BaseTimeEntity(), Persistable<UUID> {
 
     @Id
-    private val id: UUID = UUID.randomUUID()
+    private val id: UUID = UuidCreator.create()
 
     var memberId = memberId
         protected set
