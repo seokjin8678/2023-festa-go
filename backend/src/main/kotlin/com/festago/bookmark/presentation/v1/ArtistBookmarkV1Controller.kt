@@ -24,6 +24,6 @@ class ArtistBookmarkV1Controller(
     fun findArtistBookmarksByMemberId(
         memberAuthentication: MemberAuthentication,
     ): ResponseEntity<List<ArtistBookmarkV1Response>> {
-        return ResponseEntity.ok(artistBookmarkV1QueryService.findArtistBookmarksByMemberId(memberAuthentication.id))
+        return ResponseEntity.ok(artistBookmarkV1QueryService.findArtistBookmarksByMemberId(memberAuthentication.memberId))
     }
 }

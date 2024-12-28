@@ -8,7 +8,7 @@ import com.festago.auth.domain.Role
  * 구현체는 반드시 getRole()에 null을 반환하지 않도록 해야한다.
  */
 sealed interface Authentication {
-    val id: Long?
+    val memberId: Long?
 
     val role: Role
 }

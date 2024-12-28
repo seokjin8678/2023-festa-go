@@ -27,7 +27,7 @@ class FestivalBookmarkV1Controller(
         memberAuthentication: MemberAuthentication,
     ): ResponseEntity<List<Long>> {
         return ResponseEntity.ok()
-            .body(festivalBookmarkV1QueryService.findBookmarkedFestivalIds(memberAuthentication.id))
+            .body(festivalBookmarkV1QueryService.findBookmarkedFestivalIds(memberAuthentication.memberId))
     }
 
     @MemberAuth
@@ -41,7 +41,7 @@ class FestivalBookmarkV1Controller(
         return ResponseEntity.ok()
             .body(
                 festivalBookmarkV1QueryService.findBookmarkedFestivals(
-                    memberAuthentication.id,
+                    memberAuthentication.memberId,
                     festivalIds,
                     festivalBookmarkOrder
                 )

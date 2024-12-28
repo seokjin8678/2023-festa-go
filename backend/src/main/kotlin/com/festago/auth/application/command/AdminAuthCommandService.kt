@@ -3,6 +3,7 @@ package com.festago.auth.application.command
 import com.festago.admin.domain.Admin
 import com.festago.admin.domain.AdminRepository
 import com.festago.auth.domain.AuthType
+import com.festago.auth.domain.SocialType
 import com.festago.auth.domain.authentication.AdminAuthentication
 import com.festago.auth.domain.token.jwt.provider.AdminAuthenticationTokenProvider
 import com.festago.auth.dto.command.AdminLoginCommand
@@ -12,6 +13,9 @@ import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.ForbiddenException
 import com.festago.common.exception.UnauthorizedException
+import com.festago.member.domain.Member
+import com.festago.member.domain.MemberRepository
+import java.util.UUID
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -22,12 +26,13 @@ class AdminAuthCommandService(
     private val adminAuthenticationTokenProvider: AdminAuthenticationTokenProvider,
     private val adminRepository: AdminRepository,
     private val passwordEncoder: PasswordEncoder,
+    private val memberRepository: MemberRepository,
 ) {
 
     @Transactional(readOnly = true)
     fun login(command: AdminLoginCommand): AdminLoginResult {
-        val admin = findAdminWithAuthenticate(command)
-        val adminAuthentication = AdminAuthentication(admin.identifier)
+        val admin = findAdmin(command.username, command.password)
+        val adminAuthentication = AdminAuthentication(admin.memberId)
         val accessToken = adminAuthenticationTokenProvider.provide(adminAuthentication).token
         return AdminLoginResult(
             username = admin.username,
@@ -36,9 +41,9 @@ class AdminAuthCommandService(
         )
     }
 
-    private fun findAdminWithAuthenticate(request: AdminLoginCommand): Admin {
-        return adminRepository.findByUsername(request.username)
-            ?.takeIf { passwordEncoder.matches(request.password, it.password) }
+    private fun findAdmin(username: String, password: String): Admin {
+        return adminRepository.findByUsername(username)
+            ?.takeIf { passwordEncoder.matches(password, it.password) }
             ?: throw UnauthorizedException(ErrorCode.INCORRECT_PASSWORD_OR_ACCOUNT)
     }
 
@@ -51,7 +56,14 @@ class AdminAuthCommandService(
         val username = command.username
         val password = passwordEncoder.encode(command.password)
         validateExistsUsername(username)
-        adminRepository.save(Admin(username, password))
+        val member = createAdminMember(username)
+        adminRepository.save(
+            Admin(
+                memberId = member.identifier,
+                username = username,
+                password = password
+            )
+        )
     }
 
     private fun validateRootAdmin(adminId: Long) {
@@ -67,10 +79,26 @@ class AdminAuthCommandService(
         }
     }
 
+    private fun createAdminMember(username: String): Member {
+        return memberRepository.save(
+            Member(
+                socialId = UUID.randomUUID().toString(),
+                socialType = SocialType.FESTAGO,
+                nickname = username
+            )
+        )
+    }
+
     fun initializeRootAdmin(password: String) {
         if (adminRepository.existsByUsername(Admin.ROOT_ADMIN_NAME)) {
             throw BadRequestException(ErrorCode.DUPLICATE_ACCOUNT_USERNAME)
         }
-        adminRepository.save(Admin.createRootAdmin(passwordEncoder.encode(password)))
+        val adminMember = createAdminMember(Admin.ROOT_ADMIN_NAME)
+        adminRepository.save(
+            Admin.createRootAdmin(
+                memberId = adminMember.identifier,
+                password = passwordEncoder.encode(password)
+            )
+        )
     }
 }

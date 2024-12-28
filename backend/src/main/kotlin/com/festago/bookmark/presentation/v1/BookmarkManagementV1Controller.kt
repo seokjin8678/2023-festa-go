@@ -31,7 +31,7 @@ class BookmarkManagementV1Controller(
         bookmarkFacadeService.save(
             bookmarkType = bookmarkType,
             resourceId = resourceId,
-            memberId = memberAuthentication.id
+            memberId = memberAuthentication.memberId
         )
         return ResponseEntity.ok()
             .build()
@@ -48,7 +48,7 @@ class BookmarkManagementV1Controller(
         bookmarkFacadeService.delete(
             bookmarkType = bookmarkType,
             resourceId = resourceId,
-            memberId = memberAuthentication.id
+            memberId = memberAuthentication.memberId
         )
         return ResponseEntity.noContent()
             .build()

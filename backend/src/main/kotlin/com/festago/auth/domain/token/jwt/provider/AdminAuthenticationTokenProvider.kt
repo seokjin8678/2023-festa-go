@@ -13,7 +13,7 @@ class AdminAuthenticationTokenProvider(
     fun provide(adminAuthentication: AdminAuthentication): TokenResponse {
         return tokenProviderTemplate.provide(EXPIRATION_MINUTES) { jwtBuilder ->
             jwtBuilder
-                .subject(adminAuthentication.id.toString())
+                .subject(adminAuthentication.memberId.toString())
                 .audience().add(Role.ADMIN.name).and()
         }
     }

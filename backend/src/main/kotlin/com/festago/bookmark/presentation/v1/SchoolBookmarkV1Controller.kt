@@ -24,6 +24,6 @@ class SchoolBookmarkV1Controller(
     fun findAllByMemberId(
         memberAuthentication: MemberAuthentication,
     ): ResponseEntity<List<SchoolBookmarkV1Response>> {
-        return ResponseEntity.ok(schoolBookmarkV1QueryService.findAllByMemberId(memberAuthentication.id))
+        return ResponseEntity.ok(schoolBookmarkV1QueryService.findAllByMemberId(memberAuthentication.memberId))
     }
 }
