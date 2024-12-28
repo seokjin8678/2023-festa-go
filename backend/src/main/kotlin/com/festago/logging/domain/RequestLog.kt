@@ -1,4 +1,4 @@
-package com.festago.web.domain
+package com.festago.logging.domain
 
 import java.time.LocalDateTime
 
@@ -6,7 +6,6 @@ data class RequestLog(
     val httpMethod: String?,
     val requestUri: String?,
     val userId: Long?,
-    val role: String?,
     val requestIp: String?,
     val requestContentType: String?,
     val requestSize: Int,
@@ -14,6 +13,6 @@ data class RequestLog(
     val responseSize: Int,
     val responseBody: String?,
     val responseContentType: String?,
-    val processTime: Long,
+    val processTime: Int,
     val createdAt: LocalDateTime,
 )
