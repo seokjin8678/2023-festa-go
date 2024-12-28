@@ -2,7 +2,7 @@ package com.festago.school.application.integration
 
 import com.festago.school.application.v1.SchoolSearchV1QueryService
 import com.festago.school.domain.School
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.SchoolFixture
 import io.kotest.matchers.collections.shouldContainExactly

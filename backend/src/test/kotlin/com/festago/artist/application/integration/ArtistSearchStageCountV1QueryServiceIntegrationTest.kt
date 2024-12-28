@@ -2,14 +2,14 @@ package com.festago.artist.application.integration
 
 import com.festago.artist.application.ArtistSearchStageCountV1QueryService
 import com.festago.artist.domain.Artist
+import com.festago.artist.domain.ArtistRepository
 import com.festago.artist.dto.ArtistSearchStageCountV1Response
-import com.festago.artist.repository.ArtistRepository
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.domain.FestivalRepository
 import com.festago.school.domain.SchoolRegion
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.stage.domain.Stage
-import com.festago.stage.repository.StageArtistRepository
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageArtistRepository
+import com.festago.stage.domain.StageRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.FestivalFixture

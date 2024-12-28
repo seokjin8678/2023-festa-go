@@ -5,11 +5,11 @@ import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.school.domain.School
 import com.festago.school.domain.SchoolRegion
+import com.festago.school.domain.SchoolRepository
+import com.festago.school.domain.getOrThrow
 import com.festago.school.dto.command.SchoolCreateCommand
 import com.festago.school.dto.command.SchoolUpdateCommand
-import com.festago.school.repository.MemorySchoolRepository
-import com.festago.school.repository.SchoolRepository
-import com.festago.school.repository.getOrThrow
+import com.festago.school.infrastructure.repository.MemorySchoolRepository
 import com.festago.support.fixture.SchoolFixture
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe

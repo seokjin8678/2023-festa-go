@@ -1,7 +1,7 @@
 package com.festago.school.application.v1
 
 import com.festago.school.dto.v1.SchoolSearchV1Response
-import com.festago.school.repository.v1.SchoolSearchV1QueryDslRepository
+import com.festago.school.infrastructure.repository.query.v1.SchoolSearchV1QueryDslRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

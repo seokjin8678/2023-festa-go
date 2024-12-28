@@ -1,8 +1,8 @@
 package com.festago.auth.application.command
 
 import com.festago.admin.domain.Admin
-import com.festago.admin.repository.AdminRepository
-import com.festago.admin.repository.MemoryAdminRepository
+import com.festago.admin.domain.AdminRepository
+import com.festago.admin.infrastructure.repository.MemoryAdminRepository
 import com.festago.auth.domain.token.jwt.provider.AdminAuthenticationTokenProvider
 import com.festago.auth.dto.TokenResponse
 import com.festago.auth.dto.command.AdminLoginCommand

@@ -9,7 +9,7 @@ import com.festago.school.application.v1.SchoolV1QueryService;
 import com.festago.school.dto.v1.SchoolDetailV1Response;
 import com.festago.school.dto.v1.SchoolFestivalV1Response;
 import com.festago.school.dto.v1.SchoolSocialMediaV1Response;
-import com.festago.school.repository.v1.SchoolFestivalV1SearchCondition;
+import com.festago.school.infrastructure.repository.query.v1.SchoolFestivalV1SearchCondition;
 import com.festago.socialmedia.domain.SocialMediaType;
 import com.festago.support.CustomWebMvcTest;
 import java.time.LocalDate;

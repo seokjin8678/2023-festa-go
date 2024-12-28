@@ -1,17 +1,17 @@
 package com.festago.auth.application.command
 
 import com.festago.auth.domain.RefreshToken
+import com.festago.auth.domain.RefreshTokenRepository
 import com.festago.auth.domain.UserInfoMemberMapper
 import com.festago.auth.domain.model.UserInfo
 import com.festago.auth.dto.command.LoginResult
 import com.festago.auth.dto.command.TokenRefreshResult
 import com.festago.auth.dto.event.MemberDeletedEvent
-import com.festago.auth.repository.RefreshTokenRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.UnauthorizedException
 import com.festago.member.domain.Member
-import com.festago.member.repository.MemberRepository
-import com.festago.member.repository.getOrThrow
+import com.festago.member.domain.MemberRepository
+import com.festago.member.domain.getOrThrow
 import io.github.oshai.kotlinlogging.KotlinLogging
 import java.time.Clock
 import java.time.LocalDateTime

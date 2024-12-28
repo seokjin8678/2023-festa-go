@@ -2,8 +2,8 @@ package com.festago.admin.application
 
 import com.festago.admin.dto.festival.AdminFestivalDetailV1Response
 import com.festago.admin.dto.festival.AdminFestivalV1Response
-import com.festago.admin.repository.AdminFestivalDetailV1QueryDslRepository
-import com.festago.admin.repository.AdminFestivalV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminFestivalDetailV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminFestivalV1QueryDslRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.querydsl.SearchCondition

@@ -3,8 +3,8 @@ package com.festago.festival.application.query
 import com.festago.common.exception.ValidException
 import com.festago.festival.dto.FestivalV1QueryRequest
 import com.festago.festival.dto.FestivalV1Response
-import com.festago.festival.repository.FestivalSearchCondition
-import com.festago.festival.repository.FestivalV1QueryDslRepository
+import com.festago.festival.infrastructure.repository.query.FestivalSearchCondition
+import com.festago.festival.infrastructure.repository.query.FestivalV1QueryDslRepository
 import java.time.Clock
 import java.time.LocalDate
 import org.springframework.data.domain.Pageable

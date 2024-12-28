@@ -4,7 +4,7 @@ import com.festago.artist.domain.ArtistsSerializer
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.festival.domain.FestivalIdStageArtistsResolver
-import com.festago.festival.repository.FestivalQueryInfoRepository
+import com.festago.festival.domain.FestivalQueryInfoRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

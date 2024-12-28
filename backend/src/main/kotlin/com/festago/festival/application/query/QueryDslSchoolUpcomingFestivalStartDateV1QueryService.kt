@@ -1,6 +1,6 @@
 package com.festago.festival.application.query
 
-import com.festago.festival.repository.RecentSchoolFestivalV1QueryDslRepository
+import com.festago.festival.infrastructure.repository.query.RecentSchoolFestivalV1QueryDslRepository
 import com.festago.school.application.v1.SchoolUpcomingFestivalStartDateV1QueryService
 import java.time.Clock
 import java.time.LocalDate

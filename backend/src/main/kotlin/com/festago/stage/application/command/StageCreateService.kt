@@ -1,15 +1,15 @@
 package com.festago.stage.application.command
 
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.util.Validator
-import com.festago.festival.repository.FestivalRepository
-import com.festago.festival.repository.getOrThrow
+import com.festago.festival.domain.FestivalRepository
+import com.festago.festival.domain.getOrThrow
 import com.festago.stage.domain.Stage
+import com.festago.stage.domain.StageRepository
 import com.festago.stage.dto.command.StageCreateCommand
 import com.festago.stage.dto.event.StageCreatedEvent
-import com.festago.stage.repository.StageRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

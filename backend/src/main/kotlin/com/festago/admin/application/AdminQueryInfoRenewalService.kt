@@ -1,7 +1,7 @@
 package com.festago.admin.application
 
-import com.festago.admin.repository.AdminFestivalIdResolverQueryDslRepository
-import com.festago.admin.repository.AdminStageResolverQueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminFestivalIdResolverQueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminStageResolverQueryDslRepository
 import com.festago.festival.application.FestivalQueryInfoArtistRenewService
 import com.festago.stage.application.StageQueryInfoService
 import io.github.oshai.kotlinlogging.KotlinLogging

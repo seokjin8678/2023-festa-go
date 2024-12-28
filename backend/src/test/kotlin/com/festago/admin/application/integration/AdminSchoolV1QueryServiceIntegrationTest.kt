@@ -6,7 +6,7 @@ import com.festago.common.exception.NotFoundException
 import com.festago.common.querydsl.SearchCondition
 import com.festago.school.domain.School
 import com.festago.school.domain.SchoolRegion
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.SchoolFixture
 import io.kotest.assertions.throwables.shouldThrow

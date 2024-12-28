@@ -2,10 +2,10 @@ package com.festago.school.application.integration
 
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.domain.FestivalRepository
 import com.festago.school.application.SchoolDeleteService
 import com.festago.school.domain.School
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.SchoolFixture

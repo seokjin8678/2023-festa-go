@@ -4,12 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import com.festago.bookmark.application.SchoolBookmarkV1QueryService;
+import com.festago.bookmark.domain.BookmarkRepository;
 import com.festago.bookmark.domain.BookmarkType;
 import com.festago.bookmark.dto.v1.SchoolBookmarkInfoV1Response;
 import com.festago.bookmark.dto.v1.SchoolBookmarkV1Response;
-import com.festago.bookmark.repository.BookmarkRepository;
-import com.festago.member.repository.MemberRepository;
-import com.festago.school.repository.SchoolRepository;
+import com.festago.member.domain.MemberRepository;
+import com.festago.school.domain.SchoolRepository;
 import com.festago.support.ApplicationIntegrationTest;
 import com.festago.support.fixture.BookmarkFixture;
 import com.festago.support.fixture.MemberFixture;

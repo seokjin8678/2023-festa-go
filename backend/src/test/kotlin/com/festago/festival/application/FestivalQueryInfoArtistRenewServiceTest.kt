@@ -2,7 +2,7 @@ package com.festago.festival.application
 
 import com.festago.artist.domain.Artist
 import com.festago.festival.domain.FestivalIdStageArtistsResolver
-import com.festago.festival.repository.MemoryFestivalQueryInfoRepository
+import com.festago.festival.infrastructure.repository.MemoryFestivalQueryInfoRepository
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.FestivalQueryInfoFixture
 import com.festago.support.spec.UnitDescribeSpec

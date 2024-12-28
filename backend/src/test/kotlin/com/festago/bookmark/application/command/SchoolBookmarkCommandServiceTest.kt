@@ -1,11 +1,11 @@
 package com.festago.bookmark.application.command
 
 import com.festago.bookmark.domain.BookmarkType
-import com.festago.bookmark.repository.MemoryBookmarkRepository
+import com.festago.bookmark.infrastructure.repository.MemoryBookmarkRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
-import com.festago.school.repository.MemorySchoolRepository
+import com.festago.school.infrastructure.repository.MemorySchoolRepository
 import com.festago.support.fixture.BookmarkFixture
 import com.festago.support.fixture.SchoolFixture
 import com.festago.support.spec.UnitDescribeSpec

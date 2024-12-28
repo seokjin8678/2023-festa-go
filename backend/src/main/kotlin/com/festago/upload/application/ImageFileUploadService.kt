@@ -6,8 +6,8 @@ import com.festago.common.util.Validator
 import com.festago.upload.domain.FileExtension
 import com.festago.upload.domain.FileOwnerType
 import com.festago.upload.domain.StorageClient
+import com.festago.upload.domain.UploadFileRepository
 import com.festago.upload.dto.FileUploadResult
-import com.festago.upload.repository.UploadFileRepository
 import com.festago.upload.util.FileNameExtensionParser
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.stereotype.Service

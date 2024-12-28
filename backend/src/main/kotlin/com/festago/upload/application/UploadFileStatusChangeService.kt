@@ -1,7 +1,7 @@
 package com.festago.upload.application
 
 import com.festago.upload.domain.FileOwnerType
-import com.festago.upload.repository.UploadFileRepository
+import com.festago.upload.domain.UploadFileRepository
 import com.festago.upload.util.UriUploadFileIdParser
 import java.util.UUID
 import org.springframework.stereotype.Service

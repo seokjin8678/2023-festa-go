@@ -4,7 +4,7 @@ import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.festival.domain.Festival
 import com.festago.festival.domain.validator.FestivalUpdateValidator
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
