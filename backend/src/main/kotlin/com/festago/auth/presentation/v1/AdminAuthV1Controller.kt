@@ -65,7 +65,7 @@ class AdminAuthV1Controller(
         @Valid @RequestBody request: AdminSignupV1Request,
         adminAuthentication: AdminAuthentication,
     ): ResponseEntity<Void> {
-        adminAuthCommandService.signup(adminAuthentication.id, request.toCommand())
+        adminAuthCommandService.signup(adminAuthentication.memberId, request.toCommand())
         return ResponseEntity.ok().build()
     }
 

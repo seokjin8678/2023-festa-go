@@ -11,6 +11,8 @@ import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.ForbiddenException
 import com.festago.common.exception.UnauthorizedException
+import com.festago.member.domain.MemberRepository
+import com.festago.member.infrastructure.repository.MemoryMemberRepository
 import com.festago.support.fixture.AdminFixture
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
@@ -32,14 +34,20 @@ class AdminAuthCommandServiceTest {
 
     lateinit var adminAuthCommandService: AdminAuthCommandService
 
+    lateinit var memberRepository: MemberRepository
+
+    val MEMBER_ID = 1L
+
     @BeforeEach
     fun setUp() {
         adminRepository = MemoryAdminRepository()
         adminAuthenticationTokenProvider = mockk()
+        memberRepository = MemoryMemberRepository()
         adminAuthCommandService = AdminAuthCommandService(
             adminAuthenticationTokenProvider,
             adminRepository,
-            PasswordEncoderFactories.createDelegatingPasswordEncoder()
+            PasswordEncoderFactories.createDelegatingPasswordEncoder(),
+            memberRepository,
         )
     }
 
@@ -109,7 +117,12 @@ class AdminAuthCommandServiceTest {
         @Test
         fun 닉네임이_중복이면_예외() {
             // given
-            val rootAdmin = adminRepository.save(Admin.createRootAdmin("{noop}password"))
+            val rootAdmin = adminRepository.save(
+                Admin.createRootAdmin(
+                    memberId = MEMBER_ID,
+                    password = "{noop}password"
+                )
+            )
             val command = AdminSignupCommand("admin", "password")
 
             // when
@@ -144,7 +157,12 @@ class AdminAuthCommandServiceTest {
         @Test
         fun 성공() {
             // given
-            val rootAdmin = adminRepository.save(Admin.createRootAdmin("{noop}password"))
+            val rootAdmin = adminRepository.save(
+                Admin.createRootAdmin(
+                    memberId = MEMBER_ID,
+                    password = "{noop}password"
+                )
+            )
             val command = AdminSignupCommand("newAdmin", "password")
 
             // when
@@ -164,7 +182,10 @@ class AdminAuthCommandServiceTest {
             adminAuthCommandService.initializeRootAdmin("1234")
 
             // then
-            val rootAdmin = Admin.createRootAdmin("1234")
+            val rootAdmin = Admin.createRootAdmin(
+                memberId = MEMBER_ID,
+                password = "1234"
+            )
             adminRepository.existsByUsername(rootAdmin.username) shouldBe true
         }
 

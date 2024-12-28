@@ -55,6 +55,6 @@ internal class CompositeAuthenticationTokenExtractorTest {
 
         // then
         actual.role shouldBe Role.ADMIN
-        actual.id shouldBe 4885
+        actual.memberId shouldBe 4885
     }
 }

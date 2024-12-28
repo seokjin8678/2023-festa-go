@@ -18,19 +18,18 @@ import org.hibernate.annotations.SQLRestriction
 @SQLDelete(sql = "UPDATE member SET deleted_at = now(), nickname = '탈퇴한 회원', profile_image_url = '', social_id = null WHERE id = ?")
 @SQLRestriction("deleted_at is null")
 class Member(
-    id: Long?,
+    id: Long? = null,
     socialId: String,
     socialType: SocialType,
     nickname: String,
-    profileImage: String,
+    profileImage: String = "",
 ) : BaseTimeEntity() {
 
     constructor(
         socialId: String,
         socialType: SocialType,
         nickname: String,
-        profileImage: String,
-    ) : this(null, socialId, socialType, nickname, profileImage)
+    ) : this(id = null, socialId = socialId, socialType = socialType, nickname = nickname)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

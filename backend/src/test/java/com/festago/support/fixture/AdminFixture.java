@@ -4,6 +4,7 @@ import com.festago.admin.domain.Admin;
 
 public class AdminFixture extends BaseFixture {
 
+    private Long memberId = 0L;
     private String username;
     private String password = "123456";
 
@@ -12,6 +13,11 @@ public class AdminFixture extends BaseFixture {
 
     public static AdminFixture builder() {
         return new AdminFixture();
+    }
+
+    public AdminFixture memberId(Long memberId) {
+        this.memberId = memberId;
+        return this;
     }
 
     public AdminFixture username(String username) {
@@ -26,6 +32,8 @@ public class AdminFixture extends BaseFixture {
 
     public Admin build() {
         return new Admin(
+            null,
+            memberId,
             uniqueValue("admin", username),
             password
         );

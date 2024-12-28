@@ -11,7 +11,7 @@ class AuthenticateContext(
 ) {
 
     val id: Long?
-        get() = authentication.id
+        get() = authentication.memberId
 
     val role: Role
         get() = authentication.role
