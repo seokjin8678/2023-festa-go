@@ -1,12 +1,12 @@
 package com.festago.bookmark.application.command
 
 import com.festago.bookmark.domain.Bookmark
+import com.festago.bookmark.domain.BookmarkRepository
 import com.festago.bookmark.domain.BookmarkType
-import com.festago.bookmark.repository.BookmarkRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.domain.FestivalRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

@@ -1,8 +1,8 @@
 package com.festago.school.application
 
+import com.festago.school.domain.SchoolRepository
 import com.festago.school.domain.validator.SchoolDeleteValidator
 import com.festago.school.dto.event.SchoolDeletedEvent
-import com.festago.school.repository.SchoolRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

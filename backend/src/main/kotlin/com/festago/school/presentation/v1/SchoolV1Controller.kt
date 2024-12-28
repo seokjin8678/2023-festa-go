@@ -5,7 +5,7 @@ import com.festago.common.dto.SliceResponse
 import com.festago.school.application.v1.SchoolV1QueryService
 import com.festago.school.dto.v1.SchoolDetailV1Response
 import com.festago.school.dto.v1.SchoolFestivalV1Response
-import com.festago.school.repository.v1.SchoolFestivalV1SearchCondition
+import com.festago.school.infrastructure.repository.query.v1.SchoolFestivalV1SearchCondition
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag

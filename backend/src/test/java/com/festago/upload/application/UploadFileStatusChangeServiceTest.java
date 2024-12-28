@@ -4,14 +4,14 @@ import static com.festago.upload.domain.FileOwnerType.FESTIVAL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.festago.festival.domain.Festival;
-import com.festago.festival.repository.FestivalRepository;
-import com.festago.festival.repository.MemoryFestivalRepository;
+import com.festago.festival.domain.FestivalRepository;
+import com.festago.festival.infrastructure.repository.MemoryFestivalRepository;
 import com.festago.support.fixture.FestivalFixture;
 import com.festago.support.fixture.UploadFileFixture;
 import com.festago.upload.domain.UploadFile;
+import com.festago.upload.domain.UploadFileRepository;
 import com.festago.upload.domain.UploadStatus;
-import com.festago.upload.repository.MemoryUploadFileRepository;
-import com.festago.upload.repository.UploadFileRepository;
+import com.festago.upload.infrastructure.repository.MemoryUploadFileRepository;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;

@@ -2,9 +2,9 @@ package com.festago.festival.application.integration.query
 
 import com.festago.festival.application.query.PopularFestivalV1QueryService
 import com.festago.festival.domain.Festival
-import com.festago.festival.repository.FestivalQueryInfoRepository
-import com.festago.festival.repository.FestivalRepository
-import com.festago.school.repository.SchoolRepository
+import com.festago.festival.domain.FestivalQueryInfoRepository
+import com.festago.festival.domain.FestivalRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.FestivalQueryInfoFixture
 import com.festago.support.fixture.SchoolFixture

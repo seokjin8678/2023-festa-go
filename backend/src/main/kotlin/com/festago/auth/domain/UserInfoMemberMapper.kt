@@ -13,10 +13,10 @@ class UserInfoMemberMapper(
     fun toMember(userInfo: UserInfo): Member {
         val nickname: String? = userInfo.nickname
         return Member(
-            userInfo.socialId,
-            userInfo.socialType,
-            if (nickname.isNullOrBlank()) defaultNicknamePolicy.generate() else nickname,
-            userInfo.profileImage ?: ""
+            socialId = userInfo.socialId,
+            socialType = userInfo.socialType,
+            nickname = if (nickname.isNullOrBlank()) defaultNicknamePolicy.generate() else nickname,
+            profileImage = userInfo.profileImage ?: ""
         )
     }
 }

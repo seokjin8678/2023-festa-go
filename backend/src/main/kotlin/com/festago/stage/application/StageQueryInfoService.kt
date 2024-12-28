@@ -1,12 +1,12 @@
 package com.festago.stage.application
 
+import com.festago.artist.domain.ArtistRepository
 import com.festago.artist.domain.ArtistsSerializer
-import com.festago.artist.repository.ArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.stage.domain.Stage
 import com.festago.stage.domain.StageQueryInfo
-import com.festago.stage.repository.StageQueryInfoRepository
+import com.festago.stage.domain.StageQueryInfoRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

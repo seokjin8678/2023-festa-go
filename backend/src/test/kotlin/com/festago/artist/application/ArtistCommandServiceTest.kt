@@ -1,10 +1,10 @@
 package com.festago.artist.application
 
+import com.festago.artist.domain.ArtistRepository
+import com.festago.artist.domain.getOrThrow
 import com.festago.artist.dto.command.ArtistCreateCommand
 import com.festago.artist.dto.command.ArtistUpdateCommand
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.MemoryArtistRepository
-import com.festago.artist.repository.getOrThrow
+import com.festago.artist.infrastructure.MemoryArtistRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.support.fixture.ArtistFixture

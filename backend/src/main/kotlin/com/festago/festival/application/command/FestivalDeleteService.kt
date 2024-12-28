@@ -1,8 +1,8 @@
 package com.festago.festival.application.command
 
+import com.festago.festival.domain.FestivalRepository
 import com.festago.festival.domain.validator.FestivalDeleteValidator
 import com.festago.festival.dto.event.FestivalDeletedEvent
-import com.festago.festival.repository.FestivalRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

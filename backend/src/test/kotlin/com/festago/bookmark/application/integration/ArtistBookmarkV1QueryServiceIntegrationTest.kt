@@ -1,10 +1,10 @@
 package com.festago.bookmark.application.integration
 
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.bookmark.application.ArtistBookmarkV1QueryService
+import com.festago.bookmark.domain.BookmarkRepository
 import com.festago.bookmark.domain.BookmarkType
-import com.festago.bookmark.repository.BookmarkRepository
-import com.festago.member.repository.MemberRepository
+import com.festago.member.domain.MemberRepository
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.BookmarkFixture
 import com.festago.support.fixture.MemberFixture

@@ -4,11 +4,11 @@ import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.festival.domain.Festival
 import com.festago.festival.domain.FestivalDuration
+import com.festago.festival.domain.FestivalRepository
 import com.festago.festival.dto.command.FestivalCreateCommand
 import com.festago.festival.dto.event.FestivalCreatedEvent
-import com.festago.festival.repository.FestivalRepository
-import com.festago.school.repository.SchoolRepository
-import com.festago.school.repository.getOrThrow
+import com.festago.school.domain.SchoolRepository
+import com.festago.school.domain.getOrThrow
 import java.time.Clock
 import java.time.LocalDate
 import org.springframework.context.ApplicationEventPublisher

@@ -13,7 +13,7 @@ class MemberAuthenticationTokenProvider(
     fun provide(memberAuthentication: MemberAuthentication): TokenResponse {
         return tokenProviderTemplate.provide(EXPIRATION_MINUTES) { jwtBuilder ->
             jwtBuilder
-                .subject(memberAuthentication.id.toString())
+                .subject(memberAuthentication.memberId.toString())
                 .audience().add(Role.MEMBER.name).and()
         }
     }

@@ -5,12 +5,12 @@ import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.querydsl.SearchCondition
 import com.festago.festival.domain.Festival
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.domain.FestivalRepository
 import com.festago.school.domain.School
 import com.festago.school.domain.SchoolRegion
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.stage.domain.Stage
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.SchoolFixture

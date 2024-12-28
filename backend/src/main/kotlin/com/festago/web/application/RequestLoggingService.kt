@@ -3,10 +3,10 @@ package com.festago.web.application
 import com.festago.auth.domain.authentication.AuthenticateContext
 import com.festago.web.domain.RequestLog
 import com.festago.web.infrastructure.RequestLoggingDao
-import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.annotation.PreDestroy
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
+import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 import org.springframework.core.task.TaskExecutor
@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
 
-private val log = KotlinLogging.logger {}
-
 @Service
 class RequestLoggingService(
     private val taskExecutor: TaskExecutor,
@@ -25,45 +23,31 @@ class RequestLoggingService(
     private val authenticateContext: AuthenticateContext,
 ) {
 
-    private val buffer = mutableListOf<RequestLog>()
+    private val buffer = ArrayBlockingQueue<RequestLog>(10)
     private val lock = ReentrantLock()
 
     @PreDestroy
     protected fun preDestroy() {
-        if (buffer.isEmpty()) {
+        saveLogsFromBuffer()
+    }
+
+    private fun saveLogsFromBuffer(requestLogs: MutableList<RequestLog> = mutableListOf()) {
+        if (lock.tryLock()) {
+            try {
+                buffer.drainTo(requestLogs)
+            } finally {
+                lock.unlock()
+            }
+        }
+        if (requestLogs.isEmpty()) {
             return
         }
-        lock.lock()
-        try {
-            if (buffer.isEmpty()) {
-                return
-            }
-            requestLoggingDao.saveAll(buffer)
-            log.info { "requestLog 저장 완료" }
-        } catch (e: Exception) {
-            log.error(e) { e.message }
-        } finally {
-            lock.unlock()
-        }
+        taskExecutor.execute { requestLoggingDao.saveAll(requestLogs) }
     }
 
     @Scheduled(initialDelay = 60, fixedDelay = 60, timeUnit = TimeUnit.MINUTES)
     protected fun scheduleRequestLog() {
-        if (buffer.isEmpty()) {
-            return
-        }
-        lock.lock()
-        try {
-            if (buffer.isEmpty()) {
-                return
-            }
-            val requestLogs = ArrayList(buffer)
-            taskExecutor.execute { requestLoggingDao.saveAll(requestLogs) }
-            buffer.clear()
-            log.info { "requestLog 저장 완료" }
-        } finally {
-            lock.unlock()
-        }
+        saveLogsFromBuffer()
     }
 
     fun logging(request: ContentCachingRequestWrapper, response: ContentCachingResponseWrapper, processTime: Long) {
@@ -94,16 +78,8 @@ class RequestLoggingService(
             processTime = processTime,
             createdAt = LocalDateTime.now(),
         )
-        lock.lock()
-        try {
-            buffer.add(requestLog)
-            if (buffer.size >= 10) {
-                val requestLogs = ArrayList(buffer)
-                taskExecutor.execute { requestLoggingDao.saveAll(requestLogs) }
-                buffer.clear()
-            }
-        } finally {
-            lock.unlock()
+        if (!buffer.offer(requestLog)) {
+            saveLogsFromBuffer(mutableListOf(requestLog))
         }
     }
 

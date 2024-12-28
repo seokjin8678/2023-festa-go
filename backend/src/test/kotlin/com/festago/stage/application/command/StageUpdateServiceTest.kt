@@ -1,17 +1,17 @@
 package com.festago.stage.application.command
 
 import com.festago.artist.domain.Artist
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.MemoryArtistRepository
+import com.festago.artist.domain.ArtistRepository
+import com.festago.artist.infrastructure.MemoryArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.exception.ValidException
 import com.festago.festival.domain.Festival
 import com.festago.stage.domain.Stage
+import com.festago.stage.domain.StageRepository
+import com.festago.stage.domain.getOrThrow
 import com.festago.stage.dto.command.StageUpdateCommand
-import com.festago.stage.repository.MemoryStageRepository
-import com.festago.stage.repository.StageRepository
-import com.festago.stage.repository.getOrThrow
+import com.festago.stage.infrastructure.repository.MemoryStageRepository
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.StageFixture

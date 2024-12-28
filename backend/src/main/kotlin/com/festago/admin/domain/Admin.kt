@@ -15,7 +15,8 @@ import jakarta.validation.constraints.Size
 @Entity
 @Table(uniqueConstraints = [UniqueConstraint(name = "UNIQUE_USERNAME", columnNames = ["username"])])
 class Admin(
-    id: Long?,
+    id: Long? = null,
+    memberId: Long,
     username: String,
     password: String,
 ) : BaseTimeEntity() {
@@ -24,6 +25,9 @@ class Admin(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = id
 
+    var memberId: Long = memberId
+        protected set
+
     @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
     var username: String = username
         protected set
@@ -31,11 +35,6 @@ class Admin(
     @Size(min = MIN_PASSWORD_LENGTH, max = MAX_PASSWORD_LENGTH)
     var password: String = password
         protected set
-
-    constructor(
-        username: String,
-        password: String,
-    ) : this(null, username, password)
 
     init {
         validateUsername(username)
@@ -69,8 +68,8 @@ class Admin(
         private const val MIN_PASSWORD_LENGTH = 4
         private const val MAX_PASSWORD_LENGTH = 255
 
-        fun createRootAdmin(password: String): Admin {
-            return Admin(ROOT_ADMIN_NAME, password)
+        fun createRootAdmin(memberId: Long, password: String): Admin {
+            return Admin(memberId = memberId, username = ROOT_ADMIN_NAME, password = password)
         }
     }
 }

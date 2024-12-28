@@ -2,7 +2,7 @@ package com.festago.admin.application.integration
 
 import com.festago.admin.application.AdminArtistV1QueryService
 import com.festago.artist.domain.Artist
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.common.querydsl.SearchCondition
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.ArtistFixture

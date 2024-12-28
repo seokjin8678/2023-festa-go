@@ -2,8 +2,8 @@ package com.festago.upload.application
 
 import com.festago.upload.domain.StorageClient
 import com.festago.upload.domain.UploadFile
+import com.festago.upload.domain.UploadFileRepository
 import com.festago.upload.domain.UploadStatus
-import com.festago.upload.repository.UploadFileRepository
 import java.time.Clock
 import java.time.LocalDateTime
 import org.springframework.stereotype.Service

@@ -4,8 +4,8 @@ import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.school.dto.v1.SchoolDetailV1Response
 import com.festago.school.dto.v1.SchoolFestivalV1Response
-import com.festago.school.repository.v1.SchoolFestivalV1SearchCondition
-import com.festago.school.repository.v1.SchoolV1QueryDslRepository
+import com.festago.school.infrastructure.repository.query.v1.SchoolFestivalV1SearchCondition
+import com.festago.school.infrastructure.repository.query.v1.SchoolV1QueryDslRepository
 import java.time.LocalDate
 import org.springframework.data.domain.Slice
 import org.springframework.stereotype.Service

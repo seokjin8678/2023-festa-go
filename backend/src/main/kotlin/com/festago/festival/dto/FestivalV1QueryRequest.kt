@@ -1,6 +1,6 @@
 package com.festago.festival.dto
 
-import com.festago.festival.repository.FestivalFilter
+import com.festago.festival.infrastructure.repository.query.FestivalFilter
 import com.festago.school.domain.SchoolRegion
 import java.time.LocalDate
 

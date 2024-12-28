@@ -1,9 +1,9 @@
 package com.festago.festival.application.integration.command
 
 import com.festago.festival.application.command.FestivalUpdateService
+import com.festago.festival.domain.FestivalRepository
 import com.festago.festival.dto.command.FestivalUpdateCommand
-import com.festago.festival.repository.FestivalRepository
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.TimeInstantProvider
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.SchoolFixture

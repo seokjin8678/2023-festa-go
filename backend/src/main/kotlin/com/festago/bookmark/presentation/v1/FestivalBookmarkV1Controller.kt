@@ -4,7 +4,7 @@ import com.festago.auth.annotation.MemberAuth
 import com.festago.auth.domain.authentication.MemberAuthentication
 import com.festago.bookmark.application.FestivalBookmarkV1QueryService
 import com.festago.bookmark.dto.v1.FestivalBookmarkV1Response
-import com.festago.bookmark.repository.FestivalBookmarkOrder
+import com.festago.bookmark.infrastructure.repository.query.FestivalBookmarkOrder
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
@@ -27,7 +27,7 @@ class FestivalBookmarkV1Controller(
         memberAuthentication: MemberAuthentication,
     ): ResponseEntity<List<Long>> {
         return ResponseEntity.ok()
-            .body(festivalBookmarkV1QueryService.findBookmarkedFestivalIds(memberAuthentication.id))
+            .body(festivalBookmarkV1QueryService.findBookmarkedFestivalIds(memberAuthentication.memberId))
     }
 
     @MemberAuth
@@ -41,7 +41,7 @@ class FestivalBookmarkV1Controller(
         return ResponseEntity.ok()
             .body(
                 festivalBookmarkV1QueryService.findBookmarkedFestivals(
-                    memberAuthentication.id,
+                    memberAuthentication.memberId,
                     festivalIds,
                     festivalBookmarkOrder
                 )

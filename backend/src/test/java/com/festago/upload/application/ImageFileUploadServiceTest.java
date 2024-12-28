@@ -7,11 +7,11 @@ import com.festago.common.exception.BadRequestException;
 import com.festago.common.exception.ErrorCode;
 import com.festago.upload.domain.FileOwnerType;
 import com.festago.upload.domain.UploadFile;
+import com.festago.upload.domain.UploadFileRepository;
 import com.festago.upload.domain.UploadStatus;
 import com.festago.upload.dto.FileUploadResult;
 import com.festago.upload.infrastructure.FakeStorageClient;
-import com.festago.upload.repository.MemoryUploadFileRepository;
-import com.festago.upload.repository.UploadFileRepository;
+import com.festago.upload.infrastructure.repository.MemoryUploadFileRepository;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,7 +52,7 @@ class ImageFileUploadServiceTest {
 
         // then
         UUID uploadFileId = result.uploadFileId();
-        assertThat(uploadFileRepository.findById(uploadFileId)).isPresent();
+        assertThat(uploadFileRepository.findById(uploadFileId)).isNotNull();
     }
 
     @ParameterizedTest
@@ -79,7 +79,7 @@ class ImageFileUploadServiceTest {
 
         // then
         UUID uploadFileId = result.uploadFileId();
-        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId).get();
+        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId);
         assertThat(uploadFile.getStatus()).isEqualTo(UploadStatus.UPLOADED);
     }
 
@@ -94,7 +94,7 @@ class ImageFileUploadServiceTest {
 
         // then
         UUID uploadFileId = result.uploadFileId();
-        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId).get();
+        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId);
         assertThat(uploadFile.getStatus()).isEqualTo(UploadStatus.ASSIGNED);
     }
 }

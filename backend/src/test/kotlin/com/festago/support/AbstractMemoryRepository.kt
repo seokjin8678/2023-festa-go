@@ -3,7 +3,7 @@ package com.festago.support
 import jakarta.persistence.Id
 import java.util.concurrent.atomic.AtomicLong
 
-abstract class AbstractMemoryRepository<T> {
+open class AbstractMemoryRepository<T> {
 
     protected val memory: MutableMap<Long, T> = mutableMapOf()
     private val autoIncrement = AtomicLong()

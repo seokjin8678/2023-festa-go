@@ -1,19 +1,19 @@
 package com.festago.socialmedia.application
 
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.MemoryArtistRepository
+import com.festago.artist.domain.ArtistRepository
+import com.festago.artist.infrastructure.MemoryArtistRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
-import com.festago.school.repository.MemorySchoolRepository
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
+import com.festago.school.infrastructure.repository.MemorySchoolRepository
 import com.festago.socialmedia.domain.OwnerType
+import com.festago.socialmedia.domain.SocialMediaRepository
 import com.festago.socialmedia.domain.SocialMediaType
+import com.festago.socialmedia.domain.getOrThrow
 import com.festago.socialmedia.dto.command.SocialMediaCreateCommand
 import com.festago.socialmedia.dto.command.SocialMediaUpdateCommand
-import com.festago.socialmedia.repository.MemorySocialMediaRepository
-import com.festago.socialmedia.repository.SocialMediaRepository
-import com.festago.socialmedia.repository.getOrThrow
+import com.festago.socialmedia.infrastructure.repository.MemorySocialMediaRepository
 import com.festago.support.fixture.SchoolFixture
 import com.festago.support.fixture.SocialMediaFixture
 import io.kotest.assertions.throwables.shouldNotThrowAny

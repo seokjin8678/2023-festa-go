@@ -1,9 +1,9 @@
 package com.festago.bookmark.application.command
 
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.bookmark.domain.Bookmark
+import com.festago.bookmark.domain.BookmarkRepository
 import com.festago.bookmark.domain.BookmarkType
-import com.festago.bookmark.repository.BookmarkRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException

@@ -1,11 +1,11 @@
 package com.festago.festival.application.command
 
 import com.festago.festival.domain.FestivalDuration
+import com.festago.festival.domain.FestivalRepository
+import com.festago.festival.domain.getOrThrow
 import com.festago.festival.domain.validator.FestivalUpdateValidator
 import com.festago.festival.dto.command.FestivalUpdateCommand
 import com.festago.festival.dto.event.FestivalUpdatedEvent
-import com.festago.festival.repository.FestivalRepository
-import com.festago.festival.repository.getOrThrow
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

@@ -73,7 +73,7 @@ class MemberAuthV1Controller(
         @Valid @RequestBody request: LogoutV1Request,
     ): ResponseEntity<Void> {
         if (authentication is MemberAuthentication) {
-            memberAuthFacadeService.logout(authentication.id, UUID.fromString(request.refreshToken))
+            memberAuthFacadeService.logout(authentication.memberId, UUID.fromString(request.refreshToken))
         }
         return ResponseEntity.ok().build()
     }
@@ -91,7 +91,7 @@ class MemberAuthV1Controller(
     @DeleteMapping
     @Operation(description = "사용자를 탈퇴 처리한다.", summary = "회원 탈퇴")
     fun deleteAccount(memberAuthentication: MemberAuthentication): ResponseEntity<Void> {
-        memberAuthFacadeService.deleteAccount(memberAuthentication.id)
+        memberAuthFacadeService.deleteAccount(memberAuthentication.memberId)
         return ResponseEntity.ok().build()
     }
 }
