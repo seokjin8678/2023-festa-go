@@ -7,6 +7,7 @@ enum class FileExtension(
     val value: String,
     val mimeType: MimeType,
 ) {
+    WEBP(".webp", MimeType("image/webp")),
     JPG(".jpg", MimeTypeUtils.IMAGE_JPEG),
     JPEG(".jpeg", MimeTypeUtils.IMAGE_JPEG),
     PNG(".png", MimeTypeUtils.IMAGE_PNG),
