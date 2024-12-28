@@ -1,7 +1,7 @@
 package com.festago.artist.application.alias
 
 import com.festago.artist.domain.ArtistAlias
-import com.festago.artist.repository.alias.ArtistAliasRepository
+import com.festago.artist.domain.ArtistAliasRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

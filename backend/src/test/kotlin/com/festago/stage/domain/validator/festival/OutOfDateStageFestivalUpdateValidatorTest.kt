@@ -4,8 +4,8 @@ import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.festival.domain.Festival
 import com.festago.festival.domain.FestivalDuration
-import com.festago.stage.repository.MemoryStageRepository
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageRepository
+import com.festago.stage.infrastructure.repository.MemoryStageRepository
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.StageFixture
 import io.kotest.assertions.throwables.shouldNotThrowAny

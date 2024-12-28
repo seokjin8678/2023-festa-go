@@ -3,12 +3,12 @@ package com.festago.school.application
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.school.domain.School
+import com.festago.school.domain.SchoolRepository
+import com.festago.school.domain.getOrThrow
 import com.festago.school.dto.command.SchoolCreateCommand
 import com.festago.school.dto.command.SchoolUpdateCommand
 import com.festago.school.dto.event.SchoolCreatedEvent
 import com.festago.school.dto.event.SchoolUpdatedEvent
-import com.festago.school.repository.SchoolRepository
-import com.festago.school.repository.getOrThrow
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

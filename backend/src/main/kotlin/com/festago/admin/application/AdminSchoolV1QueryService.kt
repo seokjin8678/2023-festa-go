@@ -1,7 +1,7 @@
 package com.festago.admin.application
 
 import com.festago.admin.dto.school.AdminSchoolV1Response
-import com.festago.admin.repository.AdminSchoolV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminSchoolV1QueryDslRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.querydsl.SearchCondition

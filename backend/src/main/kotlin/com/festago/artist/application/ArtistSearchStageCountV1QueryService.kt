@@ -1,7 +1,7 @@
 package com.festago.artist.application
 
 import com.festago.artist.dto.ArtistSearchStageCountV1Response
-import com.festago.artist.repository.ArtistSearchV1QueryDslRepository
+import com.festago.artist.infrastructure.repository.query.ArtistSearchV1QueryDslRepository
 import java.time.LocalDate
 import java.time.LocalDateTime
 import org.springframework.stereotype.Service

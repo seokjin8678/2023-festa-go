@@ -1,9 +1,9 @@
 package com.festago.festival.application
 
 import com.festago.festival.domain.FestivalQueryInfo.Companion.create
+import com.festago.festival.domain.FestivalQueryInfoRepository
 import com.festago.festival.dto.event.FestivalCreatedEvent
 import com.festago.festival.dto.event.FestivalDeletedEvent
-import com.festago.festival.repository.FestivalQueryInfoRepository
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Propagation

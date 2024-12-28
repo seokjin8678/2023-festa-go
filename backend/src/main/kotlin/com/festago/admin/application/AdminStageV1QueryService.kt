@@ -1,7 +1,7 @@
 package com.festago.admin.application
 
 import com.festago.admin.dto.stage.AdminStageV1Response
-import com.festago.admin.repository.AdminStageV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminStageV1QueryDslRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import org.springframework.stereotype.Service

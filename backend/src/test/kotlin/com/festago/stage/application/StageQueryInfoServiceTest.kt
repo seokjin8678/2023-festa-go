@@ -1,17 +1,17 @@
 package com.festago.stage.application
 
 import com.festago.artist.domain.Artist
+import com.festago.artist.domain.ArtistRepository
 import com.festago.artist.domain.ArtistsSerializer
 import com.festago.artist.infrastructure.DelimiterArtistsSerializer
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.MemoryArtistRepository
+import com.festago.artist.infrastructure.MemoryArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.stage.domain.Stage
-import com.festago.stage.repository.MemoryStageQueryInfoRepository
-import com.festago.stage.repository.MemoryStageRepository
-import com.festago.stage.repository.StageQueryInfoRepository
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageQueryInfoRepository
+import com.festago.stage.domain.StageRepository
+import com.festago.stage.infrastructure.repository.MemoryStageQueryInfoRepository
+import com.festago.stage.infrastructure.repository.MemoryStageRepository
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.StageFixture
 import com.festago.support.fixture.StageQueryInfoFixture

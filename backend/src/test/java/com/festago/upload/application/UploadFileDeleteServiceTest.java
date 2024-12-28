@@ -7,9 +7,9 @@ import static org.mockito.BDDMockito.spy;
 import com.festago.support.TimeInstantProvider;
 import com.festago.support.fixture.UploadFileFixture;
 import com.festago.upload.domain.UploadFile;
+import com.festago.upload.domain.UploadFileRepository;
 import com.festago.upload.infrastructure.FakeStorageClient;
-import com.festago.upload.repository.MemoryUploadFileRepository;
-import com.festago.upload.repository.UploadFileRepository;
+import com.festago.upload.infrastructure.repository.MemoryUploadFileRepository;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -83,8 +83,8 @@ class UploadFileDeleteServiceTest {
             uploadFileDeleteService.deleteAbandonedStatusWithPeriod(_6월_30일_18시_0분_0초, _6월_30일_18시_0분_0초);
 
             // then
-            assertThat(uploadFileRepository.findById(UPLOADED_상태_파일.getId())).isPresent();
-            assertThat(uploadFileRepository.findById(ABANDONED_상태_파일.getId())).isEmpty();
+            assertThat(uploadFileRepository.findById(UPLOADED_상태_파일.getId())).isNotNull();
+            assertThat(uploadFileRepository.findById(ABANDONED_상태_파일.getId())).isNull();
         }
     }
 
@@ -140,8 +140,8 @@ class UploadFileDeleteServiceTest {
             uploadFileDeleteService.deleteOldUploadedStatus();
 
             // then
-            assertThat(uploadFileRepository.findById(UPLOADED_상태_파일.getId())).isEmpty();
-            assertThat(uploadFileRepository.findById(ABANDONED_상태_파일.getId())).isPresent();
+            assertThat(uploadFileRepository.findById(UPLOADED_상태_파일.getId())).isNull();
+            assertThat(uploadFileRepository.findById(ABANDONED_상태_파일.getId())).isNotNull();
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.festago.admin.application
 
 import com.festago.admin.dto.socialmedia.AdminSocialMediaV1Response
-import com.festago.admin.repository.AdminSocialMediaV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminSocialMediaV1QueryDslRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.socialmedia.domain.OwnerType

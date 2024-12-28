@@ -1,7 +1,7 @@
 package com.festago.auth.application.command
 
 import com.festago.admin.domain.Admin
-import com.festago.admin.repository.AdminRepository
+import com.festago.admin.domain.AdminRepository
 import com.festago.auth.domain.AuthType
 import com.festago.auth.domain.authentication.AdminAuthentication
 import com.festago.auth.domain.token.jwt.provider.AdminAuthenticationTokenProvider

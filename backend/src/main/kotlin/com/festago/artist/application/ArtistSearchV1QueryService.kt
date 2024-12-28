@@ -1,7 +1,7 @@
 package com.festago.artist.application
 
 import com.festago.artist.dto.ArtistSearchV1Response
-import com.festago.artist.repository.ArtistSearchV1QueryDslRepository
+import com.festago.artist.infrastructure.repository.query.ArtistSearchV1QueryDslRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import org.springframework.stereotype.Service

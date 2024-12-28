@@ -4,8 +4,8 @@ import com.festago.admin.application.AdminSocialMediaV1QueryService
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.socialmedia.domain.OwnerType
+import com.festago.socialmedia.domain.SocialMediaRepository
 import com.festago.socialmedia.domain.SocialMediaType
-import com.festago.socialmedia.repository.SocialMediaRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.fixture.SocialMediaFixture
 import io.kotest.assertions.throwables.shouldThrow

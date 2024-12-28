@@ -2,20 +2,20 @@ package com.festago.artist.application.integration
 
 import com.festago.artist.application.ArtistDetailV1QueryService
 import com.festago.artist.domain.Artist
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.festival.domain.Festival
-import com.festago.festival.repository.FestivalQueryInfoRepository
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.domain.FestivalQueryInfoRepository
+import com.festago.festival.domain.FestivalRepository
 import com.festago.school.domain.School
 import com.festago.school.domain.SchoolRegion
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.socialmedia.domain.OwnerType
+import com.festago.socialmedia.domain.SocialMediaRepository
 import com.festago.socialmedia.domain.SocialMediaType
-import com.festago.socialmedia.repository.SocialMediaRepository
-import com.festago.stage.repository.StageArtistRepository
-import com.festago.stage.repository.StageRepository
+import com.festago.stage.domain.StageArtistRepository
+import com.festago.stage.domain.StageRepository
 import com.festago.support.ApplicationIntegrationTest
 import com.festago.support.TimeInstantProvider
 import com.festago.support.fixture.ArtistFixture

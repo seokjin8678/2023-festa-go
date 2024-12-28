@@ -1,9 +1,9 @@
 package com.festago.festival.application.query
 
 import com.festago.festival.dto.FestivalSearchV1Response
-import com.festago.festival.repository.FestivalArtistNameSearchV1QueryDslRepository
-import com.festago.festival.repository.FestivalFilter
-import com.festago.festival.repository.FestivalNameSearchV1QueryDslRepository
+import com.festago.festival.infrastructure.repository.query.FestivalArtistNameSearchV1QueryDslRepository
+import com.festago.festival.infrastructure.repository.query.FestivalFilter
+import com.festago.festival.infrastructure.repository.query.FestivalNameSearchV1QueryDslRepository
 import java.time.Clock
 import java.time.LocalDate
 import org.springframework.stereotype.Service

@@ -1,16 +1,16 @@
 package com.festago.auth.application.command
 
+import com.festago.auth.domain.RefreshTokenRepository
 import com.festago.auth.domain.SocialType
 import com.festago.auth.domain.UserInfoMemberMapper
 import com.festago.auth.domain.model.UserInfo
-import com.festago.auth.repository.MemoryRefreshTokenRepository
-import com.festago.auth.repository.RefreshTokenRepository
+import com.festago.auth.infrastructure.repository.MemoryRefreshTokenRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.exception.UnauthorizedException
 import com.festago.member.domain.DefaultNicknamePolicy
-import com.festago.member.repository.MemberRepository
-import com.festago.member.repository.MemoryMemberRepository
+import com.festago.member.domain.MemberRepository
+import com.festago.member.infrastructure.repository.MemoryMemberRepository
 import com.festago.support.fixture.MemberFixture
 import com.festago.support.fixture.RefreshTokenFixture
 import io.kotest.assertions.throwables.shouldThrow

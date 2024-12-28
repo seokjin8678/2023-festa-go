@@ -6,7 +6,7 @@ import com.festago.festival.application.query.FestivalV1QueryService
 import com.festago.festival.dto.FestivalDetailV1Response
 import com.festago.festival.dto.FestivalV1QueryRequest
 import com.festago.festival.dto.FestivalV1Response
-import com.festago.festival.repository.FestivalFilter
+import com.festago.festival.infrastructure.repository.query.FestivalFilter
 import com.festago.school.domain.SchoolRegion
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter

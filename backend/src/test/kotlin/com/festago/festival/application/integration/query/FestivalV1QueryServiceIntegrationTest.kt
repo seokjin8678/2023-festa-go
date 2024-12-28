@@ -2,13 +2,13 @@ package com.festago.festival.application.integration.query
 
 import com.festago.festival.application.query.FestivalV1QueryService
 import com.festago.festival.domain.Festival
+import com.festago.festival.domain.FestivalQueryInfoRepository
+import com.festago.festival.domain.FestivalRepository
 import com.festago.festival.dto.FestivalV1QueryRequest
-import com.festago.festival.repository.FestivalFilter
-import com.festago.festival.repository.FestivalQueryInfoRepository
-import com.festago.festival.repository.FestivalRepository
+import com.festago.festival.infrastructure.repository.query.FestivalFilter
 import com.festago.school.domain.School
 import com.festago.school.domain.SchoolRegion
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.support.TimeInstantProvider
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.FestivalQueryInfoFixture

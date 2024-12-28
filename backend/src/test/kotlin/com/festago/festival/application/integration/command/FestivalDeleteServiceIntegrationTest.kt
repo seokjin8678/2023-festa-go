@@ -3,10 +3,10 @@ package com.festago.festival.application.integration.command
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.festival.application.command.FestivalDeleteService
-import com.festago.festival.repository.FestivalQueryInfoRepository
-import com.festago.festival.repository.FestivalRepository
-import com.festago.school.repository.SchoolRepository
-import com.festago.stage.repository.StageRepository
+import com.festago.festival.domain.FestivalQueryInfoRepository
+import com.festago.festival.domain.FestivalRepository
+import com.festago.school.domain.SchoolRepository
+import com.festago.stage.domain.StageRepository
 import com.festago.support.fixture.FestivalFixture
 import com.festago.support.fixture.SchoolFixture
 import com.festago.support.fixture.StageFixture

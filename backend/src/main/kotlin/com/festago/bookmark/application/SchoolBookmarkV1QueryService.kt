@@ -1,7 +1,7 @@
 package com.festago.bookmark.application
 
 import com.festago.bookmark.dto.v1.SchoolBookmarkV1Response
-import com.festago.bookmark.repository.v1.SchoolBookmarkV1QuerydslRepository
+import com.festago.bookmark.infrastructure.repository.query.v1.SchoolBookmarkV1QuerydslRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

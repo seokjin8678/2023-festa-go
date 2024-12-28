@@ -1,18 +1,18 @@
 package com.festago.stage.application.command
 
 import com.festago.artist.domain.Artist
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.MemoryArtistRepository
+import com.festago.artist.domain.ArtistRepository
+import com.festago.artist.infrastructure.MemoryArtistRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.exception.ValidException
 import com.festago.festival.domain.Festival
-import com.festago.festival.repository.FestivalRepository
-import com.festago.festival.repository.MemoryFestivalRepository
+import com.festago.festival.domain.FestivalRepository
+import com.festago.festival.infrastructure.repository.MemoryFestivalRepository
+import com.festago.stage.domain.StageRepository
+import com.festago.stage.domain.getOrThrow
 import com.festago.stage.dto.command.StageCreateCommand
-import com.festago.stage.repository.MemoryStageRepository
-import com.festago.stage.repository.StageRepository
-import com.festago.stage.repository.getOrThrow
+import com.festago.stage.infrastructure.repository.MemoryStageRepository
 import com.festago.support.fixture.ArtistFixture
 import com.festago.support.fixture.FestivalFixture
 import io.kotest.assertions.throwables.shouldNotThrowAny

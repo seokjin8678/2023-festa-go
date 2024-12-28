@@ -1,16 +1,16 @@
 package com.festago.socialmedia.application
 
-import com.festago.artist.repository.ArtistRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
-import com.festago.school.repository.SchoolRepository
+import com.festago.school.domain.SchoolRepository
 import com.festago.socialmedia.domain.OwnerType
 import com.festago.socialmedia.domain.SocialMedia
+import com.festago.socialmedia.domain.SocialMediaRepository
+import com.festago.socialmedia.domain.getOrThrow
 import com.festago.socialmedia.dto.command.SocialMediaCreateCommand
 import com.festago.socialmedia.dto.command.SocialMediaUpdateCommand
-import com.festago.socialmedia.repository.SocialMediaRepository
-import com.festago.socialmedia.repository.getOrThrow
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

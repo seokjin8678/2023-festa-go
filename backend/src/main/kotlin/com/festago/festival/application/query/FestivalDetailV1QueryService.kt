@@ -3,7 +3,7 @@ package com.festago.festival.application.query
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.festival.dto.FestivalDetailV1Response
-import com.festago.festival.repository.FestivalDetailV1QueryDslRepository
+import com.festago.festival.infrastructure.repository.query.FestivalDetailV1QueryDslRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

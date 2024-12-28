@@ -1,7 +1,7 @@
 package com.festago.admin.application
 
 import com.festago.admin.dto.artist.AdminArtistV1Response
-import com.festago.admin.repository.AdminArtistV1QueryDslRepository
+import com.festago.admin.infrastructure.repository.query.AdminArtistV1QueryDslRepository
 import com.festago.common.exception.ErrorCode
 import com.festago.common.exception.NotFoundException
 import com.festago.common.querydsl.SearchCondition

@@ -2,8 +2,8 @@ package com.festago.artist.application.integration
 
 import com.festago.artist.application.ArtistSearchV1QueryService
 import com.festago.artist.domain.ArtistAlias
-import com.festago.artist.repository.ArtistRepository
-import com.festago.artist.repository.alias.ArtistAliasRepository
+import com.festago.artist.domain.ArtistAliasRepository
+import com.festago.artist.domain.ArtistRepository
 import com.festago.common.exception.BadRequestException
 import com.festago.common.exception.ErrorCode
 import com.festago.support.ApplicationIntegrationTest
