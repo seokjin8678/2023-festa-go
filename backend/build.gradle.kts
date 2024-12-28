@@ -47,6 +47,7 @@ val springMockkVersion = "4.0.2"
 val kotestVersion = "5.9.1"
 val kotestExtensionSpringVersion = "1.3.0"
 val kotlinLoggingVersion = "7.0.0"
+val ulidCreatorVersion = "5.2.3"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -111,6 +112,9 @@ dependencies {
 
     // Kotlin logging
     implementation("io.github.oshai:kotlin-logging-jvm:$kotlinLoggingVersion")
+
+    // ULID
+    implementation("com.github.f4b6a3:ulid-creator:$ulidCreatorVersion")
 }
 
 tasks.test {
