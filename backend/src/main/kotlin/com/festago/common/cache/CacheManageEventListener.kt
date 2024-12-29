@@ -11,11 +11,14 @@ private val log = KotlinLogging.logger {}
 
 @Profile("!test")
 @Component
-internal class CacheInvalidator(
+internal class CacheManageEventListener(
     private val cacheManager: CacheManager,
 ) {
 
-    protected fun invalidate(cacheName: String) {
+    @Async
+    @EventListener
+    protected fun invalidate(event: CacheInvalidateCommandEvent) {
+        val cacheName = event.cacheName
         val cache = cacheManager.getCache(cacheName) ?: return
         cache.invalidate()
         log.info { "Invalidating cache complete. cacheName=$cacheName" }
@@ -23,10 +26,14 @@ internal class CacheInvalidator(
 
     @Async
     @EventListener
-    protected fun invalidate(event: CacheInvalidateCommandEvent) {
-        invalidate(event.cacheName)
+    protected fun evict(event: CacheEvictCommandEvent) {
+        val cacheName = event.cacheName
+        val cache = cacheManager.getCache(cacheName) ?: return
+        cache.evict(event.key)
     }
 }
 
 data class CacheInvalidateCommandEvent(val cacheName: String)
+
+data class CacheEvictCommandEvent(val cacheName: String, val key: String)
 
