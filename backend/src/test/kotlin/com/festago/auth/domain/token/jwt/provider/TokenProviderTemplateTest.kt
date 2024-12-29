@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import io.kotest.matchers.shouldBe
 import java.time.Clock
+import java.time.temporal.ChronoUnit
 import org.junit.jupiter.api.Test
 
 class TokenProviderTemplateTest {
@@ -21,7 +22,7 @@ class TokenProviderTemplateTest {
             .build()
 
         // when
-        val actual = tokenProviderTemplate.provide(60) { it }
+        val actual = tokenProviderTemplate.provide(60, ChronoUnit.MINUTES) { }
 
         // then
         parser.isSigned(actual.token) shouldBe true
