@@ -57,6 +57,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
 
     // Spring Security
     implementation("org.springframework.security:spring-security-crypto")
@@ -115,6 +116,9 @@ dependencies {
 
     // ULID
     implementation("com.github.f4b6a3:ulid-creator:$ulidCreatorVersion")
+
+    // Caffeine Cache
+    implementation("com.github.ben-manes.caffeine:caffeine")
 }
 
 tasks.test {
