@@ -13,6 +13,7 @@ import com.festago.auth.dto.v1.OAuth2LoginV1Request
 import com.festago.auth.dto.v1.OpenIdLoginV1Request
 import com.festago.auth.dto.v1.RefreshTokenV1Request
 import com.festago.auth.dto.v1.TokenRefreshV1Response
+import com.festago.common.annotation.LoggingDetail
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -34,6 +35,8 @@ import org.springframework.web.bind.annotation.RestController
 class MemberAuthV1Controller(
     private val memberAuthFacadeService: MemberAuthFacadeService,
 ) {
+
+    @LoggingDetail(hideRequestBody = true)
     @PostMapping("/login/oauth2")
     @Operation(
         description = "OAuth2 authorization_code를 받아 로그인/회원가입을 한다.",
@@ -46,6 +49,7 @@ class MemberAuthV1Controller(
             .body(memberAuthFacadeService.oAuth2Login(request.socialType, request.code))
     }
 
+    @LoggingDetail(hideRequestBody = true)
     @Hidden // OAuth2 redirect-uri 스펙을 맞추기 위해 구현한 API
     @GetMapping("/login/oauth2/{socialType}")
     fun oauth2LoginWithPath(
@@ -56,6 +60,7 @@ class MemberAuthV1Controller(
             .body(memberAuthFacadeService.oAuth2Login(socialType, code))
     }
 
+    @LoggingDetail(hideRequestBody = true)
     @PostMapping("/login/open-id")
     @Operation(description = "OpenID Id Token을 받아 로그인/회원가입을 한다.", summary = "OpenID Id Token 로그인")
     fun openIdLogin(
