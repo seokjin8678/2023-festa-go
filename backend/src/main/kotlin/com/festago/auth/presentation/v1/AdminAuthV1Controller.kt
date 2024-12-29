@@ -6,6 +6,7 @@ import com.festago.auth.dto.v1.AdminLoginV1Request
 import com.festago.auth.dto.v1.AdminLoginV1Response
 import com.festago.auth.dto.v1.AdminSignupV1Request
 import com.festago.auth.dto.v1.RootAdminInitializeRequest
+import com.festago.common.annotation.LoggingDetail
 import io.swagger.v3.oas.annotations.Hidden
 import jakarta.validation.Valid
 import java.time.Duration
@@ -25,6 +26,7 @@ class AdminAuthV1Controller(
     private val adminAuthCommandService: AdminAuthCommandService,
 ) {
 
+    @LoggingDetail(hideRequestBody = true)
     @PostMapping("/login")
     fun login(
         @Valid @RequestBody request: AdminLoginV1Request,
@@ -60,6 +62,7 @@ class AdminAuthV1Controller(
             .build().toString()
     }
 
+    @LoggingDetail(hideRequestBody = true)
     @PostMapping("/signup")
     fun signupAdminAccount(
         @Valid @RequestBody request: AdminSignupV1Request,
@@ -69,6 +72,7 @@ class AdminAuthV1Controller(
         return ResponseEntity.ok().build()
     }
 
+    @LoggingDetail(hideRequestBody = true)
     @PostMapping("/initialize")
     fun initializeRootAdmin(
         @Valid @RequestBody request: RootAdminInitializeRequest,
