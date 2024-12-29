@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com"
-version = "2.4.4-SNAPSHOT"
+version = "2.5.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
