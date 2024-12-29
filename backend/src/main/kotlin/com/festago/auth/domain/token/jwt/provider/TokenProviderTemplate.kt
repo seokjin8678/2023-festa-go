@@ -9,7 +9,6 @@ import java.time.Clock
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import java.util.Date
-import java.util.function.UnaryOperator
 import javax.crypto.SecretKey
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
@@ -21,18 +20,18 @@ class TokenProviderTemplate(
 ) {
     private val secretKey: SecretKey = Keys.hmacShaKeyFor(secretKey.toByteArray(StandardCharsets.UTF_8))
 
-    fun provide(expirationMinutes: Long, template: UnaryOperator<JwtBuilder>): TokenResponse {
+    fun provide(expirationAmount: Long, timeUnit: ChronoUnit, template: JwtBuilder.() -> Unit): TokenResponse {
         val now = clock.instant()
-        val expiredAt = now.plus(expirationMinutes, ChronoUnit.MINUTES)
+        val expiredAt = now.plus(expirationAmount, timeUnit)
         val builder = Jwts.builder()
             .expiration(Date.from(expiredAt))
             .issuedAt(Date.from(now))
             .signWith(secretKey)
-        template.apply(builder)
+        builder.apply(template)
         val accessToken = builder.compact()
         return TokenResponse(
-            accessToken,
-            LocalDateTime.ofInstant(expiredAt, clock.zone)
+            token = accessToken,
+            expiredAt = LocalDateTime.ofInstant(expiredAt, clock.zone)
         )
     }
 }
