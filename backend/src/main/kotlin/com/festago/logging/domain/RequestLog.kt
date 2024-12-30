@@ -11,6 +11,7 @@ data class RequestLog(
     val requestSize: Int,
     val requestBody: String?,
     val responseSize: Int,
+    val responseStatus: Int,
     val responseBody: String?,
     val responseContentType: String?,
     val processTime: Int,
