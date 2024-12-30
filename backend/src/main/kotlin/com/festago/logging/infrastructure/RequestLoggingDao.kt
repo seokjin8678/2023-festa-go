@@ -23,18 +23,19 @@ class RequestLoggingDao(
             ps.setInt(5, requestLog.requestSize)
             ps.setString(6, requestLog.requestContentType?.take(100))
             ps.setString(7, requestLog.requestBody)
-            ps.setInt(8, requestLog.responseSize)
-            ps.setString(9, requestLog.responseContentType?.take(50))
-            ps.setString(10, requestLog.responseBody)
-            ps.setInt(11, requestLog.processTime)
-            ps.setTimestamp(12, Timestamp.valueOf(requestLog.createdAt))
+            ps.setInt(8, requestLog.responseStatus)
+            ps.setInt(9, requestLog.responseSize)
+            ps.setString(10, requestLog.responseContentType?.take(50))
+            ps.setString(11, requestLog.responseBody)
+            ps.setInt(12, requestLog.processTime)
+            ps.setTimestamp(13, Timestamp.valueOf(requestLog.createdAt))
         }
     }
 
     companion object {
         const val BATCH_SIZE = 100
         const val SQL =
-            "INSERT INTO request_log (method, user_id, request_uri, request_ip, request_size, request_content_type, request_body, response_size, response_content_type, response_body, process_time, created_at)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO request_log (method, user_id, request_uri, request_ip, request_size, request_content_type, request_body, response_status, response_size, response_content_type, response_body, process_time, created_at)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
     }
 }
