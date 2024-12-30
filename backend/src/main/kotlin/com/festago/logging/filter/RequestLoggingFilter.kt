@@ -30,8 +30,8 @@ class RequestLoggingFilter(
     ) {
         val loggingPolicy = uriPatternMatcher.match(request.method, request.requestURI)
             ?: return filterChain.doFilter(request, response)
-        val wrappingRequest = ContentCachingRequestWrapper(request)
-        val wrappingResponse = ContentCachingResponseWrapper(response)
+        val wrappingRequest = if (loggingPolicy.hideRequestBody) request else ContentCachingRequestWrapper(request)
+        val wrappingResponse = if (loggingPolicy.hideResponseBody) response else ContentCachingResponseWrapper(response)
         val start = System.currentTimeMillis()
         try {
             filterChain.doFilter(wrappingRequest, wrappingResponse)
@@ -43,7 +43,6 @@ class RequestLoggingFilter(
                 loggingPolicy = loggingPolicy,
                 processTime = processTime
             )
-            wrappingResponse.copyBodyToResponse()
             try {
                 requestLoggingService.logging(requestLog)
             } catch (e: Exception) {
