@@ -5,12 +5,10 @@ import com.festago.common.exception.InternalServerException
 import com.festago.common.exception.NotFoundException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
-import org.springframework.http.ResponseEntity
 import org.springframework.http.client.ClientHttpResponse
 import org.springframework.stereotype.Component
 import org.springframework.web.client.DefaultResponseErrorHandler
 import org.springframework.web.client.RestClient
-import org.springframework.web.client.toEntity
 
 @Component
 class ActuatorProxyClient(
@@ -22,12 +20,12 @@ class ActuatorProxyClient(
         .baseUrl("http://localhost:$port/actuator/")
         .build()
 
-    fun request(path: String): ResponseEntity<String> {
+    fun request(path: String): ByteArray {
         return restClient.get()
             .uri(path)
             .retrieve()
             .onStatus(AdminActuatorProxyErrorHandler)
-            .toEntity<String>()
+            .body(ByteArray::class.java) ?: ByteArray(0)
     }
 }
 
