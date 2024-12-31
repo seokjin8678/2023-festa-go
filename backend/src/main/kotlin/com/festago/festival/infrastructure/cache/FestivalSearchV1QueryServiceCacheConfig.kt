@@ -1,7 +1,7 @@
 package com.festago.festival.infrastructure.cache
 
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.config.CaffeineCacheBuilder
+import com.festago.common.cache.caffeineCache
 import com.festago.festival.application.query.FestivalSearchV1QueryService
 import com.festago.festival.dto.event.FestivalCreatedEvent
 import com.festago.festival.dto.event.FestivalDeletedEvent
@@ -23,7 +23,7 @@ private class FestivalSearchV1QueryServiceCacheConfig(
 
     @Bean
     fun festivalSearchV1QueryServiceCache(): Cache {
-        return CaffeineCacheBuilder.build(FestivalSearchV1QueryService.CACHE_NAME)
+        return caffeineCache(FestivalSearchV1QueryService.CACHE_NAME)
     }
 
     @EventListener(value = [FestivalCreatedEvent::class, FestivalUpdatedEvent::class, FestivalDeletedEvent::class])
