@@ -65,7 +65,7 @@ internal class ActuatorProxyClientTest {
         val response = actuatorProxyClient.request("health")
 
         // then
-        response.body shouldBe "data"
+        response shouldBe "data".toByteArray(Charsets.UTF_8)
     }
 
     companion object {
