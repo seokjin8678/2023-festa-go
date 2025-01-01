@@ -5,7 +5,7 @@ import com.festago.artist.dto.event.ArtistDeletedEvent
 import com.festago.artist.dto.event.ArtistUpdatedEvent
 import com.festago.common.cache.CacheEvictCommandEvent
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.config.CaffeineCacheBuilder
+import com.festago.common.cache.caffeineCache
 import com.festago.festival.dto.event.FestivalDeletedEvent
 import com.festago.festival.dto.event.FestivalUpdatedEvent
 import com.festago.stage.dto.event.StageCreatedEvent
@@ -25,12 +25,12 @@ private class ArtistDetailV1QueryServiceCacheConfig(
 
     @Bean
     fun artistDetailV1QueryServiceArtistDetailCache(): Cache {
-        return CaffeineCacheBuilder.build(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
+        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
     }
 
     @Bean
     fun artistDetailV1QueryServiceArtistDetailFestivalsCache(): Cache {
-        return CaffeineCacheBuilder.build(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
+        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
     }
 
     @EventListener

@@ -5,7 +5,7 @@ import com.festago.artist.dto.event.ArtistCreatedEvent
 import com.festago.artist.dto.event.ArtistDeletedEvent
 import com.festago.artist.dto.event.ArtistUpdatedEvent
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.config.CaffeineCacheBuilder
+import com.festago.common.cache.caffeineCache
 import com.festago.stage.dto.event.StageCreatedEvent
 import com.festago.stage.dto.event.StageDeletedEvent
 import com.festago.stage.dto.event.StageUpdatedEvent
@@ -23,7 +23,7 @@ private class ArtistTotalSearchV1ServiceCacheConfig(
 
     @Bean
     fun artistTotalSearchV1ServiceCache(): Cache {
-        return CaffeineCacheBuilder.build(ArtistTotalSearchV1Service.CACHE_NAME)
+        return caffeineCache(ArtistTotalSearchV1Service.CACHE_NAME)
     }
 
     @EventListener(value = [ArtistCreatedEvent::class, ArtistUpdatedEvent::class, ArtistDeletedEvent::class])
