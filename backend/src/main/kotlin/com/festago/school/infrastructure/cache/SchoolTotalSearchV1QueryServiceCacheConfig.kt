@@ -1,7 +1,7 @@
 package com.festago.school.infrastructure.cache
 
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.config.CaffeineCacheBuilder
+import com.festago.common.cache.caffeineCache
 import com.festago.festival.dto.event.FestivalCreatedEvent
 import com.festago.festival.dto.event.FestivalDeletedEvent
 import com.festago.festival.dto.event.FestivalUpdatedEvent
@@ -23,7 +23,7 @@ private class SchoolTotalSearchV1QueryServiceCacheConfig(
 
     @Bean
     fun schoolTotalSearchV1QueryServiceCache(): Cache {
-        return CaffeineCacheBuilder.build(SchoolTotalSearchV1QueryService.CACHE_NAME)
+        return caffeineCache(SchoolTotalSearchV1QueryService.CACHE_NAME)
     }
 
     @EventListener(value = [SchoolCreatedEvent::class, SchoolUpdatedEvent::class, SchoolDeletedEvent::class])

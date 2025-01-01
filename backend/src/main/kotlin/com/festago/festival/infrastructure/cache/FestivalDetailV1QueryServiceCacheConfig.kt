@@ -2,7 +2,7 @@ package com.festago.festival.infrastructure.cache
 
 import com.festago.common.cache.CacheEvictCommandEvent
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.config.CaffeineCacheBuilder
+import com.festago.common.cache.caffeineCache
 import com.festago.festival.application.query.FestivalDetailV1QueryService
 import com.festago.festival.dto.event.FestivalDeletedEvent
 import com.festago.festival.dto.event.FestivalUpdatedEvent
@@ -23,7 +23,7 @@ private class FestivalDetailV1QueryServiceCacheConfig(
 
     @Bean
     fun festivalDetailV1QueryServiceCache(): Cache {
-        return CaffeineCacheBuilder.build(FestivalDetailV1QueryService.CACHE_NAME) {
+        return caffeineCache(FestivalDetailV1QueryService.CACHE_NAME) {
             maximumSize = 20
         }
     }
