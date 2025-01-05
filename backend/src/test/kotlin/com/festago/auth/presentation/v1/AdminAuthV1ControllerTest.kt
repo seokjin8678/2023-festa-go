@@ -80,7 +80,9 @@ class AdminAuthV1ControllerTest(
                 }
             }
 
-            it("토큰의 권한이 Admin이 아니면 404 응답이 반환된다") {
+            it("토큰의 권한이 Admin이 아니면 404 응답이 반환된다").config(
+                extensions = withMockAuthExtension(role = Role.MEMBER)
+            ) {
                 mockMvc.get(uri) {
                     cookie(TOKEN_COOKIE)
                 }.andExpect {
@@ -118,7 +120,9 @@ class AdminAuthV1ControllerTest(
                 }
             }
 
-            it("토큰의 권한이 Admin이 아니면 404 응답이 반환된다") {
+            it("토큰의 권한이 Admin이 아니면 404 응답이 반환된다").config(
+                extensions = withMockAuthExtension(role = Role.MEMBER)
+            ) {
                 mockMvc.jsonPost(uri) {
                     cookie(TOKEN_COOKIE)
                 }.andExpect {
