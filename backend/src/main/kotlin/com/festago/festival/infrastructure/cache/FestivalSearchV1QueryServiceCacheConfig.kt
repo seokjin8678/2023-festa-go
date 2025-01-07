@@ -1,7 +1,7 @@
 package com.festago.festival.infrastructure.cache
 
+import com.festago.common.cache.CacheFactory
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.common.cache.caffeineCache
 import com.festago.festival.application.query.FestivalSearchV1QueryService
 import com.festago.festival.dto.event.FestivalCreatedEvent
 import com.festago.festival.dto.event.FestivalDeletedEvent
@@ -19,11 +19,12 @@ import org.springframework.scheduling.annotation.Scheduled
 @Configuration
 private class FestivalSearchV1QueryServiceCacheConfig(
     private val eventPublisher: ApplicationEventPublisher,
+    private val cacheFactory: CacheFactory,
 ) {
 
     @Bean
     fun festivalSearchV1QueryServiceCache(): Cache {
-        return caffeineCache(FestivalSearchV1QueryService.CACHE_NAME)
+        return cacheFactory.create(FestivalSearchV1QueryService.CACHE_NAME)
     }
 
     @EventListener(value = [FestivalCreatedEvent::class, FestivalUpdatedEvent::class, FestivalDeletedEvent::class])

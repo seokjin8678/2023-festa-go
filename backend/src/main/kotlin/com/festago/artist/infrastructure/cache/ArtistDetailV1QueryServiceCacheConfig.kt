@@ -4,8 +4,8 @@ import com.festago.artist.application.ArtistDetailV1QueryService
 import com.festago.artist.dto.event.ArtistDeletedEvent
 import com.festago.artist.dto.event.ArtistUpdatedEvent
 import com.festago.common.cache.CacheEvictCommandEvent
+import com.festago.common.cache.CacheFactory
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.common.cache.caffeineCache
 import com.festago.festival.dto.event.FestivalDeletedEvent
 import com.festago.festival.dto.event.FestivalUpdatedEvent
 import com.festago.stage.dto.event.StageCreatedEvent
@@ -21,16 +21,17 @@ import org.springframework.scheduling.annotation.Scheduled
 @Configuration
 private class ArtistDetailV1QueryServiceCacheConfig(
     private val eventPublisher: ApplicationEventPublisher,
+    private val cacheFactory: CacheFactory,
 ) {
 
     @Bean
     fun artistDetailV1QueryServiceArtistDetailCache(): Cache {
-        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
+        return cacheFactory.create(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
     }
 
     @Bean
     fun artistDetailV1QueryServiceArtistDetailFestivalsCache(): Cache {
-        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_FESTIVALS_CACHE_NAME)
+        return cacheFactory.create(ArtistDetailV1QueryService.ARTIST_DETAIL_FESTIVALS_CACHE_NAME)
     }
 
     @EventListener

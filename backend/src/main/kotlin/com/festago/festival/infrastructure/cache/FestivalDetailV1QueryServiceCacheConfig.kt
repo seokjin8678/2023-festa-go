@@ -1,8 +1,8 @@
 package com.festago.festival.infrastructure.cache
 
 import com.festago.common.cache.CacheEvictCommandEvent
+import com.festago.common.cache.CacheFactory
 import com.festago.common.cache.CacheInvalidateCommandEvent
-import com.festago.common.cache.caffeineCache
 import com.festago.festival.application.query.FestivalDetailV1QueryService
 import com.festago.festival.dto.event.FestivalDeletedEvent
 import com.festago.festival.dto.event.FestivalUpdatedEvent
@@ -19,11 +19,12 @@ import org.springframework.scheduling.annotation.Scheduled
 @Configuration
 private class FestivalDetailV1QueryServiceCacheConfig(
     private val eventPublisher: ApplicationEventPublisher,
+    private val cacheFactory: CacheFactory,
 ) {
 
     @Bean
     fun festivalDetailV1QueryServiceCache(): Cache {
-        return caffeineCache(FestivalDetailV1QueryService.CACHE_NAME) {
+        return cacheFactory.create(FestivalDetailV1QueryService.CACHE_NAME) {
             maximumSize = 20
         }
     }
