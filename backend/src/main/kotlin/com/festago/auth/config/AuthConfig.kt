@@ -14,6 +14,7 @@ import com.festago.auth.domain.token.jwt.AuthenticationTokenExtractor
 import com.festago.auth.web.argument.AdminAuthenticationArgumentResolver
 import com.festago.auth.web.argument.AuthenticationArgumentResolver
 import com.festago.auth.web.argument.MemberAuthenticationArgumentResolver
+import com.festago.auth.web.filter.AuthenticationSettingFilter
 import com.festago.auth.web.interceptor.AnnotationAuthorizationInterceptor
 import com.festago.auth.web.interceptor.FixedAuthorizationInterceptor
 import com.festago.common.interceptor.AnnotationDelegateInterceptor
@@ -29,8 +30,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 private class AuthConfig(
-    private val adminAuthenticationTokenExtractor: AuthenticationTokenExtractor,
-    private val compositeAuthenticationTokenExtractor: AuthenticationTokenExtractor,
     private val authenticateContext: AuthenticateContext,
 ) : WebMvcConfigurer {
 
@@ -62,8 +61,6 @@ private class AuthConfig(
     @Bean
     fun adminFixedAuthorizationInterceptor(): FixedAuthorizationInterceptor {
         return FixedAuthorizationInterceptor(
-            compositeHttpRequestTokenExtractor(),
-            adminAuthenticationTokenExtractor,
             authenticateContext,
             Role.ADMIN
         )
@@ -72,9 +69,18 @@ private class AuthConfig(
     @Bean
     fun annotationAuthorizationInterceptor(): AnnotationAuthorizationInterceptor {
         return AnnotationAuthorizationInterceptor(
-            compositeHttpRequestTokenExtractor(),
-            compositeAuthenticationTokenExtractor,
             authenticateContext
+        )
+    }
+
+    @Bean
+    fun authenticationSettingFilter(
+        compositeAuthenticationTokenExtractor: AuthenticationTokenExtractor,
+    ): AuthenticationSettingFilter {
+        return AuthenticationSettingFilter(
+            authenticateContext = authenticateContext,
+            httpRequestTokenExtractor = compositeHttpRequestTokenExtractor(),
+            authenticationTokenExtractor = compositeAuthenticationTokenExtractor
         )
     }
 
