@@ -30,7 +30,7 @@ private class ArtistDetailV1QueryServiceCacheConfig(
 
     @Bean
     fun artistDetailV1QueryServiceArtistDetailFestivalsCache(): Cache {
-        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_CACHE_NAME)
+        return caffeineCache(ArtistDetailV1QueryService.ARTIST_DETAIL_FESTIVALS_CACHE_NAME)
     }
 
     @EventListener
